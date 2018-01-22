@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ExperimentListHeader from "./ExperimentListHeader";
+import ExperimentListItem from "./ExperimentListItem";
 
 class ExperimentList extends Component {
   state = {
@@ -10,7 +11,11 @@ class ExperimentList extends Component {
     return (
       <div>
         <ExperimentListHeader />
-        <ul>{this.state.experiments.map(e => <li>{e.name}</li>)}</ul>
+        <ul>
+          {this.state.experiments.map(e => (
+            <ExperimentListItem key={e.name} name={e.name} />
+          ))}
+        </ul>
       </div>
     );
   }
