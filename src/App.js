@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -8,9 +8,7 @@ class App extends Component {
         <header>
           <h1>Experimoji</h1>
         </header>
-        <p>
-          Experimental applications for language learning with emoji
-        </p>
+        <p>Experimental applications for language learning with emoji</p>
       </div>
     );
   }
