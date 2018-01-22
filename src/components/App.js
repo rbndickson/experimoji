@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import ExperimentList from "./ExperimentList";
 import "./App.css";
 
 class App extends Component {
@@ -8,7 +10,7 @@ class App extends Component {
         <header>
           <h1>Experimoji</h1>
         </header>
-        <p>Experimental applications for language learning with emoji</p>
+        <Route path="/" component={ExperimentList} />
       </div>
     );
   }
