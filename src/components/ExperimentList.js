@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ExperimentListHeader from "./ExperimentListHeader";
 
 class ExperimentList extends Component {
   state = {
@@ -8,7 +9,7 @@ class ExperimentList extends Component {
   render() {
     return (
       <div>
-        <p>Experimental applications for language learning with emoji</p>
+        <ExperimentListHeader />
         <ul>{this.state.experiments.map(e => <li>{e.name}</li>)}</ul>
       </div>
     );
