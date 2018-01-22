@@ -1,23 +1,6 @@
 import { combineReducers } from "redux";
 import flashcards from "./flashcards";
-
-import { UPDATE_CURRENT_EXPERIMENT } from "../actions";
-
-const initialExperimentsState = {
-  currentExperiment: "None"
-};
-
-function experiments(state = initialExperimentsState, action) {
-  switch (action.type) {
-    case UPDATE_CURRENT_EXPERIMENT:
-      return {
-        ...state,
-        currentExperiment: action.experimentName
-      };
-    default:
-      return state;
-  }
-}
+import experiments from "./experiments";
 
 export default combineReducers({
   experiments,
