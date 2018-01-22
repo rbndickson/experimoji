@@ -24,7 +24,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentExperiment: state.currentExperiment
+    currentExperiment: state.experiments.currentExperiment
   };
 }
 

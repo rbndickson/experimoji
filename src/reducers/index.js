@@ -1,3 +1,6 @@
+import { combineReducers } from "redux";
+import flashcards from "./flashcards";
+
 import { UPDATE_CURRENT_EXPERIMENT } from "../actions";
 
 const initialExperimentsState = {
@@ -16,4 +19,7 @@ function experiments(state = initialExperimentsState, action) {
   }
 }
 
-export default experiments;
+export default combineReducers({
+  experiments,
+  flashcards
+});
