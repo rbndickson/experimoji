@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuizQuestion from "./QuizQuestion";
+import QuizAnswer from "./QuizAnswer";
 import "./Quiz.css";
 
 class Quiz extends Component {
@@ -8,6 +9,7 @@ class Quiz extends Component {
     return (
       <div>
         <QuizQuestion />
+        <QuizAnswer />
       </div>
     );
   }

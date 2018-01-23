@@ -27,11 +27,6 @@ class QuizQuestion extends Component {
             src={this.emojiSrc(this.props.flashcard.emojiCode)}
           />
         </div>
-        <div className={"quiz-answer"}>
-          {this.props.showQuizAnswer && (
-            <div>{this.props.flashcard.english}</div>
-          )}
-        </div>
         {answers.map(e => <QuizButton key={e} answer={e} />)}
       </div>
     );
