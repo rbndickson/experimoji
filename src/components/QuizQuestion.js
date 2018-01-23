@@ -35,6 +35,12 @@ class QuizQuestion extends Component {
   }
 
   render() {
+    const answers = shuffle([
+      this.props.flashcard.english,
+      this.props.incorrectAnswer1,
+      this.props.incorrectAnswer2
+    ]);
+
     return (
       <div>
         <div className={"quiz-image"}>
@@ -43,15 +49,9 @@ class QuizQuestion extends Component {
         <div className={"quiz-answer"}>
           {this.state.showAnswer && <div>{this.props.flashcard.english}</div>}
         </div>
-        <button onClick={() => this.handleUserAnswer()}>
-          {this.props.flashcard.english}
-        </button>
-        <button onClick={() => this.handleUserAnswer()}>
-          {this.props.incorrectAnswer1}
-        </button>
-        <button onClick={() => this.handleUserAnswer()}>
-          {this.props.incorrectAnswer2}
-        </button>
+        <button onClick={() => this.handleUserAnswer()}>{answers[0]}</button>
+        <button onClick={() => this.handleUserAnswer()}>{answers[1]}</button>
+        <button onClick={() => this.handleUserAnswer()}>{answers[2]}</button>
       </div>
     );
   }
