@@ -1,14 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { shuffle } from "../utils/helpers";
+import { shuffle, sleep } from "../utils/helpers";
+
+import { updateCurrentQuestionIndex } from "../actions";
 
 class QuizQuestion extends Component {
   state = {
     showAnswer: false
   };
 
+  async handleUserAnswer() {
+    this.showAnswer();
+    await sleep(2000);
+    this.hideAnswer();
+    this.incrementQuestion();
+  }
+
   showAnswer() {
     this.setState({ showAnswer: true });
+  }
+
+  hideAnswer() {
+    this.setState({ showAnswer: false });
+  }
+
+  incrementQuestion() {
+    this.props.dispatch(
+      updateCurrentQuestionIndex(this.props.currentQuestionIndex + 1)
+    );
   }
 
   emojiSrc(emojiCode) {
@@ -21,14 +40,16 @@ class QuizQuestion extends Component {
         <div className={"quiz-image"}>
           <img src={this.emojiSrc(this.props.flashcard.emojiCode)} />
         </div>
-        {this.state.showAnswer && <div>{this.props.flashcard.english}</div>}
-        <button onClick={() => this.showAnswer()}>
+        <div className={"quiz-answer"}>
+          {this.state.showAnswer && <div>{this.props.flashcard.english}</div>}
+        </div>
+        <button onClick={() => this.handleUserAnswer()}>
           {this.props.flashcard.english}
         </button>
-        <button onClick={() => this.showAnswer()}>
+        <button onClick={() => this.handleUserAnswer()}>
           {this.props.incorrectAnswer1}
         </button>
-        <button onClick={() => this.showAnswer()}>
+        <button onClick={() => this.handleUserAnswer()}>
           {this.props.incorrectAnswer2}
         </button>
       </div>
@@ -38,13 +59,14 @@ class QuizQuestion extends Component {
 
 function mapStateToProps(state) {
   const flashcards = Object.values(state.flashcards);
-  const flashcard = flashcards[state.quiz.questionIndex];
+  const flashcard = flashcards[state.quiz.currentQuestionIndex];
 
   const incorrectFlashcards = flashcards.filter(f => f !== flashcard);
   const shuffledIncorrectFlashcards = shuffle(incorrectFlashcards);
 
   return {
-    flashcard: flashcards[state.quiz.questionIndex],
+    currentQuestionIndex: state.quiz.currentQuestionIndex,
+    flashcard: flashcards[state.quiz.currentQuestionIndex],
     incorrectAnswer1: shuffledIncorrectFlashcards[0].english,
     incorrectAnswer2: shuffledIncorrectFlashcards[1].english
   };
