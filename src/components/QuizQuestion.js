@@ -1,34 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { shuffle, sleep } from "../utils/helpers";
-
-import { updateCurrentQuestionIndex } from "../actions";
+import { shuffle } from "../utils/helpers";
+import QuizButton from "./QuizButton";
 
 class QuizQuestion extends Component {
   state = {
     showAnswer: false
   };
-
-  async handleUserAnswer() {
-    this.showAnswer();
-    await sleep(2000);
-    this.hideAnswer();
-    this.incrementQuestion();
-  }
-
-  showAnswer() {
-    this.setState({ showAnswer: true });
-  }
-
-  hideAnswer() {
-    this.setState({ showAnswer: false });
-  }
-
-  incrementQuestion() {
-    this.props.dispatch(
-      updateCurrentQuestionIndex(this.props.currentQuestionIndex + 1)
-    );
-  }
 
   emojiSrc(emojiCode) {
     return `https://twemoji.maxcdn.com/2/svg/${emojiCode}.svg`;
@@ -44,14 +22,17 @@ class QuizQuestion extends Component {
     return (
       <div>
         <div className={"quiz-image"}>
-          <img src={this.emojiSrc(this.props.flashcard.emojiCode)} />
+          <img
+            alt={this.props.flashcard.english}
+            src={this.emojiSrc(this.props.flashcard.emojiCode)}
+          />
         </div>
         <div className={"quiz-answer"}>
-          {this.state.showAnswer && <div>{this.props.flashcard.english}</div>}
+          {this.props.showQuizAnswer && (
+            <div>{this.props.flashcard.english}</div>
+          )}
         </div>
-        <button onClick={() => this.handleUserAnswer()}>{answers[0]}</button>
-        <button onClick={() => this.handleUserAnswer()}>{answers[1]}</button>
-        <button onClick={() => this.handleUserAnswer()}>{answers[2]}</button>
+        {answers.map(e => <QuizButton key={e} answer={e} />)}
       </div>
     );
   }
@@ -68,7 +49,8 @@ function mapStateToProps(state) {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     flashcard: flashcards[state.quiz.currentQuestionIndex],
     incorrectAnswer1: shuffledIncorrectFlashcards[0].english,
-    incorrectAnswer2: shuffledIncorrectFlashcards[1].english
+    incorrectAnswer2: shuffledIncorrectFlashcards[1].english,
+    showQuizAnswer: state.quiz.showQuizAnswer
   };
 }
 
