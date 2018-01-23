@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateQuizScreen, setQuizFlashcards } from "../actions";
+import {
+  updateQuizScreen,
+  updateScore,
+  updateCurrentQuestionIndex,
+  setQuizFlashcards
+} from "../actions";
 import QuizSettings from "./QuizSettings";
 import QuizGame from "./QuizGame";
 import "./Quiz.css";
 
 class Quiz extends Component {
   componentWillMount() {
+    this.props.dispatch(updateQuizScreen("settings"));
+    this.props.dispatch(updateScore(0));
+    this.props.dispatch(updateCurrentQuestionIndex(0));
     this.props.dispatch(setQuizFlashcards(this.props.flashcards));
   }
 
