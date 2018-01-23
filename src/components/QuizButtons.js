@@ -4,6 +4,10 @@ import { shuffle } from "../utils/helpers";
 import QuizButton from "./QuizButton";
 
 class QuizButtons extends Component {
+  shouldComponentUpdate(nextProps) {
+    return this.props.currentQuestionIndex !== nextProps.currentQuestionIndex;
+  }
+
   render() {
     const incorrectFlashcards = shuffle(
       this.props.flashcards.filter(f => f !== this.props.flashcard)
