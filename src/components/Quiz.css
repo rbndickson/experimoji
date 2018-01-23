@@ -6,10 +6,12 @@
 
 .quiz-answer {
   height: 15px;
+  font-family: "Varela Round", sans-serif;
 }
 
 .quiz-button {
   font-size: 16px;
+  font-family: "Varela Round", sans-serif;
   font-weight: bold;
   display: block;
   cursor: pointer;
