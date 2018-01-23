@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setQuizFlashcards } from "../actions";
 import QuizHeader from "./QuizHeader";
 import QuizQuestion from "./QuizQuestion";
 import QuizAnswer from "./QuizAnswer";
@@ -7,6 +8,10 @@ import QuizButtons from "./QuizButtons";
 import "./Quiz.css";
 
 class Quiz extends Component {
+  componentWillMount() {
+    this.props.dispatch(setQuizFlashcards(this.props.flashcards));
+  }
+
   render() {
     return (
       <div>

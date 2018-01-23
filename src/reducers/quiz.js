@@ -1,3 +1,4 @@
+import { SET_QUIZ_FLASHCARDS } from "../actions";
 import { UPDATE_CURRENT_QUESTION_INDEX } from "../actions";
 import { SET_SHOW_QUIZ_ANSWER } from "../actions";
 import { UPDATE_SCORE } from "../actions";
@@ -10,6 +11,11 @@ const initialQuizState = {
 
 function quiz(state = initialQuizState, action) {
   switch (action.type) {
+    case SET_QUIZ_FLASHCARDS:
+      return {
+        ...state,
+        flashcards: action.flashcards
+      };
     case UPDATE_CURRENT_QUESTION_INDEX:
       return {
         ...state,

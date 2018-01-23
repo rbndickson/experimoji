@@ -36,8 +36,12 @@ class QuizQuestion extends Component {
 }
 
 function mapStateToProps(state) {
+  const flashcards = state.quiz.flashcards;
+
   return {
-    currentQuestionIndex: state.quiz.currentQuestionIndex
+    currentQuestionIndex: state.quiz.currentQuestionIndex,
+    score: state.quiz.score,
+    correctAnswer: flashcards[state.quiz.currentQuestionIndex].english
   };
 }
 

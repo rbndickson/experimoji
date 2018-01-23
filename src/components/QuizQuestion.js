@@ -19,7 +19,7 @@ class QuizQuestion extends Component {
 }
 
 function mapStateToProps(state) {
-  const flashcards = Object.values(state.flashcards);
+  const flashcards = state.quiz.flashcards;
 
   return {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
