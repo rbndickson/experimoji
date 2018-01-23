@@ -1,7 +1,15 @@
+export const UPDATE_QUIZ_SCREEN = "UPDATE_QUIZ_SCREEN";
 export const SET_QUIZ_FLASHCARDS = "SET_QUIZ_FLASHCARDS";
 export const UPDATE_CURRENT_QUESTION_INDEX = "UPDATE_CURRENT_QUESTION_INDEX";
 export const SET_SHOW_QUIZ_ANSWER = "SET_SHOW_QUIZ_ANSWER";
 export const UPDATE_SCORE = "UPDATE_SCORE";
+
+export function updateQuizScreen(screen) {
+  return {
+    type: UPDATE_QUIZ_SCREEN,
+    screen
+  };
+}
 
 export function setQuizFlashcards(flashcards) {
   return {

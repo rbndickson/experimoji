@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setQuizFlashcards } from "../actions";
-import QuizHeader from "./QuizHeader";
-import QuizQuestion from "./QuizQuestion";
-import QuizAnswer from "./QuizAnswer";
-import QuizButtons from "./QuizButtons";
+import { updateQuizScreen, setQuizFlashcards } from "../actions";
+import QuizSettings from "./QuizSettings";
+import QuizGame from "./QuizGame";
 import "./Quiz.css";
 
 class Quiz extends Component {
@@ -15,10 +13,7 @@ class Quiz extends Component {
   render() {
     return (
       <div>
-        <QuizHeader />
-        <QuizQuestion />
-        <QuizAnswer />
-        <QuizButtons />
+        {this.props.quizScreen === "game" ? <QuizGame /> : <QuizSettings />}
       </div>
     );
   }
@@ -26,8 +21,7 @@ class Quiz extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards),
-    questionIndex: state.quiz.questionIndex
+    quizScreen: state.quiz.quizScreen
   };
 }
 
