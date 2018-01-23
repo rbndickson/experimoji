@@ -28,7 +28,7 @@ class QuizQuestion extends Component {
 
   render() {
     return (
-      <button onClick={() => this.handleUserAnswer()}>
+      <button className="quiz-button" onClick={() => this.handleUserAnswer()}>
         {this.props.answer}
       </button>
     );
