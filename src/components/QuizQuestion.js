@@ -3,6 +3,14 @@ import { connect } from "react-redux";
 import { shuffle } from "../utils/helpers";
 
 class QuizQuestion extends Component {
+  state = {
+    showAnswer: false
+  };
+
+  showAnswer() {
+    this.setState({ showAnswer: true });
+  }
+
   emojiSrc(emojiCode) {
     return `https://twemoji.maxcdn.com/2/svg/${emojiCode}.svg`;
   }
@@ -13,9 +21,16 @@ class QuizQuestion extends Component {
         <div className={"quiz-image"}>
           <img src={this.emojiSrc(this.props.flashcard.emojiCode)} />
         </div>
-        <button>{this.props.flashcard.english}</button>
-        <button>{this.props.incorrectAnswer1}</button>
-        <button>{this.props.incorrectAnswer2}</button>
+        {this.state.showAnswer && <div>{this.props.flashcard.english}</div>}
+        <button onClick={() => this.showAnswer()}>
+          {this.props.flashcard.english}
+        </button>
+        <button onClick={() => this.showAnswer()}>
+          {this.props.incorrectAnswer1}
+        </button>
+        <button onClick={() => this.showAnswer()}>
+          {this.props.incorrectAnswer2}
+        </button>
       </div>
     );
   }
