@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateCurrentExperiment } from "../actions";
 import { shuffle } from "../utils/helpers";
+import QuizQuestion from "./QuizQuestion";
 import "./Quiz.css";
 
 class Quiz extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <QuizQuestion />
+      </div>
+    );
   }
 }
 
