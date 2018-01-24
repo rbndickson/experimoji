@@ -1,49 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./memory.css";
-import { shuffle } from "../../utils/helpers";
+import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
+import { addFlashcard } from "../../actions";
+import MemoryGame from "./MemoryGame";
 
 class Memory extends Component {
-  emojiSrc(emojiCode) {
-    return `https://twemoji.maxcdn.com/2/svg/${emojiCode}.svg`;
-  }
+  componentWillMount() {
+    let positions = shuffle(
+      createArrayOfNumbers(this.props.flashcards.length * 2)
+    );
 
-  render() {
-    let cards = this.props.flashcards.reduce((acc, e) => {
-      acc.push({ english: e.english });
-      acc.push({ emojiCode: e.emojiCode });
+    let flashcards = this.props.flashcards.reduce((acc, e) => {
+      acc.push({
+        position: positions.pop(),
+        flashcardType: "word",
+        data: e.english,
+        isShown: false
+      });
+      acc.push({
+        position: positions.pop(),
+        flashcardType: "picture",
+        data: e.emojiCode,
+        isShown: false
+      });
       return acc;
     }, []);
 
-    cards = shuffle(cards);
+    flashcards.forEach(flashcard => {
+      this.props.dispatch(addFlashcard(flashcard));
+    });
+  }
 
-    return (
-      <main>
-        <p>Match the pictures with the words</p>
-        <div className="memory-flashcards-container">
-          <ul className="memory-flashcards">
-            {cards.map(
-              flashcard =>
-                flashcard.english ? (
-                  <li key={flashcard.english} className="memory-flashcard">
-                    {flashcard.english}
-                  </li>
-                ) : (
-                  <li key={flashcard.emojiCode} className="memory-flashcard">
-                    <img alt="" src={this.emojiSrc(flashcard.emojiCode)} />
-                  </li>
-                )
-            )}
-          </ul>
-        </div>
-      </main>
-    );
+  render() {
+    return <MemoryGame />;
   }
 }
 
 function mapStateToProps(state) {
   const flashcards = Object.values(state.flashcards).slice(0, 4);
-  return { flashcards: flashcards };
+  return {
+    flashcards: flashcards
+  };
 }
 
 export default connect(mapStateToProps)(Memory);
