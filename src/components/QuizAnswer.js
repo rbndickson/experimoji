@@ -13,7 +13,6 @@ class QuizAnswer extends Component {
 
 function mapStateToProps(state) {
   const flashcards = state.quiz.flashcards;
-  const flashcard = flashcards[state.quiz.currentQuestionIndex];
 
   return {
     flashcard: flashcards[state.quiz.currentQuestionIndex],
