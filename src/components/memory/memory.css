@@ -1,0 +1,16 @@
+.memory-flashcards {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 300px;
+  margin: 10px auto 0 auto;
+}
+
+.memory-flashcard {
+  height: 80px;
+  width: 50px;
+  border: solid 4px skyblue;
+  border-radius: 4px;
+  margin: 2px;
+}
