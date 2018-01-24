@@ -8,6 +8,7 @@ import {
 } from "../actions";
 import QuizSettings from "./QuizSettings";
 import QuizGame from "./QuizGame";
+import QuizFinished from "./QuizFinished";
 import "./Quiz.css";
 
 class Quiz extends Component {
@@ -21,7 +22,13 @@ class Quiz extends Component {
   render() {
     return (
       <div>
-        {this.props.quizScreen === "game" ? <QuizGame /> : <QuizSettings />}
+        {this.props.currentQuestionIndex > 9 ? (
+          <QuizFinished />
+        ) : this.props.quizScreen === "game" ? (
+          <QuizGame />
+        ) : (
+          <QuizSettings />
+        )}
       </div>
     );
   }
@@ -29,7 +36,8 @@ class Quiz extends Component {
 
 function mapStateToProps(state) {
   return {
-    quizScreen: state.quiz.quizScreen
+    quizScreen: state.quiz.quizScreen,
+    currentQuestionIndex: state.quiz.currentQuestionIndex
   };
 }
 
