@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { sleep } from "../utils/helpers";
+import { sleep } from "../../utils/helpers";
 
 import {
   updateCurrentQuestionIndex,
   setShowQuizAnswer,
   updateScore
-} from "../actions";
+} from "../../actions";
 
 class QuizQuestion extends Component {
   async handleUserAnswer() {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateCurrentExperiment } from "../actions";
-import Quiz from "./Quiz";
+import Quiz from "./quiz/Quiz";
 
 class Experiment extends Component {
   goHome = () => {

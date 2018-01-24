@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateQuizScreen } from "../actions";
+import { updateQuizScreen } from "../../actions";
 
 class QuizSettings extends Component {
   startQuiz() {

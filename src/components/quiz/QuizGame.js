@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setQuizFlashcards } from "../actions";
+import { setQuizFlashcards } from "../../actions";
 import QuizHeader from "./QuizHeader";
 import QuizQuestion from "./QuizQuestion";
 import QuizAnswer from "./QuizAnswer";

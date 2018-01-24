@@ -5,7 +5,7 @@ import {
   updateScore,
   updateCurrentQuestionIndex,
   setQuizFlashcards
-} from "../actions";
+} from "../../actions";
 import QuizSettings from "./QuizSettings";
 import QuizGame from "./QuizGame";
 import QuizFinished from "./QuizFinished";

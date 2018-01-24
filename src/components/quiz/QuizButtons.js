@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { shuffle } from "../utils/helpers";
+import { shuffle } from "../../utils/helpers";
 import QuizButton from "./QuizButton";
 
 class QuizButtons extends Component {
