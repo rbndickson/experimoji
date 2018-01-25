@@ -17,7 +17,7 @@ function memory(state = initialMemoryState, action) {
           [flashcard.position]: {
             flashcardType: flashcard.flashcardType,
             data: flashcard.data,
-            isShown: flashcard.isShown
+            status: flashcard.status
           }
         }
       };

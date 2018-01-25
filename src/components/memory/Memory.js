@@ -16,13 +16,13 @@ class Memory extends Component {
         position: positions.pop(),
         flashcardType: "word",
         data: e.english,
-        isShown: false
+        status: "faceDown"
       });
       acc.push({
         position: positions.pop(),
         flashcardType: "picture",
         data: e.emojiCode,
-        isShown: false
+        status: "faceDown"
       });
       return acc;
     }, []);
