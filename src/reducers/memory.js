@@ -1,4 +1,4 @@
-import { ADD_FLASHCARD } from "../actions";
+import { ADD_FLASHCARD, UPDATE_FLASHCARD_STATUS } from "../actions";
 
 const initialMemoryState = {
   score: 0,
@@ -6,18 +6,27 @@ const initialMemoryState = {
 };
 
 function memory(state = initialMemoryState, action) {
-  const flashcard = action;
-
   switch (action.type) {
     case ADD_FLASHCARD:
       return {
         ...state,
         flashcards: {
           ...state["flashcards"],
-          [flashcard.position]: {
-            flashcardType: flashcard.flashcardType,
-            data: flashcard.data,
-            status: flashcard.status
+          [action.position]: {
+            flashcardType: action.flashcardType,
+            data: action.data,
+            status: action.status
+          }
+        }
+      };
+    case UPDATE_FLASHCARD_STATUS:
+      return {
+        ...state,
+        flashcards: {
+          ...state["flashcards"],
+          [action.position]: {
+            ...state["flashcards"][action.position],
+            status: action.status
           }
         }
       };
