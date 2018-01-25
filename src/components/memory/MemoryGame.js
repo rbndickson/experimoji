@@ -14,10 +14,13 @@ class MemoryGame extends Component {
       <div className="memory-flashcards">
         {flashcards.map(flashcard => (
           <div key={flashcard.data} className="memory-flashcard">
-            {flashcard.flashcardType === "word" && flashcard.data}
-            {flashcard.flashcardType === "picture" && (
-              <img src={emojiSrc(flashcard.data)} />
-            )}
+            {flashcard.status !== "faceDown" &&
+              flashcard.flashcardType === "word" &&
+              flashcard.data}
+            {flashcard.status !== "faceDown" &&
+              flashcard.flashcardType === "picture" && (
+                <img src={emojiSrc(flashcard.data)} />
+              )}
           </div>
         ))}
       </div>
