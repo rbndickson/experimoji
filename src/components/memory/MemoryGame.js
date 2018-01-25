@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./memory.css";
-import { createArrayOfNumbers } from "../../utils/helpers";
+import { createArrayOfNumbers, emojiSrc } from "../../utils/helpers";
 
 class MemoryGame extends Component {
   render() {
@@ -14,7 +14,10 @@ class MemoryGame extends Component {
       <div className="memory-flashcards">
         {flashcards.map(flashcard => (
           <div key={flashcard.data} className="memory-flashcard">
-            {flashcard.data}
+            {flashcard.flashcardType === "word" && flashcard.data}
+            {flashcard.flashcardType === "picture" && (
+              <img src={emojiSrc(flashcard.data)} />
+            )}
           </div>
         ))}
       </div>
