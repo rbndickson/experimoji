@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { emojiSrc } from "../../utils/helpers";
 
 class QuizQuestion extends Component {
-  emojiSrc(emojiCode) {
-    return `https://twemoji.maxcdn.com/2/svg/${emojiCode}.svg`;
-  }
-
   render() {
     return (
       <div className={"quiz-image"}>
         <img
           alt={this.props.flashcard.english}
-          src={this.emojiSrc(this.props.flashcard.emojiCode)}
+          src={emojiSrc(this.props.flashcard.emojiCode)}
         />
       </div>
     );
