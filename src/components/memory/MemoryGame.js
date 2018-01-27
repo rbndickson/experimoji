@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./memory.css";
-import { createArrayOfNumbers, emojiSrc } from "../../utils/helpers";
+import { createArrayOfNumbers, emojiSrc, sleep } from "../../utils/helpers";
 import { updateFlashcardStatus } from "../../actions";
 
 class MemoryGame extends Component {
@@ -21,17 +21,44 @@ class MemoryGame extends Component {
   }
 
   selectedFlashcards() {
-    return Object.values(this.props.flashcards).filter(
-      f => f.status === "selected"
-    );
+    const flashcards = this.props.flashcards;
+    let selectedFlashcards = [];
+
+    for (var flashcard in flashcards) {
+      if (flashcards.hasOwnProperty(flashcard)) {
+        if (flashcards[flashcard].status === "selected") {
+          selectedFlashcards.push({
+            position: flashcard,
+            emojiCode: flashcards[flashcard].emojiCode
+          });
+        }
+      }
+    }
+    return selectedFlashcards;
   }
 
-  isMatch() {
+  async isMatch() {
     const selectedFlashcards = this.selectedFlashcards();
+
     if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
-      console.log("yay");
+      selectedFlashcards.forEach(flashcard => {
+        this.props.dispatch(
+          updateFlashcardStatus({
+            position: flashcard.position,
+            status: "matched"
+          })
+        );
+      });
     } else {
-      console.log("nay");
+      await sleep(2000);
+      selectedFlashcards.forEach(flashcard => {
+        this.props.dispatch(
+          updateFlashcardStatus({
+            position: flashcard.position,
+            status: "faceDown"
+          })
+        );
+      });
     }
   }
 
