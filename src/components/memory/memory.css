@@ -15,6 +15,10 @@
   margin: 2px;
 }
 
+.memory-flashcard-matched {
+  border-color: lightgreen;
+}
+
 .memory-flashcard img {
   padding: 4px;
 }

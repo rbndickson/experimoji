@@ -73,7 +73,11 @@ class MemoryGame extends Component {
         {flashcards.map((flashcard, position) => (
           <div
             key={flashcard.data}
-            className="memory-flashcard"
+            className={
+              flashcard.status === "matched"
+                ? "memory-flashcard memory-flashcard-matched"
+                : "memory-flashcard"
+            }
             onClick={() => this.handleFlashcardSelection(position)}
           >
             {flashcard.status !== "faceDown" &&
