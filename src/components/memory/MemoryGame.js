@@ -5,6 +5,12 @@ import { createArrayOfNumbers, emojiSrc } from "../../utils/helpers";
 import { updateFlashcardStatus } from "../../actions";
 
 class MemoryGame extends Component {
+  componentDidUpdate() {
+    if (this.selectedFlashcards().length === 2) {
+      this.isMatch();
+    }
+  }
+
   handleFlashcardSelection(position) {
     this.props.dispatch(
       updateFlashcardStatus({
@@ -13,6 +19,22 @@ class MemoryGame extends Component {
       })
     );
   }
+
+  selectedFlashcards() {
+    return Object.values(this.props.flashcards).filter(
+      f => f.status === "selected"
+    );
+  }
+
+  isMatch() {
+    const selectedFlashcards = this.selectedFlashcards();
+    if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
+      console.log("yay");
+    } else {
+      console.log("nay");
+    }
+  }
+
   render() {
     const positions = createArrayOfNumbers(8);
     const flashcards = positions.map(position => {

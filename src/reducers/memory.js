@@ -15,6 +15,7 @@ function memory(state = initialMemoryState, action) {
           [action.position]: {
             flashcardType: action.flashcardType,
             data: action.data,
+            emojiCode: action.emojiCode,
             status: action.status
           }
         }
