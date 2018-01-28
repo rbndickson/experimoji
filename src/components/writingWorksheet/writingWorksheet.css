@@ -1,0 +1,18 @@
+.writing-practise-container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.writing-practise-words {
+  text-align: left;
+  font-size: 36px;
+}
+
+.writing-practise-word {
+  padding-left: 10px;
+}
+
+.writing-practise-word-light {
+  padding-left: 10px;
+  color: #eee;
+}
