@@ -4,7 +4,11 @@ import ExperimentListItem from "./ExperimentListItem";
 
 class ExperimentList extends Component {
   state = {
-    experiments: [{ name: "Quiz" }, { name: "Memory Game" }]
+    experiments: [
+      { name: "Quiz" },
+      { name: "Memory Game" },
+      { name: "Writing Practise Worksheet" }
+    ]
   };
 
   render() {
