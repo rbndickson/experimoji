@@ -9,7 +9,7 @@ import {
   updateScore
 } from "../../actions";
 
-class QuizQuestion extends Component {
+class QuizButton extends Component {
   async handleUserAnswer() {
     this.showAnswer();
     await sleep(2000);
@@ -40,7 +40,7 @@ class QuizQuestion extends Component {
 
   render() {
     return (
-      <button className="quiz-button" onClick={() => this.handleUserAnswer()}>
+      <button className="QuizButton" onClick={() => this.handleUserAnswer()}>
         {this.props.answer}
       </button>
     );
@@ -57,4 +57,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(QuizQuestion);
+export default connect(mapStateToProps)(QuizButton);
