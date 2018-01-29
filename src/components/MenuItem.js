@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateCurrentExperiment } from "../actions";
-import "./MenuItem.css";
+import Button from "./Button";
 
 class MenuItem extends Component {
   handleOnClick = name => {
@@ -11,12 +11,10 @@ class MenuItem extends Component {
   render() {
     return (
       <li>
-        <div
-          className="MenuItem-button"
+        <Button
           onClick={() => this.handleOnClick(this.props.name)}
-        >
-          {this.props.name}
-        </div>
+          text={this.props.name}
+        />
       </li>
     );
   }
