@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateCurrentExperiment } from "../actions";
 
-class ExperimentListItem extends Component {
+class MenuItem extends Component {
   handleOnClick = name => {
     this.props.dispatch(updateCurrentExperiment(name));
   };
@@ -18,4 +18,4 @@ class ExperimentListItem extends Component {
   }
 }
 
-export default connect()(ExperimentListItem);
+export default connect()(MenuItem);

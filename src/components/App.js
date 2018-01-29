@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import ExperimentList from "./ExperimentList";
+import Menu from "./Menu";
 import Experiment from "./Experiment";
 import "./App.css";
 
@@ -13,7 +13,7 @@ class App extends Component {
           <h1 className="App-title">Experimoji</h1>
         </header>
         {this.props.currentExperiment === "None" ? (
-          <Route path="/" component={ExperimentList} />
+          <Route path="/" component={Menu} />
         ) : (
           <Experiment name={this.props.currentExperiment} />
         )}

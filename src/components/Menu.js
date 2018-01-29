@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ExperimentListItem from "./ExperimentListItem";
+import MenuItem from "./MenuItem";
 
-class ExperimentList extends Component {
+class Menu extends Component {
   state = {
     experiments: [
       { name: "Quiz" },
@@ -15,7 +15,7 @@ class ExperimentList extends Component {
       <div>
         <ul>
           {this.state.experiments.map(e => (
-            <ExperimentListItem key={e.name} name={e.name} />
+            <MenuItem key={e.name} name={e.name} />
           ))}
         </ul>
       </div>
@@ -23,4 +23,4 @@ class ExperimentList extends Component {
   }
 }
 
-export default ExperimentList;
+export default Menu;
