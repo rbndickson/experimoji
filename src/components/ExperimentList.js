@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ExperimentListHeader from "./ExperimentListHeader";
 import ExperimentListItem from "./ExperimentListItem";
 
 class ExperimentList extends Component {
@@ -14,7 +13,6 @@ class ExperimentList extends Component {
   render() {
     return (
       <div>
-        <ExperimentListHeader />
         <ul>
           {this.state.experiments.map(e => (
             <ExperimentListItem key={e.name} name={e.name} />
