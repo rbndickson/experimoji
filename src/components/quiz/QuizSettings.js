@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateQuizScreen } from "../../actions";
+import Button from "../Button";
 
 class QuizSettings extends Component {
   startQuiz() {
@@ -11,7 +12,11 @@ class QuizSettings extends Component {
     return (
       <section>
         <div>Settings</div>
-        <button onClick={() => this.startQuiz()}>Start Quiz</button>
+        <Button
+          onClick={() => this.startQuiz()}
+          text="Start Quiz"
+          classModifier="Button-small"
+        />
       </section>
     );
   }
