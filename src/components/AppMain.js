@@ -8,7 +8,13 @@ import "./AppMain.css";
 class AppMain extends Component {
   render() {
     return (
-      <main className="AppMain">
+      <main
+        className={
+          this.props.currentExperiment === "Writing Practise Worksheet"
+            ? "AppMain AppMain-print"
+            : "AppMain"
+        }
+      >
         {this.props.currentExperiment === "None" ? (
           <Route path="/" component={Menu} />
         ) : (
