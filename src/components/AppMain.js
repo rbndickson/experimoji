@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import AppHeader from "./AppHeader";
-import AppMain from "./AppMain";
 import Menu from "./Menu";
 import Experiment from "./Experiment";
-import "./App.css";
+import "./AppMain.css";
 
-class App extends Component {
+class AppMain extends Component {
   render() {
     return (
-      <div className="App">
-        <AppHeader />
-        <AppMain />
-      </div>
+      <main className="AppMain">
+        {this.props.currentExperiment === "None" ? (
+          <Route path="/" component={Menu} />
+        ) : (
+          <Experiment name={this.props.currentExperiment} />
+        )}
+      </main>
     );
   }
 }
@@ -24,4 +25,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(AppMain);

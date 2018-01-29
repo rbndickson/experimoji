@@ -12,7 +12,7 @@ class Experiment extends Component {
 
   render() {
     return (
-      <main>
+      <div>
         <h1>{this.props.name}</h1>
         {this.props.name === "Quiz" && <Quiz />}
         {this.props.name === "Memory Game" && <Memory />}
@@ -20,7 +20,7 @@ class Experiment extends Component {
           <WritingWorksheet />
         )}
         <button onClick={this.goHome}>Home</button>
-      </main>
+      </div>
     );
   }
 }
