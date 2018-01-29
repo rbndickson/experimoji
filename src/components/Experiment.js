@@ -5,6 +5,7 @@ import "./Experiment.css";
 import Quiz from "./quiz/Quiz";
 import Memory from "./memory/Memory";
 import WritingWorksheet from "./writingWorksheet/WritingWorksheet";
+import Button from "./Button";
 
 class Experiment extends Component {
   goHome = () => {
@@ -20,7 +21,14 @@ class Experiment extends Component {
         {this.props.name === "Writing Practise Worksheet" && (
           <WritingWorksheet />
         )}
-        <button onClick={this.goHome}>Home</button>
+
+        <Button
+          onClick={() => {
+            this.goHome();
+          }}
+          text="Home"
+          classModifier="Button-small"
+        />
       </div>
     );
   }

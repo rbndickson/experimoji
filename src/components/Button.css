@@ -1,6 +1,6 @@
 .Button {
   padding: 10px 40px;
-  margin: 0 10px 10px 0;
+  margin: 10px;
   border-bottom: 4px solid #ffac33;
   border-radius: 5px;
   font-family: "Varela Round", sans-serif;
@@ -8,4 +8,10 @@
   color: #000;
   background-color: #ffe8b6;
   cursor: pointer;
+}
+
+.Button-small {
+  width: 40px;
+  margin: 0 auto;
+  font-size: 16px;
 }
