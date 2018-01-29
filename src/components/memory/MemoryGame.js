@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./memory.css";
+import "./MemoryGame.css";
 import { createArrayOfNumbers, emojiSrc, sleep } from "../../utils/helpers";
 import { updateFlashcardStatus } from "../../actions";
 
@@ -69,14 +69,14 @@ class MemoryGame extends Component {
     });
 
     return (
-      <div className="memory-flashcards">
+      <div className="MemoryGame-flashcards">
         {flashcards.map((flashcard, position) => (
           <div
             key={flashcard.data}
             className={
               flashcard.status === "matched"
-                ? "memory-flashcard memory-flashcard-matched"
-                : "memory-flashcard"
+                ? "MemoryGame-flashcard MemoryGame-flashcard-matched"
+                : "MemoryGame-flashcard"
             }
             onClick={() => this.handleFlashcardSelection(position)}
           >

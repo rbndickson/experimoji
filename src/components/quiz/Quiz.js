@@ -9,7 +9,6 @@ import {
 import QuizSettings from "./QuizSettings";
 import QuizGame from "./QuizGame";
 import QuizFinished from "./QuizFinished";
-import "./Quiz.css";
 
 class Quiz extends Component {
   componentWillMount() {

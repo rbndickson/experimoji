@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./writingWorksheet.css";
+import "./WritingWorksheet.css";
 
 class WritingWorksheet extends Component {
   render() {
     return (
-      <div className="writing-practise-container">
+      <div className="WritingWorksheet-container">
         <h2>Animals</h2>
         <ul>
           {this.props.flashcards.map(flashcard => (
-            <li className="writing-practise-words" key={flashcard.english}>
-              <span className="writing-practise-word ">
+            <li className="WritingWorksheet-line" key={flashcard.english}>
+              <span className="WritingWorksheet-word ">
                 {flashcard.english}
               </span>
-              <span className="writing-practise-word writing-practise-word-light">
+              <span className="WritingWorksheet-word WritingWorksheet-word-light">
                 {flashcard.english}
               </span>
-              <span className="writing-practise-word writing-practise-word-light">
+              <span className="WritingWorksheet-word WritingWorksheet-word-light">
                 {flashcard.english}
               </span>
-              <span className="writing-practise-word writing-practise-word-light">
+              <span className="WritingWorksheet-word WritingWorksheet-word-light">
                 {flashcard.english}
               </span>
             </li>

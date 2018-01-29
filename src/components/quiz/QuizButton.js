@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sleep } from "../../utils/helpers";
+import "./QuizButton.css";
 
 import {
   updateCurrentQuestionIndex,

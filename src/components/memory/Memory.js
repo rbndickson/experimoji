@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./memory.css";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
 import { addFlashcard } from "../../actions";
 import MemoryGame from "./MemoryGame";

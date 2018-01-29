@@ -1,15 +1,4 @@
-.quiz-image {
-  width: 160px;
-  height: 160px;
-  margin: 10px auto;
-}
-
-.quiz-answer {
-  height: 15px;
-  font-family: "Varela Round", sans-serif;
-}
-
-.quiz-button {
+.QuizButton {
   font-size: 16px;
   font-family: "Varela Round", sans-serif;
   font-weight: bold;

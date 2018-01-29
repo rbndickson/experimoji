@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Experimoji</h1>
+          <h1 className="App-title">Experimoji</h1>
         </header>
         {this.props.currentExperiment === "None" ? (
           <Route path="/" component={ExperimentList} />

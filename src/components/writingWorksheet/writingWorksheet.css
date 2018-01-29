@@ -1,18 +1,18 @@
-.writing-practise-container {
+.WritingWorksheet-container {
   width: 800px;
   margin: 0 auto;
 }
 
-.writing-practise-words {
+.WritingWorksheet-line {
   text-align: left;
   font-size: 36px;
 }
 
-.writing-practise-word {
+.WritingWorksheet-word {
   padding-left: 10px;
 }
 
-.writing-practise-word-light {
+.WritingWorksheet-word-light {
   padding-left: 10px;
   color: #eee;
 }

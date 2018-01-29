@@ -1,4 +1,4 @@
-.memory-flashcards {
+.MemoryGame-flashcards {
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -7,7 +7,7 @@
   margin: 10px auto 0 auto;
 }
 
-.memory-flashcard {
+.MemoryGame-flashcard {
   height: 80px;
   width: 50px;
   border: solid 4px skyblue;
@@ -15,10 +15,10 @@
   margin: 2px;
 }
 
-.memory-flashcard-matched {
+.MemoryGame-flashcard-matched {
   border-color: lightgreen;
 }
 
-.memory-flashcard img {
+.MemoryGame-flashcard img {
   padding: 4px;
 }
