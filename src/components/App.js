@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import AppHeader from "./AppHeader";
 import Menu from "./Menu";
 import Experiment from "./Experiment";
 import "./App.css";
@@ -9,9 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <h1 className="App-title">Experimoji</h1>
-        </header>
+        <AppHeader />
         {this.props.currentExperiment === "None" ? (
           <Route path="/" component={Menu} />
         ) : (
