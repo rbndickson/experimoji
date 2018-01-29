@@ -1,0 +1,11 @@
+.MenuItem-button {
+  padding: 10px 40px;
+  margin: 0 10px 10px 0;
+  border-bottom: 4px solid #ffac33;
+  border-radius: 5px;
+  font-family: "Varela Round", sans-serif;
+  font-size: 24px;
+  color: #000;
+  background-color: #ffe8b6;
+  cursor: pointer;
+}
