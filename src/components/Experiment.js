@@ -1,17 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { updateCurrentExperiment } from "../actions";
 import "./Experiment.css";
 import Quiz from "./quiz/Quiz";
 import Memory from "./memory/Memory";
 import WritingWorksheet from "./writingWorksheet/WritingWorksheet";
-import Button from "./Button";
 
 class Experiment extends Component {
-  goHome = () => {
-    this.props.dispatch(updateCurrentExperiment("None"));
-  };
-
   render() {
     return (
       <div>
@@ -21,17 +14,9 @@ class Experiment extends Component {
         {this.props.name === "Writing Practise Worksheet" && (
           <WritingWorksheet />
         )}
-
-        <Button
-          onClick={() => {
-            this.goHome();
-          }}
-          text="Home"
-          classModifier="Button-small"
-        />
       </div>
     );
   }
 }
 
-export default connect()(Experiment);
+export default Experiment;

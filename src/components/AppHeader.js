@@ -1,16 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateCurrentExperiment } from "../actions";
+import { emojiSrc } from "../utils/helpers";
 import "./AppHeader.css";
 
-const AppHeader = () => (
-  <header>
-    <h1 className="App-title">Experimoji</h1>
-  </header>
-);
-
-function mapStateToProps(state) {
-  return {
-    currentExperiment: state.experiments.currentExperiment
+class AppHeader extends Component {
+  goHome = () => {
+    this.props.dispatch(updateCurrentExperiment("None"));
   };
+
+  render() {
+    return (
+      <header className="AppHeader">
+        <div className="AppHeader-col">
+          <img
+            src={emojiSrc("1f3e0")}
+            alt="Home button"
+            className={"AppHeader-home-icon"}
+            onClick={() => {
+              this.goHome();
+            }}
+          />
+        </div>
+        <div className="AppHeader-col">
+          <h1 className="AppHeader-title">Experimoji</h1>
+        </div>
+        <div className="AppHeader-col" />
+      </header>
+    );
+  }
 }
 
-export default AppHeader;
+export default connect()(AppHeader);
