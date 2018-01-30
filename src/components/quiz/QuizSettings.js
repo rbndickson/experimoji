@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateQuizScreen, updateQuizQuestionAmount } from "../../actions";
+import "./QuizSettings.css";
 import Button from "../Button";
 
 class QuizSettings extends Component {
@@ -18,12 +19,12 @@ class QuizSettings extends Component {
     const maxQuestionAmount = Object.keys(this.props.flashcards).length;
 
     return (
-      <section>
-        <div>Settings</div>
+      <section className="QuizSettings">
+        <h3>Settings</h3>
         <form>
           <label>
             {`Number of Questions (Max ${maxQuestionAmount}):`}
-            <div>
+            <div className="QuizSettings-question-amount">
               <input
                 type="range"
                 min="1"
