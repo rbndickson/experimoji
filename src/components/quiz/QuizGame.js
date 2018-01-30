@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setQuizFlashcards } from "../../actions";
+import { shuffle } from "../../utils/helpers";
 import QuizHeader from "./QuizHeader";
 import QuizQuestion from "./QuizQuestion";
 import QuizAnswer from "./QuizAnswer";
@@ -25,7 +26,7 @@ class QuizGame extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards),
+    flashcards: shuffle(Object.values(state.flashcards)),
     questionIndex: state.quiz.questionIndex
   };
 }
