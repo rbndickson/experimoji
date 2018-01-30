@@ -12,3 +12,11 @@
   border: solid 4px #bdddf4;
   border-radius: 5px;
 }
+
+.QuizButton-correct {
+  background-color: #a6d388;
+}
+
+.QuizButton-incorrect {
+  background-color: #ea596e;
+}

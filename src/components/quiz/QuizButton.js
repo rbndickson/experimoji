@@ -12,11 +12,11 @@ import {
 class QuizButton extends Component {
   async handleUserAnswer() {
     this.showAnswer();
-    await sleep(2000);
-    this.hideAnswer();
     if (this.answerCorrect()) {
       this.props.dispatch(updateScore(this.props.score + 1));
     }
+    await sleep(2000);
+    this.hideAnswer();
     this.incrementQuestion();
   }
 
@@ -38,9 +38,24 @@ class QuizButton extends Component {
     return this.props.answer === this.props.correctAnswer;
   }
 
+  answerClass() {
+    if (this.props.showQuizAnswer) {
+      if (this.props.answer === this.props.correctAnswer) {
+        return "QuizButton QuizButton-correct";
+      } else {
+        return "QuizButton QuizButton-incorrect";
+      }
+    } else {
+      return "QuizButton";
+    }
+  }
+
   render() {
     return (
-      <button className="QuizButton" onClick={() => this.handleUserAnswer()}>
+      <button
+        className={this.answerClass()}
+        onClick={() => this.handleUserAnswer()}
+      >
         {this.props.answer}
       </button>
     );
@@ -53,7 +68,8 @@ function mapStateToProps(state) {
   return {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
-    correctAnswer: flashcards[state.quiz.currentQuestionIndex].english
+    correctAnswer: flashcards[state.quiz.currentQuestionIndex].english,
+    showQuizAnswer: state.quiz.showQuizAnswer
   };
 }
 
