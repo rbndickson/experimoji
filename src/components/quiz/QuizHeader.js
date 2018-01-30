@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./QuizHeader.css";
 
 class QuizHeader extends Component {
   render() {
     return (
-      <header>
-        <div className={"score"}>
-          {this.props.score}/{this.props.currentQuestionIndex}
+      <header className={"QuizHeader"}>
+        <div className={"QuizHeader-quizNumber"}>
+          {`Question: ${this.props.currentQuestionIndex + 1} of ${
+            this.props.questionAmount
+          }`}
         </div>
+        <div className={"QuizHeader-score"}>{`Score: ${this.props.score}`}</div>
       </header>
     );
   }
@@ -16,7 +20,8 @@ class QuizHeader extends Component {
 function mapStateToProps(state) {
   return {
     score: state.quiz.score,
-    currentQuestionIndex: state.quiz.currentQuestionIndex
+    currentQuestionIndex: state.quiz.currentQuestionIndex,
+    questionAmount: state.quiz.questionAmount
   };
 }
 
