@@ -3,12 +3,14 @@ import { SET_QUIZ_FLASHCARDS } from "../actions";
 import { UPDATE_CURRENT_QUESTION_INDEX } from "../actions";
 import { SET_SHOW_QUIZ_ANSWER } from "../actions";
 import { UPDATE_SCORE } from "../actions";
+import { UPDATE_QUIZ_QUESTION_AMOUNT } from "../actions";
 
 const initialQuizState = {
   currentQuestionIndex: 0,
   score: 0,
   showQuizAnswer: false,
-  quizScreen: "settings"
+  quizScreen: "settings",
+  questionAmount: 10
 };
 
 function quiz(state = initialQuizState, action) {
@@ -37,6 +39,11 @@ function quiz(state = initialQuizState, action) {
       return {
         ...state,
         score: action.score
+      };
+    case UPDATE_QUIZ_QUESTION_AMOUNT:
+      return {
+        ...state,
+        questionAmount: action.questionAmount
       };
     default:
       return state;

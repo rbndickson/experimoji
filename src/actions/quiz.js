@@ -3,6 +3,7 @@ export const SET_QUIZ_FLASHCARDS = "SET_QUIZ_FLASHCARDS";
 export const UPDATE_CURRENT_QUESTION_INDEX = "UPDATE_CURRENT_QUESTION_INDEX";
 export const SET_SHOW_QUIZ_ANSWER = "SET_SHOW_QUIZ_ANSWER";
 export const UPDATE_SCORE = "UPDATE_SCORE";
+export const UPDATE_QUIZ_QUESTION_AMOUNT = "UPDATE_QUIZ_QUESTION_AMOUNT";
 
 export function updateQuizScreen(screen) {
   return {
@@ -36,5 +37,12 @@ export function updateScore(score) {
   return {
     type: UPDATE_SCORE,
     score
+  };
+}
+
+export function updateQuizQuestionAmount(questionAmount) {
+  return {
+    type: UPDATE_QUIZ_QUESTION_AMOUNT,
+    questionAmount
   };
 }

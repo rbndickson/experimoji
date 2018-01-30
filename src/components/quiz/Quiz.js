@@ -21,7 +21,7 @@ class Quiz extends Component {
   render() {
     return (
       <div>
-        {this.props.currentQuestionIndex > 9 ? (
+        {this.props.currentQuestionIndex > this.props.questionAmount - 1 ? (
           <QuizFinished />
         ) : this.props.quizScreen === "game" ? (
           <QuizGame />
@@ -36,7 +36,8 @@ class Quiz extends Component {
 function mapStateToProps(state) {
   return {
     quizScreen: state.quiz.quizScreen,
-    currentQuestionIndex: state.quiz.currentQuestionIndex
+    currentQuestionIndex: state.quiz.currentQuestionIndex,
+    questionAmount: state.quiz.questionAmount
   };
 }
 
