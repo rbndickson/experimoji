@@ -2,3 +2,13 @@
   text-align: center;
   font-family: "Varela Round", sans-serif;
 }
+
+fieldset {
+  border: 0;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}

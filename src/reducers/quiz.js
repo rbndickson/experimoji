@@ -4,6 +4,7 @@ import { UPDATE_CURRENT_QUESTION_INDEX } from "../actions";
 import { SET_SHOW_QUIZ_ANSWER } from "../actions";
 import { UPDATE_SCORE } from "../actions";
 import { UPDATE_QUIZ_QUESTION_AMOUNT } from "../actions";
+import { UPDATE_QUIZ_LEVEL } from "../actions";
 import { RESET_QUIZ } from "../actions";
 
 const initialQuizState = {
@@ -11,7 +12,8 @@ const initialQuizState = {
   score: 0,
   showQuizAnswer: false,
   quizScreen: "settings",
-  questionAmount: 10
+  questionAmount: 10,
+  level: "easy"
 };
 
 function quiz(state = initialQuizState, action) {
@@ -45,6 +47,11 @@ function quiz(state = initialQuizState, action) {
       return {
         ...state,
         questionAmount: action.questionAmount
+      };
+    case UPDATE_QUIZ_LEVEL:
+      return {
+        ...state,
+        level: action.level
       };
     case RESET_QUIZ:
       return {
