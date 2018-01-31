@@ -18,16 +18,21 @@ class Quiz extends Component {
     this.props.dispatch(setQuizFlashcards(this.props.flashcards));
   }
 
+  componentDidUpdate() {
+    if (
+      this.props.quizScreen === "game" &&
+      this.props.currentQuestionIndex > this.props.questionAmount - 1
+    ) {
+      this.props.dispatch(updateQuizScreen("finished"));
+    }
+  }
+
   render() {
     return (
       <div>
-        {this.props.currentQuestionIndex > this.props.questionAmount - 1 ? (
-          <QuizFinished />
-        ) : this.props.quizScreen === "game" ? (
-          <QuizGame />
-        ) : (
-          <QuizSettings />
-        )}
+        {this.props.quizScreen === "finished" && <QuizFinished />}
+        {this.props.quizScreen === "settings" && <QuizSettings />}
+        {this.props.quizScreen === "game" && <QuizGame />}
       </div>
     );
   }

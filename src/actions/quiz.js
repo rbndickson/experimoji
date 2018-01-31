@@ -4,6 +4,7 @@ export const UPDATE_CURRENT_QUESTION_INDEX = "UPDATE_CURRENT_QUESTION_INDEX";
 export const SET_SHOW_QUIZ_ANSWER = "SET_SHOW_QUIZ_ANSWER";
 export const UPDATE_SCORE = "UPDATE_SCORE";
 export const UPDATE_QUIZ_QUESTION_AMOUNT = "UPDATE_QUIZ_QUESTION_AMOUNT";
+export const RESET_QUIZ = "RESET_QUIZ";
 
 export function updateQuizScreen(screen) {
   return {
@@ -44,5 +45,11 @@ export function updateQuizQuestionAmount(questionAmount) {
   return {
     type: UPDATE_QUIZ_QUESTION_AMOUNT,
     questionAmount
+  };
+}
+
+export function resetQuiz() {
+  return {
+    type: RESET_QUIZ
   };
 }
