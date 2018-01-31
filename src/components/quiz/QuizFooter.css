@@ -1,0 +1,10 @@
+.QuizFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.QuizFooter-back-icon {
+  width: 20px;
+  cursor: pointer;
+}
