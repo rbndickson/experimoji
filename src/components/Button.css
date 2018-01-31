@@ -15,3 +15,8 @@
   margin: 10px auto;
   font-size: 16px;
 }
+
+.Button-inline {
+  display: inline-block;
+  margin: 5px;
+}
