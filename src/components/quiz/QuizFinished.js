@@ -9,6 +9,11 @@ class QuizFinished extends Component {
     this.props.dispatch(resetQuiz());
   }
 
+  tryAgain() {
+    this.props.dispatch(updateQuizScreen("game"));
+    this.props.dispatch(resetQuiz());
+  }
+
   render() {
     return (
       <div>
@@ -16,6 +21,11 @@ class QuizFinished extends Component {
         <p>{`You scored ${this.props.score} out of ${
           this.props.currentQuestionIndex
         }.`}</p>
+        <Button
+          onClick={() => this.tryAgain()}
+          text={"Try Again"}
+          classModifier={"Button-small"}
+        />
         <Button
           onClick={() => this.goToSettings()}
           text={"Settings"}
