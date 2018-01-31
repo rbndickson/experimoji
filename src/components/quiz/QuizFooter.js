@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./QuizFooter.css";
-import { updateQuizScreen } from "../../actions";
+import { updateQuizScreen, resetQuiz } from "../../actions";
 import { emojiSrc } from "../../utils/helpers";
 
 class QuizFooter extends Component {
   goBack() {
+    this.props.dispatch(resetQuiz());
     this.props.dispatch(updateQuizScreen("settings"));
   }
 
