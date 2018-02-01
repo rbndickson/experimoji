@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { shuffle } from "../../utils/helpers";
+import "./QuizButtons.css";
 import QuizButton from "./QuizButton";
 
 class QuizButtons extends Component {
@@ -49,9 +50,22 @@ class QuizButtons extends Component {
   }
 
   render() {
-    return (
-      <div>
+    return this.props.level === "easy" ? (
+      <div className={"QuizButtons"}>
         {this.state.answers.map(e => <QuizButton key={e} answer={e} />)}
+      </div>
+    ) : (
+      <div className={"QuizButtons"}>
+        <div className={"QuizButtons-col"}>
+          {this.state.answers
+            .splice(0, 3)
+            .map(e => <QuizButton key={e} answer={e} />)}
+        </div>
+        <div className={"QuizButtons-col"}>
+          {this.state.answers
+            .splice(0, 3)
+            .map(e => <QuizButton key={e} answer={e} />)}
+        </div>
       </div>
     );
   }
