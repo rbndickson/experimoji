@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateQuizScreen, resetQuiz } from "../../actions";
+import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
 
 class QuizFinished extends Component {
@@ -32,6 +33,7 @@ class QuizFinished extends Component {
             text={"Settings"}
             classModifier={"Button-small Button-inline"}
           />
+          <QuizResultsList />
         </div>
       </div>
     );
