@@ -29,22 +29,23 @@ class QuizButtons extends Component {
   }
 
   createAnswers(flashcards, correctFlashcard) {
+    let answers = [];
+
     const incorrectFlashcards = shuffle(
       flashcards.filter(f => f !== correctFlashcard)
     );
 
-    const shuffledFlashcards = shuffle([
-      correctFlashcard.english,
-      incorrectFlashcards[0].english,
-      incorrectFlashcards[1].english,
-      incorrectFlashcards[2].english,
-      incorrectFlashcards[3].english,
-      incorrectFlashcards[4].english
-    ]);
+    const shuffledIncorrectAnswers = shuffle(
+      incorrectFlashcards.map(flashcard => flashcard.english)
+    );
 
-    return this.props.level === "easy"
-      ? shuffledFlashcards.splice(0, 3)
-      : shuffledFlashcards;
+    this.props.level === "easy"
+      ? (answers = shuffledIncorrectAnswers.splice(0, 2))
+      : (answers = shuffledIncorrectAnswers.splice(0, 5));
+
+    answers.push(correctFlashcard.english);
+
+    return shuffle(answers);
   }
 
   render() {
