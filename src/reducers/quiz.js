@@ -3,6 +3,7 @@ import { SET_QUIZ_FLASHCARDS } from "../actions";
 import { UPDATE_CURRENT_QUESTION_INDEX } from "../actions";
 import { SET_SHOW_QUIZ_ANSWER } from "../actions";
 import { UPDATE_SCORE } from "../actions";
+import { RECORD_ANSWER_RESULT } from "../actions";
 import { UPDATE_QUIZ_QUESTION_AMOUNT } from "../actions";
 import { UPDATE_QUIZ_LEVEL } from "../actions";
 import { RESET_QUIZ } from "../actions";
@@ -42,6 +43,17 @@ function quiz(state = initialQuizState, action) {
       return {
         ...state,
         score: action.score
+      };
+    case RECORD_ANSWER_RESULT:
+      return {
+        ...state,
+        flashcards: {
+          ...state["flashcards"],
+          [action.flashcardIndex]: {
+            ...state["flashcards"][action.flashcardIndex],
+            answerResult: action.answerResult
+          }
+        }
       };
     case UPDATE_QUIZ_QUESTION_AMOUNT:
       return {

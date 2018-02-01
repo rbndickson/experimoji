@@ -14,7 +14,7 @@ class QuizButtons extends Component {
 
   componentWillMount() {
     const answers = this.createAnswers(
-      this.props.flashcards,
+      Object.values(this.props.flashcards),
       this.props.flashcard
     );
     this.setState({ answers: answers });
@@ -22,7 +22,7 @@ class QuizButtons extends Component {
 
   componentWillReceiveProps(nextProps) {
     const answers = this.createAnswers(
-      nextProps.flashcards,
+      Object.values(nextProps.flashcards),
       nextProps.flashcard
     );
     this.setState({ answers: answers });

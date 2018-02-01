@@ -6,7 +6,8 @@ import "./QuizButton.css";
 import {
   updateCurrentQuestionIndex,
   setShowQuizAnswer,
-  updateScore
+  updateScore,
+  recordAnswerResult
 } from "../../actions";
 
 class QuizButton extends Component {
@@ -14,6 +15,13 @@ class QuizButton extends Component {
     this.showAnswer();
     if (this.answerCorrect()) {
       this.props.dispatch(updateScore(this.props.score + 1));
+      this.props.dispatch(
+        recordAnswerResult(this.props.currentQuestionIndex, "correct")
+      );
+    } else {
+      this.props.dispatch(
+        recordAnswerResult(this.props.currentQuestionIndex, "incorrect")
+      );
     }
     await sleep(2000);
     this.hideAnswer();
