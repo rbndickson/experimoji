@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateQuizScreen, resetQuiz } from "../../actions";
+import { updateQuizScreen, resetQuiz, setQuizRetry } from "../../actions";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
 
@@ -10,7 +10,14 @@ class QuizFinished extends Component {
     this.props.dispatch(resetQuiz());
   }
 
-  tryAgain() {
+  tryAgainNewCards() {
+    this.props.dispatch(setQuizRetry(false));
+    this.props.dispatch(updateQuizScreen("game"));
+    this.props.dispatch(resetQuiz());
+  }
+
+  tryAgainSameCards() {
+    this.props.dispatch(setQuizRetry(true));
     this.props.dispatch(updateQuizScreen("game"));
     this.props.dispatch(resetQuiz());
   }
@@ -24,14 +31,19 @@ class QuizFinished extends Component {
         }.`}</p>
         <div className={"QuizFinished-buttons"}>
           <Button
-            onClick={() => this.tryAgain()}
-            text={"Try Again"}
-            classModifier={"Button-small Button-inline"}
+            onClick={() => this.tryAgainSameCards()}
+            text={"Retry Same Cards"}
+            classModifier={"Button-medium"}
+          />
+          <Button
+            onClick={() => this.tryAgainNewCards()}
+            text={"Try Again With New Cards"}
+            classModifier={"Button-medium"}
           />
           <Button
             onClick={() => this.goToSettings()}
             text={"Settings"}
-            classModifier={"Button-small Button-inline"}
+            classModifier={"Button-medium"}
           />
           <QuizResultsList />
         </div>

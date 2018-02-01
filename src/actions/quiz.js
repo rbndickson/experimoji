@@ -6,6 +6,7 @@ export const UPDATE_SCORE = "UPDATE_SCORE";
 export const RECORD_ANSWER_RESULT = "RECORD_ANSWER_RESULT";
 export const UPDATE_QUIZ_QUESTION_AMOUNT = "UPDATE_QUIZ_QUESTION_AMOUNT";
 export const RESET_QUIZ = "RESET_QUIZ";
+export const SET_QUIZ_RETRY = "SET_QUIZ_RETRY";
 export const UPDATE_QUIZ_LEVEL = "UPDATE_QUIZ_LEVEL";
 
 export function updateQuizScreen(screen) {
@@ -68,5 +69,12 @@ export function updateQuizLevel(level) {
 export function resetQuiz() {
   return {
     type: RESET_QUIZ
+  };
+}
+
+export function setQuizRetry(isRetry) {
+  return {
+    type: SET_QUIZ_RETRY,
+    isRetry
   };
 }

@@ -9,7 +9,15 @@ import QuizFooter from "./QuizFooter";
 
 class QuizGame extends Component {
   componentWillMount() {
-    this.props.dispatch(setQuizFlashcards(this.props.flashcards));
+    const previousFlashcards =
+      this.props.previousFlashcards || this.props.flashcards;
+    this.props.isRetry
+      ? this.props.dispatch(
+          setQuizFlashcards(Object.values(previousFlashcards))
+        )
+      : this.props.dispatch(
+          setQuizFlashcards(shuffle(Object.values(this.props.flashcards)))
+        );
   }
 
   render() {
@@ -26,8 +34,10 @@ class QuizGame extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: shuffle(Object.values(state.flashcards)),
-    questionIndex: state.quiz.questionIndex
+    flashcards: state.flashcards,
+    previousFlashcards: state.quiz.flashcards,
+    questionIndex: state.quiz.questionIndex,
+    isRetry: state.quiz.isRetry
   };
 }
 
