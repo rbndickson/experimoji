@@ -22,9 +22,7 @@ class AppHeader extends Component {
             }}
           />
         </div>
-        <div className="AppHeader-col">
-          <h1 className="AppHeader-title" />
-        </div>
+        <div className="AppHeader-col" />
         <div className="AppHeader-col" />
       </header>
     );
