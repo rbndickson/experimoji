@@ -80,13 +80,15 @@ class MemoryGame extends Component {
             }
             onClick={() => this.handleFlashcardSelection(position)}
           >
-            {flashcard.status !== "faceDown" &&
-              flashcard.flashcardType === "word" &&
-              flashcard.data}
-            {flashcard.status !== "faceDown" &&
-              flashcard.flashcardType === "picture" && (
-                <img src={emojiSrc(flashcard.data)} alt={flashcard.english} />
-              )}
+            <div className={"MemoryGame-flashcard-content"}>
+              {flashcard.status !== "faceDown" &&
+                flashcard.flashcardType === "word" &&
+                flashcard.data}
+              {flashcard.status !== "faceDown" &&
+                flashcard.flashcardType === "picture" && (
+                  <img src={emojiSrc(flashcard.data)} alt={flashcard.english} />
+                )}
+            </div>
           </div>
         ))}
       </div>
