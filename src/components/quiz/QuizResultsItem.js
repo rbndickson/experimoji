@@ -10,6 +10,7 @@ class QuizResultsItem extends Component {
         <img
           src={emojiSrc(this.props.emojiCode)}
           className={"QuizResultsItem-emoji"}
+          alt={this.props.word}
         />
         {this.props.word}
       </li>

@@ -85,7 +85,7 @@ class MemoryGame extends Component {
               flashcard.data}
             {flashcard.status !== "faceDown" &&
               flashcard.flashcardType === "picture" && (
-                <img src={emojiSrc(flashcard.data)} />
+                <img src={emojiSrc(flashcard.data)} alt={flashcard.english} />
               )}
           </div>
         ))}
