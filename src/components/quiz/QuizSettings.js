@@ -16,7 +16,11 @@ class QuizSettings extends Component {
   handleQuestionAmountChange = e => {
     e.preventDefault();
 
-    this.props.dispatch(updateQuizQuestionAmount(e.target.value));
+    this.setQuestionAmount(e.target.value);
+  };
+
+  setQuestionAmount = questionAmount => {
+    this.props.dispatch(updateQuizQuestionAmount(questionAmount));
   };
 
   handlelevelChange = level => {
@@ -25,6 +29,7 @@ class QuizSettings extends Component {
 
   render() {
     const maxQuestionAmount = Object.keys(this.props.flashcards).length;
+    const questionAmounts = [5, 10, 20, maxQuestionAmount];
 
     return (
       <section className="QuizSettings">
@@ -43,6 +48,16 @@ class QuizSettings extends Component {
                   name="questionAmount"
                   onChange={this.handleQuestionAmountChange}
                 />
+              </div>
+              <div>
+                {questionAmounts.map(e => (
+                  <Button
+                    key={parseInt(e, 0)}
+                    classModifier={"Button-x-small Button-inline"}
+                    text={parseInt(e, 0)}
+                    onClick={() => this.setQuestionAmount(e)}
+                  />
+                ))}
               </div>
             </label>
           </fieldset>
