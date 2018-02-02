@@ -4,7 +4,6 @@ import AnimatedBackground from "./AnimatedBackground";
 import AppHeader from "./AppHeader";
 import AppMain from "./AppMain";
 import "./App.css";
-import { emojiSrc } from "../utils/helpers";
 
 class App extends Component {
   render() {
