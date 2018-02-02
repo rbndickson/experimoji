@@ -44,26 +44,34 @@ class MemoryGame extends Component {
 
     if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
       selectedFlashcards.forEach(flashcard => {
-        this.props.dispatch(
-          updateFlashcardStatus({
-            position: flashcard.position,
-            status: "matched"
-          })
-        );
+        this.setFlashcardMatched(flashcard.position);
       });
     } else {
       this.props.dispatch(setClickable(false));
       await sleep(2000);
       selectedFlashcards.forEach(flashcard => {
-        this.props.dispatch(
-          updateFlashcardStatus({
-            position: flashcard.position,
-            status: "faceDown"
-          })
-        );
+        this.setFlashcardFaceDown(flashcard.position);
       });
       this.props.dispatch(setClickable(true));
     }
+  }
+
+  setFlashcardFaceDown(position) {
+    this.props.dispatch(
+      updateFlashcardStatus({
+        position: position,
+        status: "faceDown"
+      })
+    );
+  }
+
+  setFlashcardMatched(position) {
+    this.props.dispatch(
+      updateFlashcardStatus({
+        position: position,
+        status: "matched"
+      })
+    );
   }
 
   render() {

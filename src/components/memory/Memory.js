@@ -6,6 +6,10 @@ import MemoryGame from "./MemoryGame";
 
 class Memory extends Component {
   componentWillMount() {
+    this.setFlashcards();
+  }
+
+  setFlashcards() {
     let positions = shuffle(
       createArrayOfNumbers(this.props.flashcards.length * 2)
     );
