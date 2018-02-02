@@ -1,9 +1,11 @@
 .AppMain {
+  position: relative;
   background-color: #fff;
   max-width: 580px;
   margin: 0 auto;
   border-radius: 5px;
   padding: 10px;
+  z-index: 2;
 }
 
 .AppMain-print {
