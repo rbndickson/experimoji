@@ -33,15 +33,31 @@ class Memory extends Component {
     });
   }
 
+  isFinished() {
+    let result = true;
+    this.props.memoryGameFlashcards.forEach(f => {
+      if (f.status === "faceDown") {
+        result = false;
+      }
+    });
+    return result;
+  }
+
   render() {
-    return <MemoryGame />;
+    return (
+      <div>
+        <MemoryGame />
+        {this.isFinished() && "Game Finished!"}
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   const flashcards = Object.values(state.flashcards).slice(0, 4);
   return {
-    flashcards: flashcards
+    flashcards: flashcards,
+    memoryGameFlashcards: Object.values(state.memory.flashcards)
   };
 }
 
