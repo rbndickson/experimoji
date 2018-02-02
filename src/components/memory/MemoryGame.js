@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./MemoryGame.css";
 import { createArrayOfNumbers, emojiSrc, sleep } from "../../utils/helpers";
-import { updateFlashcardStatus } from "../../actions";
+import { updateFlashcardStatus, setClickable } from "../../actions";
 
 class MemoryGame extends Component {
   componentDidUpdate() {
@@ -12,12 +12,14 @@ class MemoryGame extends Component {
   }
 
   handleFlashcardSelection(position) {
-    this.props.dispatch(
-      updateFlashcardStatus({
-        position: position,
-        status: "selected"
-      })
-    );
+    if (this.props.isClickable) {
+      this.props.dispatch(
+        updateFlashcardStatus({
+          position: position,
+          status: "selected"
+        })
+      );
+    }
   }
 
   selectedFlashcards() {
@@ -50,6 +52,7 @@ class MemoryGame extends Component {
         );
       });
     } else {
+      this.props.dispatch(setClickable(false));
       await sleep(2000);
       selectedFlashcards.forEach(flashcard => {
         this.props.dispatch(
@@ -59,6 +62,7 @@ class MemoryGame extends Component {
           })
         );
       });
+      this.props.dispatch(setClickable(true));
     }
   }
 
@@ -98,7 +102,8 @@ class MemoryGame extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: state.memory.flashcards
+    flashcards: state.memory.flashcards,
+    isClickable: state.memory.isClickable
   };
 }
 

@@ -1,8 +1,13 @@
-import { ADD_FLASHCARD, UPDATE_FLASHCARD_STATUS } from "../actions";
+import {
+  ADD_FLASHCARD,
+  UPDATE_FLASHCARD_STATUS,
+  SET_CLICKABLE
+} from "../actions";
 
 const initialMemoryState = {
   score: 0,
-  flashcards: {}
+  flashcards: {},
+  isClickable: true
 };
 
 function memory(state = initialMemoryState, action) {
@@ -30,6 +35,11 @@ function memory(state = initialMemoryState, action) {
             status: action.status
           }
         }
+      };
+    case SET_CLICKABLE:
+      return {
+        ...state,
+        isClickable: action.isClickable
       };
     default:
       return state;

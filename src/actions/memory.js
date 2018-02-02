@@ -1,5 +1,6 @@
 export const ADD_FLASHCARD = "ADD_FLASHCARD";
 export const UPDATE_FLASHCARD_STATUS = "UPDATE_FLASHCARD_STATUS";
+export const SET_CLICKABLE = "SET_CLICKABLE";
 
 export function addFlashcard({
   position,
@@ -23,5 +24,12 @@ export function updateFlashcardStatus({ position, status }) {
     type: UPDATE_FLASHCARD_STATUS,
     position,
     status
+  };
+}
+
+export function setClickable(isClickable) {
+  return {
+    type: SET_CLICKABLE,
+    isClickable
   };
 }
