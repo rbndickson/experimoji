@@ -32,7 +32,8 @@ class QuizSettings extends Component {
         <form>
           <fieldset>
             <label>
-              {`Number of Questions (Max ${maxQuestionAmount}):`}
+              {`Number of Questions: `}
+              <span>{this.props.questionAmount}</span>
               <div className="QuizSettings-question-amount">
                 <input
                   type="range"
@@ -43,12 +44,11 @@ class QuizSettings extends Component {
                   onChange={this.handleQuestionAmountChange}
                 />
               </div>
-              <p>{this.props.questionAmount}</p>
             </label>
           </fieldset>
           <fieldset>
-            <p className={"QuizSettings-label"}>Level:</p>
             <div>
+              <span className={"QuizSettings-label"}>Level:</span>
               <input
                 type="radio"
                 id="easy"
