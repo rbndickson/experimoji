@@ -13,10 +13,16 @@
   border-radius: 5px;
 }
 
-.QuizButton-correct {
+.QuizButton:hover {
+  background: #eef6fc;
+}
+
+.QuizButton-correct,
+.QuizButton-correct:hover {
   background-color: #a6d388;
 }
 
-.QuizButton-incorrect {
+.QuizButton-incorrect,
+.QuizButton-incorrect:hover {
   background-color: #ea596e;
 }

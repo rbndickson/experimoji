@@ -7,4 +7,10 @@
 .QuizFooter-back-icon {
   width: 20px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-animation: all 0.2s linear infinite;
+}
+
+.QuizFooter-back-icon:hover {
+  margin-left: -2px;
 }

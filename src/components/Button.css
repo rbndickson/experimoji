@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.Button:hover {
+  background-color: #ffe09e;
+}
+
 .Button-x-small {
   width: 60px;
   margin: 6px auto;
