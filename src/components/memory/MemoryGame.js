@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./MemoryGame.css";
-import { createArrayOfNumbers, emojiSrc, sleep } from "../../utils/helpers";
+import { createArrayOfNumbers, sleep } from "../../utils/helpers";
 import { updateFlashcardStatus, setClickable } from "../../actions";
+import Flashcard from "./Flashcard";
 
 class MemoryGame extends Component {
   componentDidUpdate() {
@@ -83,25 +84,10 @@ class MemoryGame extends Component {
     return (
       <div className="MemoryGame-flashcards">
         {flashcards.map((flashcard, position) => (
-          <div
-            key={flashcard.data}
-            className={
-              flashcard.status === "matched"
-                ? "MemoryGame-flashcard MemoryGame-flashcard-matched"
-                : "MemoryGame-flashcard"
-            }
+          <Flashcard
+            flashcard={flashcard}
             onClick={() => this.handleFlashcardSelection(position)}
-          >
-            <div className={"MemoryGame-flashcard-content"}>
-              {flashcard.status !== "faceDown" &&
-                flashcard.flashcardType === "word" &&
-                flashcard.data}
-              {flashcard.status !== "faceDown" &&
-                flashcard.flashcardType === "picture" && (
-                  <img src={emojiSrc(flashcard.data)} alt={flashcard.english} />
-                )}
-            </div>
-          </div>
+          />
         ))}
       </div>
     );
