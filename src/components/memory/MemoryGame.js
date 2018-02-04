@@ -100,17 +100,12 @@ class MemoryGame extends Component {
   }
 
   render() {
-    const positions = createArrayOfNumbers(8);
-    const flashcards = positions.map(position => {
-      return this.props.flashcards[position];
-    });
-
     return (
       <div className="MemoryGame-flashcards">
-        {flashcards.map((flashcard, position) => (
+        {createArrayOfNumbers(8).map(position => (
           <Flashcard
             key={position}
-            flashcard={flashcard}
+            flashcard={this.props.flashcards[position]}
             onClick={() => this.handleFlashcardSelection(position)}
           />
         ))}
