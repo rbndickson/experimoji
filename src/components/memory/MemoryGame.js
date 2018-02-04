@@ -11,7 +11,7 @@ import Flashcard from "./Flashcard";
 
 class MemoryGame extends Component {
   componentDidUpdate() {
-    if (this.selectedFlashcards().length === 2) {
+    if (this.selectedFlashcardPositions().length === 2) {
       this.props.dispatch(updateMemoryGameScore(this.props.score + 1));
       this.checkForMatch();
     }
@@ -32,52 +32,51 @@ class MemoryGame extends Component {
     }
   }
 
-  selectedFlashcards() {
+  selectedFlashcardPositions() {
     const flashcards = this.props.flashcards;
-    let selectedFlashcards = [];
+    let selectedFlashcardPositions = [];
 
-    for (var flashcard in flashcards) {
-      if (flashcards.hasOwnProperty(flashcard)) {
-        if (flashcards[flashcard].status === "selected") {
-          selectedFlashcards.push({
-            position: flashcard,
-            emojiCode: flashcards[flashcard].emojiCode
-          });
+    for (var position in flashcards) {
+      if (flashcards.hasOwnProperty(position)) {
+        if (flashcards[position].status === "selected") {
+          selectedFlashcardPositions.push(position);
         }
       }
     }
-    return selectedFlashcards;
+    return selectedFlashcardPositions;
   }
 
   checkForMatch() {
-    const selectedFlashcards = this.selectedFlashcards();
+    const positions = this.selectedFlashcardPositions();
+    const flashcard1 = this.props.flashcards[positions[0]];
+    const flashcard2 = this.props.flashcards[positions[1]];
 
-    if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
-      this.updateFlashcardsToMatched(selectedFlashcards);
+    if (flashcard1.emojiCode === flashcard2.emojiCode) {
+      this.updateFlashcardsToMatched(positions);
     } else {
-      this.displayAndHide(selectedFlashcards);
+      this.displayAndHide(positions);
     }
   }
 
-  async displayAndHide(flashcards) {
+  async displayAndHide(positions) {
     this.props.dispatch(setClickable(false));
     await sleep(2000);
-    flashcards.forEach(flashcard => {
-      this.setFlashcardFaceDown(flashcard.position);
+    positions.forEach(position => {
+      this.setFlashcardFaceDown(position);
     });
-    this.hideCards(flashcards);
+    this.hideCards(positions);
     this.props.dispatch(setClickable(true));
   }
 
-  updateFlashcardsToMatched(flashcards) {
-    flashcards.forEach(flashcard => {
-      this.setFlashcardMatched(flashcard.position);
+  updateFlashcardsToMatched(positions) {
+    positions.forEach(position => {
+      this.setFlashcardMatched(position);
     });
   }
 
-  hideCards(flashcards) {
-    flashcards.forEach(flashcard => {
-      this.setFlashcardFaceDown(flashcard.position);
+  hideCards(positions) {
+    positions.forEach(position => {
+      this.setFlashcardFaceDown(position);
     });
   }
 
