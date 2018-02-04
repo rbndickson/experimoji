@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
 import { addFlashcard } from "../../actions";
 import MemoryGame from "./MemoryGame";
+import Button from "../Button";
 
 class Memory extends Component {
   componentWillMount() {
@@ -51,7 +52,13 @@ class Memory extends Component {
     return (
       <div>
         <MemoryGame />
-        {this.isFinished() && "Game Finished!"}
+        {this.isFinished() && (
+          <Button
+            text={"Play Again"}
+            onClick={() => this.setFlashcards()}
+            classModifier={"Button-small"}
+          />
+        )}
       </div>
     );
   }
