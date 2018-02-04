@@ -1,7 +1,8 @@
 import {
   ADD_FLASHCARD,
   UPDATE_FLASHCARD_STATUS,
-  SET_CLICKABLE
+  SET_CLICKABLE,
+  UPDATE_MEMORY_GAME_SCORE
 } from "../actions";
 
 const initialMemoryState = {
@@ -40,6 +41,11 @@ function memory(state = initialMemoryState, action) {
       return {
         ...state,
         isClickable: action.isClickable
+      };
+    case UPDATE_MEMORY_GAME_SCORE:
+      return {
+        ...state,
+        score: action.score
       };
     default:
       return state;

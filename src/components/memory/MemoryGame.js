@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./MemoryGame.css";
 import { createArrayOfNumbers, sleep } from "../../utils/helpers";
-import { updateFlashcardStatus, setClickable } from "../../actions";
+import {
+  updateFlashcardStatus,
+  setClickable,
+  updateMemoryGameScore
+} from "../../actions";
 import Flashcard from "./Flashcard";
 
 class MemoryGame extends Component {
   componentDidUpdate() {
     if (this.selectedFlashcards().length === 2) {
+      this.props.dispatch(updateMemoryGameScore(this.props.score + 1));
       this.isMatch();
     }
+  }
+
+  shouldComponentUpdate(prevState) {
+    return this.props.flashcards !== prevState.flashcards;
   }
 
   handleFlashcardSelection(position) {
@@ -85,6 +94,7 @@ class MemoryGame extends Component {
       <div className="MemoryGame-flashcards">
         {flashcards.map((flashcard, position) => (
           <Flashcard
+            key={position}
             flashcard={flashcard}
             onClick={() => this.handleFlashcardSelection(position)}
           />
@@ -97,7 +107,8 @@ class MemoryGame extends Component {
 function mapStateToProps(state) {
   return {
     flashcards: state.memory.flashcards,
-    isClickable: state.memory.isClickable
+    isClickable: state.memory.isClickable,
+    score: state.memory.score
   };
 }
 
