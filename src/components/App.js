@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import AnimatedBackground from "./AnimatedBackground";
+import Background from "./Background";
 import AppHeader from "./AppHeader";
 import AppMain from "./AppMain";
 import "./App.css";
@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AnimatedBackground />
+        <Background />
         <AppHeader />
         <AppMain />
       </div>
