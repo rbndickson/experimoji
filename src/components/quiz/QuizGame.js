@@ -4,7 +4,6 @@ import { setQuizFlashcards } from "../../actions";
 import { shuffle } from "../../utils/helpers";
 import QuizHeader from "./QuizHeader";
 import QuizQuestion from "./QuizQuestion";
-import QuizButtons from "./QuizButtons";
 import QuizFooter from "./QuizFooter";
 
 class QuizGame extends Component {
@@ -25,7 +24,6 @@ class QuizGame extends Component {
       <div>
         <QuizHeader />
         <QuizQuestion />
-        <QuizButtons />
         <QuizFooter />
       </div>
     );

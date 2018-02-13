@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { emojiSrc } from "../../utils/helpers";
+import QuizButtons from "./QuizButtons";
 import "./QuizQuestion.css";
 
 class QuizQuestion extends Component {
@@ -11,6 +12,7 @@ class QuizQuestion extends Component {
           alt={this.props.flashcard.english}
           src={emojiSrc(this.props.flashcard.emojiCode)}
         />
+        <QuizButtons />
       </div>
     );
   }
@@ -20,7 +22,6 @@ function mapStateToProps(state) {
   const flashcards = state.quiz.flashcards;
 
   return {
-    currentQuestionIndex: state.quiz.currentQuestionIndex,
     flashcard: flashcards[state.quiz.currentQuestionIndex]
   };
 }
