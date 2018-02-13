@@ -14,35 +14,29 @@ class QuizButtons extends Component {
   }
 
   componentWillMount() {
-    const answers = this.createAnswers(
-      Object.values(this.props.flashcards),
-      this.props.flashcard
-    );
-    this.setState({ answers: answers });
+    this.setAnswers(this.props.flashcards, this.props.flashcard);
   }
 
   componentWillReceiveProps(nextProps) {
-    const answers = this.createAnswers(
-      Object.values(nextProps.flashcards),
-      nextProps.flashcard
-    );
+    this.setAnswers(nextProps.flashcards, nextProps.flashcard);
+  }
+
+  setAnswers(flashcards, flashcard) {
+    const answers = this.createAnswers(Object.values(flashcards), flashcard);
     this.setState({ answers: answers });
   }
 
   createAnswers(flashcards, correctFlashcard) {
-    let answers = [];
-
     const incorrectFlashcards = shuffle(
-      flashcards.filter(f => f !== correctFlashcard)
+      flashcards
+        .filter(f => f !== correctFlashcard)
+        .map(flashcard => flashcard.english)
     );
 
-    const shuffledIncorrectAnswers = shuffle(
-      incorrectFlashcards.map(flashcard => flashcard.english)
-    );
-
-    this.props.level === "easy"
-      ? (answers = shuffledIncorrectAnswers.splice(0, 2))
-      : (answers = shuffledIncorrectAnswers.splice(0, 5));
+    const answers =
+      this.props.level === "easy"
+        ? incorrectFlashcards.splice(0, 2)
+        : incorrectFlashcards.splice(0, 5);
 
     answers.push(correctFlashcard.english);
 
@@ -50,21 +44,19 @@ class QuizButtons extends Component {
   }
 
   render() {
+    const { answers } = this.state;
+
     return this.props.level === "easy" ? (
       <div className={"QuizButtons"}>
-        {this.state.answers.map(e => <QuizButton key={e} answer={e} />)}
+        {answers.map(e => <QuizButton key={e} answer={e} />)}
       </div>
     ) : (
       <div className={"QuizButtons"}>
         <div className={"QuizButtons-col"}>
-          {this.state.answers
-            .splice(0, 3)
-            .map(e => <QuizButton key={e} answer={e} />)}
+          {answers.splice(0, 3).map(e => <QuizButton key={e} answer={e} />)}
         </div>
         <div className={"QuizButtons-col"}>
-          {this.state.answers
-            .splice(0, 3)
-            .map(e => <QuizButton key={e} answer={e} />)}
+          {answers.splice(0, 3).map(e => <QuizButton key={e} answer={e} />)}
         </div>
       </div>
     );
