@@ -13,19 +13,21 @@ import {
 class QuizButton extends Component {
   async handleUserAnswer() {
     this.showAnswer();
-    if (this.answerCorrect()) {
-      this.props.dispatch(updateScore(this.props.score + 1));
-      this.props.dispatch(
-        recordAnswerResult(this.props.currentQuestionIndex, "correct")
-      );
-    } else {
-      this.props.dispatch(
-        recordAnswerResult(this.props.currentQuestionIndex, "incorrect")
-      );
-    }
+    this.isAnswerCorrect() ? this.dispatchCorrect() : this.dispatchIncorrect();
     await sleep(2000);
     this.hideAnswer();
     this.incrementQuestion();
+  }
+
+  dispatchCorrect() {
+    const { currentQuestionIndex, score } = this.props;
+    this.props.dispatch(updateScore(score + 1));
+    this.props.dispatch(recordAnswerResult(currentQuestionIndex, "correct"));
+  }
+
+  dispatchIncorrect() {
+    const { currentQuestionIndex } = this.props;
+    this.props.dispatch(recordAnswerResult(currentQuestionIndex, "incorrect"));
   }
 
   showAnswer() {
@@ -42,26 +44,22 @@ class QuizButton extends Component {
     );
   }
 
-  answerCorrect() {
+  isAnswerCorrect() {
     return this.props.answer === this.props.correctAnswer;
   }
 
-  answerClass() {
-    if (this.props.showQuizAnswer) {
-      if (this.props.answer === this.props.correctAnswer) {
-        return "QuizButton QuizButton-correct";
-      } else {
-        return "QuizButton QuizButton-incorrect";
-      }
-    } else {
-      return "QuizButton";
-    }
+  buttonClass() {
+    return this.props.showQuizAnswer
+      ? this.props.answer === this.props.correctAnswer
+        ? "QuizButton QuizButton-correct"
+        : "QuizButton QuizButton-incorrect"
+      : "QuizButton";
   }
 
   render() {
     return (
       <button
-        className={this.answerClass()}
+        className={this.buttonClass()}
         onClick={() => this.handleUserAnswer()}
       >
         {this.props.answer}
