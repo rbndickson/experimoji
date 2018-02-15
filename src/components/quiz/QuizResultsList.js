@@ -32,6 +32,7 @@ class QuizResultsList extends Component {
               <QuizResultsItem
                 word={flashcard.english}
                 emojiCode={flashcard.emojiCode}
+                key={flashcard.engish}
               />
             ))}
         </ul>
