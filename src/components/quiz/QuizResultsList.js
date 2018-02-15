@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./QuizResultsList.css";
+import { css } from "emotion";
 import QuizResultsItem from "./QuizResultsItem";
+
+const styles = css`
+  max-width: 400px;
+  margin: 0 auto;
+`;
 
 class QuizResultsList extends Component {
   render() {
     return (
-      <div className={"QuizResultsList"}>
+      <div className={styles}>
         <h3>Review</h3>
         <h4>Words you answered incorrectly:</h4>
         <ul>

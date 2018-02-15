@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { css } from "emotion";
 import {
   updateQuizScreen,
   updateQuizQuestionAmount,
@@ -7,6 +8,18 @@ import {
 } from "../../actions";
 import "./QuizSettings.css";
 import Button from "../Button";
+
+const headingStyles = css`
+  margin: 20px 0;
+`;
+
+const questionAmountStyles = css`
+  margin: 20px 0;
+`;
+
+const labelStyles = css`
+  margin: 20px 0;
+`;
 
 class QuizSettings extends Component {
   startQuiz() {
@@ -33,13 +46,13 @@ class QuizSettings extends Component {
 
     return (
       <section className="QuizSettings">
-        <h3>Settings</h3>
+        <h3 className={headingStyles}>Settings</h3>
         <form>
           <fieldset>
             <label>
               {`Number of Questions: `}
               <span>{this.props.questionAmount}</span>
-              <div className="QuizSettings-question-amount">
+              <div className={questionAmountStyles}>
                 <input
                   type="range"
                   min="1"
@@ -63,7 +76,7 @@ class QuizSettings extends Component {
           </fieldset>
           <fieldset>
             <div>
-              <span className={"QuizSettings-label"}>Level:</span>
+              <span className={labelStyles}>Level:</span>
               <input
                 type="radio"
                 id="easy"

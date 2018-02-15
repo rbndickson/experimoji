@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./QuizFooter.css";
+import { css } from "emotion";
 import { updateQuizScreen, resetQuiz } from "../../actions";
 import { emojiSrc } from "../../utils/helpers";
+
+const styles = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const backIconStyles = css`
+  width: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-animation: all 0.2s linear infinite;
+
+  &:hover {
+    margin-left: -2px;
+  }
+`;
 
 class QuizFooter extends Component {
   goBack() {
@@ -12,12 +29,12 @@ class QuizFooter extends Component {
 
   render() {
     return (
-      <div className={"QuizFooter"}>
+      <div className={styles}>
         <div>
           <img
             src={emojiSrc("1f519")}
             alt="Back button"
-            className={"QuizFooter-back-icon"}
+            className={backIconStyles}
             onClick={() => {
               this.goBack();
             }}

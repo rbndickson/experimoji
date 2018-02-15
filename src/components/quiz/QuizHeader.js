@@ -1,17 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./QuizHeader.css";
+import { css } from "emotion";
+
+const styles = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 300px;
+  margin: 0 auto;
+`;
 
 class QuizHeader extends Component {
   render() {
     return (
-      <header className={"QuizHeader"}>
-        <div className={"QuizHeader-quizNumber"}>
+      <header className={styles}>
+        <div>
           {`Question: ${this.props.currentQuestionIndex + 1} of ${
             this.props.questionAmount
           }`}
         </div>
-        <div className={"QuizHeader-score"}>{`Score: ${this.props.score}`}</div>
+        <div>{`Score: ${this.props.score}`}</div>
       </header>
     );
   }

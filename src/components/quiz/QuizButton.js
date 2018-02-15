@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sleep } from "../../utils/helpers";
-import "./QuizButton.css";
+import { css, cx } from "emotion";
 
 import {
   updateCurrentQuestionIndex,
@@ -9,6 +9,41 @@ import {
   updateScore,
   recordAnswerResult
 } from "../../actions";
+
+const styles = css`
+  font-size: 16px;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  display: block;
+  cursor: pointer;
+  width: 150px;
+  padding: 10px;
+  margin: 4px;
+  color: #000;
+  background: #fff;
+  border: solid 4px #bdddf4;
+  border-radius: 5px;
+
+  &:hover {
+    background: #eef6fc;
+  }
+`;
+
+const correctStyles = css`
+  background-color: #a6d388;
+
+  &:hover {
+    background-color: #a6d388;
+  }
+`;
+
+const incorrectStyles = css`
+  background-color: #ea596e;
+
+  &:hover {
+    background-color: #ea596e;
+  }
+`;
 
 class QuizButton extends Component {
   async handleUserAnswer() {
@@ -51,9 +86,9 @@ class QuizButton extends Component {
   buttonClass() {
     return this.props.showQuizAnswer
       ? this.props.answer === this.props.correctAnswer
-        ? "QuizButton QuizButton-correct"
-        : "QuizButton QuizButton-incorrect"
-      : "QuizButton";
+        ? cx(styles, correctStyles)
+        : cx(styles, incorrectStyles)
+      : styles;
   }
 
   render() {

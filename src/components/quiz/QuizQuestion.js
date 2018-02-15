@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { css } from "emotion";
 import { emojiSrc, shuffle } from "../../utils/helpers";
 import QuizButtons from "./QuizButtons";
-import "./QuizQuestion.css";
+
+const styles = css`
+  width: 160px;
+  margin: 20px auto;
+`;
 
 class QuizQuestion extends Component {
   state = {
@@ -45,7 +50,7 @@ class QuizQuestion extends Component {
 
   render() {
     return (
-      <div className={"QuizQuestion"}>
+      <div className={styles}>
         <img
           alt={this.props.flashcard.english}
           src={emojiSrc(this.props.flashcard.emojiCode)}
