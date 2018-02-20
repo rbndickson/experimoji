@@ -8,19 +8,21 @@ import "./AppMain.css";
 class AppMain extends Component {
   render() {
     return (
-      <main
-        className={
-          this.props.currentExperiment === "Writing Practise Worksheet"
-            ? "AppMain AppMain-print"
-            : "AppMain"
-        }
-      >
-        {this.props.currentExperiment === "None" ? (
-          <Route path="/" component={Menu} />
-        ) : (
-          <Experiment name={this.props.currentExperiment} />
-        )}
-      </main>
+      <div className="AppMain-wrapper">
+        <main
+          className={
+            this.props.currentExperiment === "Writing Practise Worksheet"
+              ? "AppMain AppMain-print"
+              : "AppMain"
+          }
+        >
+          {this.props.currentExperiment === "None" ? (
+            <Route path="/" component={Menu} />
+          ) : (
+            <Experiment name={this.props.currentExperiment} />
+          )}
+        </main>
+      </div>
     );
   }
 }

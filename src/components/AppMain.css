@@ -1,10 +1,15 @@
+.AppMain-wrapper {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
 .AppMain {
   position: relative;
   background-color: #fff;
   max-width: 580px;
-  margin: 0 auto;
+  margin: 0 5px;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   z-index: 2;
 }
 
