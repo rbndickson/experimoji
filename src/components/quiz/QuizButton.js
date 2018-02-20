@@ -46,12 +46,16 @@ const incorrectStyles = css`
 `;
 
 class QuizButton extends Component {
-  async handleUserAnswer() {
+  handleUserAnswer() {
     this.showAnswer();
     this.isAnswerCorrect() ? this.dispatchCorrect() : this.dispatchIncorrect();
-    await sleep(2000);
-    this.hideAnswer();
-    this.incrementQuestion();
+
+    const _this = this;
+
+    setTimeout(function() {
+      _this.hideAnswer();
+      _this.incrementQuestion();
+    }, 2000);
   }
 
   dispatchCorrect() {
