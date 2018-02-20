@@ -25,10 +25,10 @@ class QuizFinished extends Component {
   render() {
     return (
       <div>
-        <h2>Quiz complete!</h2>
+        <h2>Quiz Complete!</h2>
         <p>{`You scored ${this.props.score} out of ${
           this.props.currentQuestionIndex
-        }.`}</p>
+        }`}</p>
         <div className={"QuizFinished-buttons"}>
           <Button
             onClick={() => this.tryAgainSameCards()}
