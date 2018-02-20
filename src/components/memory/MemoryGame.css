@@ -2,26 +2,7 @@
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 400px;
+  justify-content: space-around;
+  max-width: 400px;
   margin: 10px auto 0 auto;
-}
-
-.MemoryGame-flashcard {
-  height: 120px;
-  width: 80px;
-  border: solid 4px skyblue;
-  border-radius: 4px;
-  margin: 2px;
-}
-
-.MemoryGame-flashcard-matched {
-  border-color: lightgreen;
-}
-
-.MemoryGame-flashcard-content {
-  width: 60px;
-  height: 60px;
-  margin: 30px auto;
-  font-size: 18px;
 }

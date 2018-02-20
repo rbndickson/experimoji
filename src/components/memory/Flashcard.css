@@ -30,3 +30,20 @@
 .Flashcard-content p {
   margin-top: 28px;
 }
+
+@media (max-width: 600px) {
+  .Flashcard {
+    height: 60px;
+    width: 100px;
+  }
+
+  .Flashcard-content img {
+    height: 50px;
+    width: 50px;
+    margin: 5px 0;
+  }
+
+  .Flashcard-content p {
+    margin-top: 18px;
+  }
+}
