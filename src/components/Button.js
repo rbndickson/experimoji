@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "emotion";
+import { css, cx } from "emotion";
 
 const baseStyles = css`
   padding: 10px 0;
@@ -40,11 +40,31 @@ const inlineStyles = css`
   margin: 5px;
 `;
 
+const styles = classModifier => {
+  let s = [baseStyles];
+
+  if (!classModifier) {
+    return s;
+  }
+
+  if (classModifier.includes("Button-x-small")) {
+    s.push(xSmallStyles);
+  }
+  if (classModifier.includes("Button-small")) {
+    s.push(smallStyles);
+  }
+  if (classModifier.includes("Button-medium")) {
+    s.push(mediumStyles);
+  }
+  if (classModifier.includes("Button-inline")) {
+    s.push(inlineStyles);
+  }
+
+  return cx(s);
+};
+
 const Button = ({ onClick, text, classModifier }) => (
-  <div
-    className={classModifier ? `Button ${classModifier}` : "Button"}
-    onClick={onClick}
-  >
+  <div className={styles(classModifier)} onClick={onClick}>
     {text}
   </div>
 );

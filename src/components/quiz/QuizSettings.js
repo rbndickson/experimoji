@@ -6,7 +6,6 @@ import {
   updateQuizQuestionAmount,
   updateQuizLevel
 } from "../../actions";
-import "./QuizSettings.css";
 import Button from "../Button";
 
 const headingStyles = css`
@@ -45,7 +44,7 @@ class QuizSettings extends Component {
     const questionAmounts = [5, 10, 20, maxQuestionAmount];
 
     return (
-      <section className="QuizSettings">
+      <section>
         <h3 className={headingStyles}>Settings</h3>
         <form>
           <fieldset>
