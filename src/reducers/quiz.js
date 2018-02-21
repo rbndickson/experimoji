@@ -1,13 +1,15 @@
-import { UPDATE_QUIZ_SCREEN } from "../actions";
-import { SET_QUIZ_FLASHCARDS } from "../actions";
-import { UPDATE_CURRENT_QUESTION_INDEX } from "../actions";
-import { SET_SHOW_QUIZ_ANSWER } from "../actions";
-import { UPDATE_SCORE } from "../actions";
-import { RECORD_ANSWER_RESULT } from "../actions";
-import { UPDATE_QUIZ_QUESTION_AMOUNT } from "../actions";
-import { UPDATE_QUIZ_LEVEL } from "../actions";
-import { RESET_QUIZ } from "../actions";
-import { SET_QUIZ_RETRY } from "../actions";
+import {
+  UPDATE_QUIZ_SCREEN,
+  SET_QUIZ_FLASHCARDS,
+  UPDATE_CURRENT_QUESTION_INDEX,
+  SET_SHOW_QUIZ_ANSWER,
+  UPDATE_SCORE,
+  RECORD_ANSWER_RESULT,
+  UPDATE_QUIZ_QUESTION_AMOUNT,
+  UPDATE_QUIZ_LEVEL,
+  RESET_QUIZ,
+  SET_QUIZ_RETRY
+} from "../actions";
 
 const initialQuizState = {
   currentQuestionIndex: 0,
