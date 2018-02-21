@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Experiment.css";
 import Quiz from "./quiz/Quiz";
 import Memory from "./memory/Memory";
 import WritingWorksheet from "./writingWorksheet/WritingWorksheet";
