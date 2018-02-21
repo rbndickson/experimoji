@@ -2,7 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateCurrentExperiment } from "../actions";
 import { emojiSrc } from "../utils/helpers";
-import "./AppHeader.css";
+import { css } from "emotion";
+
+const AppHeaderStyles = css`
+  display: flex;
+  justify-content: space-between;
+
+  .AppHeader-col {
+    width: 33.33%;
+  }
+
+  .AppHeader-home-icon {
+    width: 35px;
+    height: 35px;
+    float: left;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .AppHeader-home-icon:hover {
+    transform: scale(1.1);
+  }
+`;
 
 class AppHeader extends Component {
   goHome = () => {
@@ -11,7 +33,7 @@ class AppHeader extends Component {
 
   render() {
     return (
-      <header className="AppHeader">
+      <header className={AppHeaderStyles}>
         <div className="AppHeader-col">
           <img
             src={emojiSrc("1f3e0")}

@@ -4,7 +4,27 @@ import { emojiSrc } from "../utils/helpers";
 import Background from "./Background";
 import AppHeader from "./AppHeader";
 import AppMain from "./AppMain";
-import "./App.css";
+import { css } from "emotion";
+
+const styles = css`
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  background-image: url("/em-bg.png");
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+
+  fieldset {
+    border: 0;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+`;
 
 class App extends Component {
   componentDidMount() {
@@ -20,7 +40,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={styles}>
         <Background />
         <AppHeader />
         <AppMain />
