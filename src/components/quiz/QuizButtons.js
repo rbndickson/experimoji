@@ -19,7 +19,9 @@ class QuizButtons extends Component {
 
     return this.props.level === "easy" ? (
       <div className={styles}>
-        {answers.map(e => <QuizButton key={e} answer={e} />)}
+        <div className={colStyles}>
+          {answers.map(e => <QuizButton key={e} answer={e} />)}
+        </div>
       </div>
     ) : (
       <div className={styles}>

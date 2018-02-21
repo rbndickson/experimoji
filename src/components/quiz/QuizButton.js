@@ -16,8 +16,8 @@ const styles = css`
   font-weight: bold;
   display: block;
   cursor: pointer;
-  width: 150px;
-  padding: 10px;
+  width: 145px;
+  padding: 10px 0;
   margin: 4px;
   color: #000;
   background: #fff;
@@ -26,6 +26,10 @@ const styles = css`
 
   &:hover {
     background: #eef6fc;
+  }
+
+  @media (min-width: 420px) {
+    width: 200px;
   }
 `;
 

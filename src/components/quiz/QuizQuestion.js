@@ -5,7 +5,7 @@ import { emojiSrc, shuffle } from "../../utils/helpers";
 import QuizButtons from "./QuizButtons";
 
 const styles = css`
-  width: 160px;
+  width: 150px;
   margin: 20px auto;
 `;
 
