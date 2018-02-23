@@ -7,6 +7,7 @@ import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
 
 const scoreTextStyles = css`
+  margin: 40px 0;
   font-size: 24px;
 `;
 
@@ -18,9 +19,9 @@ const emojiStyles = css`
 `;
 
 const sharingListStyles = css`
-  width: 100px;
+  width: 200px;
   margin: 0 auto 20px;
-  text-align: left;
+  text-align: center;
 
   a {
     color: #000;
@@ -62,25 +63,17 @@ class QuizFinished extends Component {
     return (
       <div>
         <h2>Quiz Complete!</h2>
-        <p className={scoreTextStyles}>{`You scored ${
+        <div className={scoreTextStyles}>{`You scored ${
           this.props.score
-        } out of ${this.props.currentQuestionIndex}`}</p>
+        } out of ${this.props.currentQuestionIndex}`}</div>
         <div>
-          <h3>
-            Share your score
-            <img className={emojiStyles} src={emojiSrc("1f389")} />
-          </h3>
           <ul className={sharingListStyles}>
             <li>
-              <a
-                href={twitterLink}
-                target="popup"
-                onClick={() => {
-                  window.open({ twitterLink }, "popup", "width=600,height=300");
-                  return false;
-                }}
-              >
-                <img className={emojiStyles} src={emojiSrc("1f426")} />Twitter
+              <a href={twitterLink} target="popup">
+                Share on Twitter<img
+                  className={emojiStyles}
+                  src={emojiSrc("1f426")}
+                />
               </a>
             </li>
           </ul>
