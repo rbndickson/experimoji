@@ -1,3 +1,5 @@
+import { quizData } from "../quizData";
+
 import {
   UPDATE_QUIZ_SCREEN,
   SET_QUIZ_FLASHCARDS,
@@ -12,6 +14,8 @@ import {
 } from "../actions";
 
 const initialQuizState = {
+  language: quizData.quiz.language,
+  category: quizData.quiz.category,
   currentQuestionIndex: 0,
   score: 0,
   showQuizAnswer: false,
