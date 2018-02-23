@@ -15,7 +15,7 @@ class Flashcard extends Component {
         <div className={"Flashcard-content"}>
           {flashcard.status !== "faceDown" &&
             (flashcard.flashcardType === "vocabulary" ? (
-              <p>{flashcard.data}</p>
+              <div className="Flashcard-content-text">{flashcard.data}</div>
             ) : (
               <img src={emojiSrc(flashcard.data)} alt={flashcard.vocabulary} />
             ))}
