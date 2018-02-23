@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { emojiSrc, shuffle } from "../../utils/helpers";
+import { emojiSrc } from "../../utils/helpers";
 import { updateQuizScreen, resetQuiz, setQuizRetry } from "../../actions";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";

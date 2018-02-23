@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { sleep } from "../../utils/helpers";
 import { css, cx } from "emotion";
 
 import {
