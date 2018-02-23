@@ -6,6 +6,10 @@ import { updateQuizScreen, resetQuiz, setQuizRetry } from "../../actions";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
 
+const scoreTextStyles = css`
+  font-size: 24px;
+`;
+
 const emojiStyles = css`
   width: 1em;
   height: 1em;
@@ -58,9 +62,9 @@ class QuizFinished extends Component {
     return (
       <div>
         <h2>Quiz Complete!</h2>
-        <p>{`You scored ${this.props.score} out of ${
-          this.props.currentQuestionIndex
-        }`}</p>
+        <p className={scoreTextStyles}>{`You scored ${
+          this.props.score
+        } out of ${this.props.currentQuestionIndex}`}</p>
         <div>
           <h3>
             Share your score
