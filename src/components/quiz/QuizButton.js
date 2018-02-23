@@ -50,15 +50,23 @@ const incorrectStyles = css`
 
 class QuizButton extends Component {
   handleUserAnswer() {
-    this.showAnswer();
-    this.isAnswerCorrect() ? this.dispatchCorrect() : this.dispatchIncorrect();
+    if (this.currentQuestionUnsnswered()) {
+      this.showAnswer();
+      this.isAnswerCorrect()
+        ? this.dispatchCorrect()
+        : this.dispatchIncorrect();
 
-    const _this = this;
+      const _this = this;
 
-    setTimeout(function() {
-      _this.hideAnswer();
-      _this.incrementQuestion();
-    }, 2000);
+      setTimeout(function() {
+        _this.hideAnswer();
+        _this.incrementQuestion();
+      }, 2000);
+    }
+  }
+
+  currentQuestionUnsnswered() {
+    return !this.props.flashcards[this.props.currentQuestionIndex].answerResult;
   }
 
   dispatchCorrect() {
@@ -114,6 +122,7 @@ function mapStateToProps(state) {
   const flashcards = state.quiz.flashcards;
 
   return {
+    flashcards: state.quiz.flashcards,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
     correctAnswer: flashcards[state.quiz.currentQuestionIndex].vocabulary,

@@ -22,7 +22,8 @@ const initialQuizState = {
   quizScreen: "settings",
   questionAmount: 10,
   level: "easy",
-  isRetry: false
+  isRetry: false,
+  isClickable: true
 };
 
 function quiz(state = initialQuizState, action) {
