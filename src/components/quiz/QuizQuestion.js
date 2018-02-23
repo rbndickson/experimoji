@@ -35,7 +35,7 @@ class QuizQuestion extends Component {
     const incorrectFlashcards = shuffle(
       flashcards
         .filter(f => f !== correctFlashcard)
-        .map(flashcard => flashcard.english)
+        .map(flashcard => flashcard.vocabulary)
     );
 
     const answers =
@@ -43,7 +43,7 @@ class QuizQuestion extends Component {
         ? incorrectFlashcards.splice(0, 2)
         : incorrectFlashcards.splice(0, 5);
 
-    answers.push(correctFlashcard.english);
+    answers.push(correctFlashcard.vocabulary);
 
     return shuffle(answers);
   }
@@ -52,7 +52,7 @@ class QuizQuestion extends Component {
     return (
       <div className={styles}>
         <img
-          alt={this.props.flashcard.english}
+          alt={this.props.flashcard.vocabulary}
           src={emojiSrc(this.props.flashcard.emojiCode)}
         />
         <QuizButtons answers={this.state.answers} />

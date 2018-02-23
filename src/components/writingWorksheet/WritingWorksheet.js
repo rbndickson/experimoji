@@ -9,18 +9,18 @@ class WritingWorksheet extends Component {
         <h2>Animals</h2>
         <ul>
           {this.props.flashcards.map(flashcard => (
-            <li className="WritingWorksheet-line" key={flashcard.english}>
+            <li className="WritingWorksheet-line" key={flashcard.vocabulary}>
               <span className="WritingWorksheet-word ">
-                {flashcard.english}
+                {flashcard.vocabulary}
               </span>
               <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.english}
+                {flashcard.vocabulary}
               </span>
               <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.english}
+                {flashcard.vocabulary}
               </span>
               <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.english}
+                {flashcard.vocabulary}
               </span>
             </li>
           ))}

@@ -19,8 +19,9 @@ class QuizResultsList extends Component {
             .filter(flashcard => flashcard.answerResult === "incorrect")
             .map(flashcard => (
               <QuizResultsItem
-                word={flashcard.english}
+                vocabulary={flashcard.vocabulary}
                 emojiCode={flashcard.emojiCode}
+                key={`${flashcard.vocabulary}${flashcard.emojiCode}`}
               />
             ))}
         </ul>
@@ -30,9 +31,9 @@ class QuizResultsList extends Component {
             .filter(flashcard => flashcard.answerResult === "correct")
             .map(flashcard => (
               <QuizResultsItem
-                word={flashcard.english}
+                vocabulary={flashcard.vocabulary}
                 emojiCode={flashcard.emojiCode}
-                key={flashcard.engish}
+                key={`${flashcard.vocabulary}${flashcard.emojiCode}`}
               />
             ))}
         </ul>

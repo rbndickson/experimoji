@@ -18,8 +18,8 @@ class Memory extends Component {
     let flashcards = this.props.flashcards.reduce((acc, e) => {
       acc.push({
         position: positions.pop(),
-        flashcardType: "word",
-        data: e.english,
+        flashcardType: "vocabulary",
+        data: e.vocabulary,
         emojiCode: e.emojiCode,
         status: "faceDown"
       });

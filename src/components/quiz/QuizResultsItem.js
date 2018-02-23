@@ -23,9 +23,9 @@ class QuizResultsItem extends Component {
         <img
           src={emojiSrc(this.props.emojiCode)}
           className={emojiStyles}
-          alt={this.props.word}
+          alt={this.props.vocabulary}
         />
-        {this.props.word}
+        {this.props.vocabulary}
       </li>
     );
   }

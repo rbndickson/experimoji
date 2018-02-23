@@ -117,7 +117,7 @@ function mapStateToProps(state) {
   return {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
-    correctAnswer: flashcards[state.quiz.currentQuestionIndex].english,
+    correctAnswer: flashcards[state.quiz.currentQuestionIndex].vocabulary,
     showQuizAnswer: state.quiz.showQuizAnswer
   };
 }
