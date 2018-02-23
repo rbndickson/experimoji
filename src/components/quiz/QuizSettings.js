@@ -16,8 +16,8 @@ const questionAmountStyles = css`
   margin: 20px 0;
 `;
 
-const labelStyles = css`
-  margin: 20px 0;
+const inputStyles = css`
+  margin: 20px 2px 6px 10px;
 `;
 
 class QuizSettings extends Component {
@@ -41,7 +41,9 @@ class QuizSettings extends Component {
 
   render() {
     const maxQuestionAmount = Object.keys(this.props.flashcards).length;
-    const questionAmounts = [5, 10, 20, maxQuestionAmount];
+    const questionAmounts = [5, 10, 20, maxQuestionAmount].filter(
+      e => e <= maxQuestionAmount
+    );
 
     return (
       <section>
@@ -66,7 +68,7 @@ class QuizSettings extends Component {
                   <Button
                     key={parseInt(e, 0)}
                     classModifier={"Button-x-small Button-inline"}
-                    text={parseInt(e, 0)}
+                    text={e === maxQuestionAmount ? "Max" : parseInt(e, 0)}
                     onClick={() => this.setQuestionAmount(e)}
                   />
                 ))}
@@ -75,8 +77,9 @@ class QuizSettings extends Component {
           </fieldset>
           <fieldset>
             <div>
-              <span className={labelStyles}>Level:</span>
+              <span>Level:</span>
               <input
+                className={inputStyles}
                 type="radio"
                 id="easy"
                 name="contact"
@@ -84,9 +87,10 @@ class QuizSettings extends Component {
                 defaultChecked={this.props.level === "easy"}
                 onChange={() => this.handlelevelChange("easy")}
               />
-              <label>Easy</label>
+              <label htmlFor="easy">Easy</label>
 
               <input
+                className={inputStyles}
                 type="radio"
                 id="medium"
                 name="contact"
@@ -94,7 +98,7 @@ class QuizSettings extends Component {
                 defaultChecked={this.props.level === "medium"}
                 onChange={() => this.handlelevelChange("medium")}
               />
-              <label>Medium</label>
+              <label htmlFor="medium">Medium</label>
 
               {/* <input
                 type="radio"
