@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateCurrentExperiment } from "../actions";
+import { updateCurrentExperiment, updateQuizScreen } from "../actions";
 import { emojiSrc } from "../utils/helpers";
 import { css } from "emotion";
 
@@ -28,6 +28,7 @@ const AppHeaderStyles = css`
 
 class AppHeader extends Component {
   goHome = () => {
+    this.props.dispatch(updateQuizScreen("settings"));
     this.props.dispatch(updateCurrentExperiment("None"));
   };
 
