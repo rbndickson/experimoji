@@ -40,6 +40,15 @@ const inlineStyles = css`
   margin: 5px;
 `;
 
+const blueStyles = css`
+  background-color: #a5d6fa;
+  border-bottom: 4px solid #55acee;
+
+  &:hover {
+    background-color: #91cdf8;
+  }
+`;
+
 const styles = classModifier => {
   let s = [baseStyles];
 
@@ -58,6 +67,9 @@ const styles = classModifier => {
   }
   if (classModifier.includes("Button-inline")) {
     s.push(inlineStyles);
+  }
+  if (classModifier.includes("Button-blue")) {
+    s.push(blueStyles);
   }
 
   return cx(s);
