@@ -6,7 +6,7 @@ import {
   updateCurrentQuestionIndex,
   setQuizFlashcards
 } from "../../actions";
-import QuizSettings from "./QuizSettings";
+import QuizStart from "./QuizStart";
 import QuizGame from "./QuizGame";
 import QuizFinished from "./QuizFinished";
 
@@ -26,11 +26,13 @@ class Quiz extends Component {
     }
   }
 
+  componentWillUnmount() {}
+
   render() {
     return (
       <div>
         {this.props.quizScreen === "finished" && <QuizFinished />}
-        {this.props.quizScreen === "settings" && <QuizSettings />}
+        {this.props.quizScreen === "settings" && <QuizStart />}
         {this.props.quizScreen === "game" && <QuizGame />}
       </div>
     );

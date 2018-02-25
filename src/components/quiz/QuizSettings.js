@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import {
-  updateQuizScreen,
-  updateQuizQuestionAmount,
-  updateQuizLevel
-} from "../../actions";
+import { updateQuizQuestionAmount, updateQuizLevel } from "../../actions";
 import Button from "../Button";
 
 const headingStyles = css`
@@ -21,10 +17,6 @@ const inputStyles = css`
 `;
 
 class QuizSettings extends Component {
-  startQuiz() {
-    this.props.dispatch(updateQuizScreen("game"));
-  }
-
   handleQuestionAmountChange = e => {
     e.preventDefault();
 
@@ -112,11 +104,6 @@ class QuizSettings extends Component {
             </div>
           </fieldset>
         </form>
-        <Button
-          onClick={() => this.startQuiz()}
-          text="Start Quiz"
-          classModifier="Button-small"
-        />
       </section>
     );
   }
