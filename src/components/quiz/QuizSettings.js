@@ -4,12 +4,12 @@ import { css } from "emotion";
 import { updateQuizQuestionAmount, updateQuizLevel } from "../../actions";
 import Button from "../Button";
 
-const headingStyles = css`
-  margin: 20px 0;
+const settingsTextStyles = css`
+  font-size: 18px;
 `;
 
 const questionAmountStyles = css`
-  margin: 20px 0;
+  font-size: 64px;
 `;
 
 const inputStyles = css`
@@ -39,21 +39,12 @@ class QuizSettings extends Component {
 
     return (
       <section>
-        <h3 className={headingStyles}>Settings</h3>
         <form>
           <fieldset>
-            <label>
-              {`Number of Questions: `}
-              <span>{this.props.questionAmount}</span>
+            <label className={settingsTextStyles}>
+              {`Questions:`}
               <div className={questionAmountStyles}>
-                <input
-                  type="range"
-                  min="1"
-                  max={maxQuestionAmount}
-                  value={this.props.questionAmount}
-                  name="questionAmount"
-                  onChange={this.handleQuestionAmountChange}
-                />
+                {this.props.questionAmount}
               </div>
               <div>
                 {questionAmounts.map(e => (
@@ -69,7 +60,7 @@ class QuizSettings extends Component {
           </fieldset>
           <fieldset>
             <div>
-              <span>Level:</span>
+              <div className={settingsTextStyles}>Level:</div>
               <input
                 className={inputStyles}
                 type="radio"
