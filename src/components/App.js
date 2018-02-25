@@ -4,6 +4,7 @@ import { emojiSrc } from "../utils/helpers";
 import Background from "./Background";
 import AppHeader from "./AppHeader";
 import AppMain from "./AppMain";
+import AppFooter from "./AppFooter";
 import { css } from "emotion";
 
 const styles = css`
@@ -14,6 +15,7 @@ const styles = css`
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+  padding-bottom: 30px;
 
   fieldset {
     border: 0;
@@ -44,6 +46,7 @@ class App extends Component {
         <Background />
         <AppHeader />
         <AppMain />
+        <AppFooter />
       </div>
     );
   }
