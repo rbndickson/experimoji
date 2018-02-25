@@ -32,7 +32,7 @@ const smallStyles = css`
 const mediumStyles = css`
   width: 250px;
   margin: 10px auto;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 const inlineStyles = css`
