@@ -49,6 +49,15 @@ const blueStyles = css`
   }
 `;
 
+const greenStyles = css`
+  background-color: #d2eac2;
+  border-bottom: 4px solid #77b255;
+
+  &:hover {
+    background-color: #c6e5b3;
+  }
+`;
+
 const styles = classModifier => {
   let s = [baseStyles];
 
@@ -70,6 +79,9 @@ const styles = classModifier => {
   }
   if (classModifier.includes("Button-blue")) {
     s.push(blueStyles);
+  }
+  if (classModifier.includes("Button-green")) {
+    s.push(greenStyles);
   }
 
   return cx(s);
