@@ -20,10 +20,10 @@ class QuizStart extends Component {
     return (
       <div className={styles}>
         <div className="pure-g">
-          <div className="pure-u-1 pure-u-md-2-3">
+          <div className="pure-u-1 pure-u-md-1-2">
             <QuizSettings />
           </div>
-          <div className="pure-u-1 pure-u-md-1-3">
+          <div className="pure-u-1 pure-u-md-1-2">
             <section>
               <Button
                 onClick={() => this.startQuiz()}
