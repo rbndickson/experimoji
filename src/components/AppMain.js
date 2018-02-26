@@ -6,14 +6,14 @@ import Experiment from "./Experiment";
 import { css, cx } from "emotion";
 
 const AppMainWrapperStyles = css`
-  max-width: 580px;
+  max-width: 600px;
   margin: 0 auto;
 `;
 
 const AppMainStyles = css`
   position: relative;
   background-color: #fff;
-  max-width: 580px;
+  max-width: 600px;
   margin: 0 5px;
   border-radius: 5px;
   padding: 10px;
