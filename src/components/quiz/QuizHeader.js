@@ -6,8 +6,14 @@ const styles = css`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 300px;
+  max-width: 500px;
   margin: 0 auto;
+  font-family: "Varela Round", sans-serif;
+  font-size: 20px;
+
+  @media (min-width: 480px) {
+    font-size: 26px;
+  }
 `;
 
 class QuizHeader extends Component {
