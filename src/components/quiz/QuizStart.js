@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { css } from "emotion";
 import { updateQuizScreen } from "../../actions";
 import QuizSettings from "./QuizSettings";
+import QuizStartImages from "./QuizStartImages";
 import Button from "../Button";
 
 const styles = css`
@@ -24,13 +25,12 @@ class QuizStart extends Component {
             <QuizSettings />
           </div>
           <div className="pure-u-1 pure-u-md-1-2">
-            <section>
-              <Button
-                onClick={() => this.startQuiz()}
-                text="Start!"
-                classModifier="Button-green"
-              />
-            </section>
+            <QuizStartImages />
+            <Button
+              onClick={() => this.startQuiz()}
+              text="Start!"
+              classModifier="Button-green"
+            />
           </div>
         </div>
       </div>

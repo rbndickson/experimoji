@@ -16,6 +16,8 @@ import {
 const initialQuizState = {
   language: quizData.quiz.language,
   category: quizData.quiz.category,
+  languageEmojiCode: quizData.quiz.languageEmojiCode,
+  categoryEmojicode: quizData.quiz.categoryEmojicode,
   currentQuestionIndex: 0,
   score: 0,
   showQuizAnswer: false,

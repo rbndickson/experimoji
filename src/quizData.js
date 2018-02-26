@@ -44,5 +44,10 @@ export const quizData = {
     "1f31dderMond": { vocabulary: "der Mond", emojiCode: "1f31d" },
     "1f33edieFeldfrucht": { vocabulary: "die Feldfrucht", emojiCode: "1f33e" }
   },
-  quiz: { language: "German", category: "Nature" }
+  quiz: {
+    language: "German",
+    category: "Nature",
+    languageEmojiCode: "1f1e9-1f1ea",
+    categoryEmojicode: "1f333"
+  }
 };
