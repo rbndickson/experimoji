@@ -4,6 +4,7 @@ import { css } from "emotion";
 import { emojiSrc } from "../../utils/helpers";
 import { updateQuizScreen, resetQuiz, setQuizRetry } from "../../actions";
 import QuizResult from "./QuizResult";
+import QuizResultEmoji from "./QuizResultEmoji";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
 
@@ -60,6 +61,7 @@ class QuizFinished extends Component {
       <div>
         <h2>Quiz Complete!</h2>
         <QuizResult />
+        <QuizResultEmoji />
         <div>
           <ul className={sharingListStyles}>
             <li>
