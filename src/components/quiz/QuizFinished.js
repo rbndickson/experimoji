@@ -3,13 +3,9 @@ import { connect } from "react-redux";
 import { css } from "emotion";
 import { emojiSrc } from "../../utils/helpers";
 import { updateQuizScreen, resetQuiz, setQuizRetry } from "../../actions";
+import QuizResult from "./QuizResult";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
-
-const scoreTextStyles = css`
-  margin: 40px 0;
-  font-size: 24px;
-`;
 
 const emojiStyles = css`
   width: 1em;
@@ -63,14 +59,13 @@ class QuizFinished extends Component {
     return (
       <div>
         <h2>Quiz Complete!</h2>
-        <div className={scoreTextStyles}>{`You scored ${
-          this.props.score
-        } out of ${this.props.currentQuestionIndex}`}</div>
+        <QuizResult />
         <div>
           <ul className={sharingListStyles}>
             <li>
               <a href={twitterLink} target="popup">
                 Share on Twitter<img
+                  alt=""
                   className={emojiStyles}
                   src={emojiSrc("1f426")}
                 />
