@@ -5,23 +5,17 @@ import "./WritingWorksheet.css";
 class WritingWorksheet extends Component {
   render() {
     return (
-      <div className="WritingWorksheet-container">
+      <div className="WritingWorksheet">
         <h2>{`${this.props.language} - ${this.props.category}`}</h2>
         <ul>
           {this.props.flashcards.map(flashcard => (
-            <li className="WritingWorksheet-line" key={flashcard.vocabulary}>
-              <span className="WritingWorksheet-word ">
-                {flashcard.vocabulary}
-              </span>
-              <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.vocabulary}
-              </span>
-              <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.vocabulary}
-              </span>
-              <span className="WritingWorksheet-word WritingWorksheet-word-light">
-                {flashcard.vocabulary}
-              </span>
+            <li key={flashcard.vocabulary}>
+              <div className="pure-g">
+                <div className="pure-u-1-3">{flashcard.vocabulary}</div>
+                <div className="pure-u-1-12">*</div>
+                <div className="pure-u-1-12">*</div>
+                <div className="pure-u-1-3">*</div>
+              </div>
             </li>
           ))}
         </ul>
