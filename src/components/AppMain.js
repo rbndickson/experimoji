@@ -22,7 +22,7 @@ const AppMainStyles = css`
 
 const AppMainPrintModifier = css`
   max-width: none;
-  width: 100%;
+  width: 800px;
 `;
 
 class AppMain extends Component {
