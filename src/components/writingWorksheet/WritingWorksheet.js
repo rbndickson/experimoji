@@ -6,7 +6,7 @@ class WritingWorksheet extends Component {
   render() {
     return (
       <div className="WritingWorksheet-container">
-        <h2>Animals</h2>
+        <h2>{`${this.props.language} - ${this.props.category}`}</h2>
         <ul>
           {this.props.flashcards.map(flashcard => (
             <li className="WritingWorksheet-line" key={flashcard.vocabulary}>
@@ -32,7 +32,9 @@ class WritingWorksheet extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards)
+    flashcards: Object.values(state.flashcards),
+    category: state.worksheet.category,
+    language: state.worksheet.language
   };
 }
 
