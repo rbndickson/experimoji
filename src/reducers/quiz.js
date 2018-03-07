@@ -1,4 +1,4 @@
-import { quizData } from "../quizData";
+import { data } from "../data";
 
 import {
   UPDATE_QUIZ_SCREEN,
@@ -14,10 +14,10 @@ import {
 } from "../actions";
 
 const initialQuizState = {
-  language: quizData.quiz.language,
-  category: quizData.quiz.category,
-  languageEmojiCode: quizData.quiz.languageEmojiCode,
-  categoryEmojicode: quizData.quiz.categoryEmojicode,
+  language: data.language,
+  category: data.category,
+  languageEmojiCode: data.languageEmojiCode,
+  categoryEmojicode: data.categoryEmojicode,
   currentQuestionIndex: 0,
   score: 0,
   showQuizAnswer: false,

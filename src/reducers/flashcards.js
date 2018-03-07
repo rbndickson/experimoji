@@ -1,6 +1,6 @@
-import { quizData } from "../quizData";
+import { data } from "../data";
 
-function flashcards(state = quizData.flashcards, action) {
+function flashcards(state = data.flashcards, action) {
   switch (action.type) {
     default:
       return state;

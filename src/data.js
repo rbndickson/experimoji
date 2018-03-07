@@ -1,4 +1,4 @@
-export const quizData = {
+export const data = {
   flashcards: {
     "1f341dasAhornblatt": { vocabulary: "das Ahornblatt", emojiCode: "1f341" },
     "1f334diePalme": { vocabulary: "die Palme", emojiCode: "1f334" },
@@ -44,10 +44,8 @@ export const quizData = {
     "1f31dderMond": { vocabulary: "der Mond", emojiCode: "1f31d" },
     "1f33edieFeldfrucht": { vocabulary: "die Feldfrucht", emojiCode: "1f33e" }
   },
-  quiz: {
-    language: "German",
-    category: "Nature",
-    languageEmojiCode: "1f1e9-1f1ea",
-    categoryEmojicode: "1f333"
-  }
+  language: "German",
+  category: "Nature",
+  languageEmojiCode: "1f1e9-1f1ea",
+  categoryEmojicode: "1f333"
 };
