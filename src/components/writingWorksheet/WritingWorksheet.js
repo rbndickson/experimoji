@@ -23,10 +23,9 @@ const emojiStyles = css`
   padding: 10px;
 `;
 
-const dotEmojiStyles = css`
-  height: 10px;
-  width: 10px;
-  margin: 25px 0;
+const dotStyles = css`
+  margin: 20px 0 0 0;
+  font-size: 42px;
 `;
 
 class WritingWorksheet extends Component {
@@ -54,18 +53,10 @@ class WritingWorksheet extends Component {
                   <div className={textStyles}>{flashcard.vocabulary}</div>
                 </div>
                 <div className="pure-u-1-5">
-                  <img
-                    alt=""
-                    src={emojiSrc("26ab")}
-                    className={dotEmojiStyles}
-                  />
+                  <div className={dotStyles}>•</div>
                 </div>
                 <div className="pure-u-1-5">
-                  <img
-                    alt=""
-                    src={emojiSrc("26ab")}
-                    className={dotEmojiStyles}
-                  />
+                  <div className={dotStyles}>•</div>
                 </div>
                 <div className="pure-u-1-5">
                   <img
