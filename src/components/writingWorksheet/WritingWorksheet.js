@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
+import "./WritingWorksheet.css";
 import { emojiSrc, shuffle } from "../../utils/helpers";
 
 const textStyles = css`
@@ -35,7 +36,7 @@ class WritingWorksheet extends Component {
 
   render() {
     return (
-      <div className="WritingWorksheet">
+      <div id="WritingWorksheet">
         <h2>{`${this.props.language} - ${this.props.category}`}</h2>
         <ul>
           {this.props.flashcards.map((flashcard, i) => (
