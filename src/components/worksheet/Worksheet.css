@@ -2,8 +2,8 @@
   body * {
     visibility: hidden;
   }
-  #WritingWorksheet,
-  #WritingWorksheet * {
+  #Worksheet,
+  #Worksheet * {
     visibility: visible;
   }
 }

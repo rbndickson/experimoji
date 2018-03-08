@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import "./WritingWorksheet.css";
+import "./Worksheet.css";
 import { emojiSrc, shuffle } from "../../utils/helpers";
 
 const headingStyles = css`
@@ -28,7 +28,7 @@ const dotStyles = css`
   font-size: 42px;
 `;
 
-class WritingWorksheet extends Component {
+class Worksheet extends Component {
   state = {
     shuffledFlashcards: []
   };
@@ -41,7 +41,7 @@ class WritingWorksheet extends Component {
 
   render() {
     return (
-      <div id="WritingWorksheet">
+      <div id="Worksheet">
         <h2 className={headingStyles}>{`${this.props.language} - ${
           this.props.category
         }`}</h2>
@@ -82,4 +82,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(WritingWorksheet);
+export default connect(mapStateToProps)(Worksheet);
