@@ -9,14 +9,31 @@ const headingStyles = css`
   font-size: 36px;
 `;
 
+const pageStyles = css`
+  page-break-inside: avoid;
+`;
+
 class Worksheet extends Component {
   state = {
     shuffledFlashcards: []
   };
 
   componentWillMount() {
+    const ROWS_PER_PAGE = 10;
+    const pages = Math.ceil(this.props.flashcards.length / ROWS_PER_PAGE);
+    let flashcards = [];
+
+    for (let i = 0; i < pages; i++) {
+      flashcards.push(
+        this.props.flashcards.slice(i * ROWS_PER_PAGE, (i + 1) * ROWS_PER_PAGE)
+      );
+    }
+
+    const shuffledFlashcards = flashcards.map(fs => shuffle(fs));
+
     this.setState({
-      shuffledFlashcards: shuffle(this.props.flashcards)
+      flashcards: flashcards,
+      shuffledFlashcards: shuffledFlashcards
     });
   }
 
@@ -26,15 +43,19 @@ class Worksheet extends Component {
         <h2 className={headingStyles}>{`${this.props.language} - ${
           this.props.category
         }`}</h2>
-        <ul>
-          {this.props.flashcards.map((flashcard, i) => (
-            <WorksheetRow
-              key={flashcard.vocabulary}
-              flashcardLeft={flashcard}
-              flashcardRight={this.state.shuffledFlashcards[i]}
-            />
-          ))}
-        </ul>
+        {this.state.flashcards.map((page, i) => (
+          <div key={`page${i}`} className={pageStyles}>
+            <ul>
+              {page.map((flashcard, ii) => (
+                <WorksheetRow
+                  key={flashcard.vocabulary}
+                  flashcardLeft={flashcard}
+                  flashcardRight={this.state.shuffledFlashcards[i][ii]}
+                />
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     );
   }
