@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { emojiSrc } from "../../utils/helpers";
+import { emojiSrc, shuffle } from "../../utils/helpers";
 
 const textStyles = css`
-  margin: 20px 0 0 40px;
+  margin: 20px 0 0 20px;
   font-size: 36px;
   color: #eee;
   text-align: left;
@@ -23,26 +23,45 @@ const dotEmojiStyles = css`
 `;
 
 class WritingWorksheet extends Component {
+  state = {
+    shuffledFlashcards: []
+  };
+
+  componentWillMount() {
+    this.setState({
+      shuffledFlashcards: shuffle(this.props.flashcards)
+    });
+  }
+
   render() {
     return (
       <div className="WritingWorksheet">
         <h2>{`${this.props.language} - ${this.props.category}`}</h2>
         <ul>
-          {this.props.flashcards.map(flashcard => (
+          {this.props.flashcards.map((flashcard, i) => (
             <li key={flashcard.vocabulary}>
               <div className="pure-g">
                 <div className="pure-u-2-5">
                   <div className={textStyles}>{flashcard.vocabulary}</div>
                 </div>
                 <div className="pure-u-1-5">
-                  <img src={emojiSrc("26ab")} className={dotEmojiStyles} />
-                </div>
-                <div className="pure-u-1-5">
-                  <img src={emojiSrc("26ab")} className={dotEmojiStyles} />
+                  <img
+                    alt=""
+                    src={emojiSrc("26ab")}
+                    className={dotEmojiStyles}
+                  />
                 </div>
                 <div className="pure-u-1-5">
                   <img
-                    src={emojiSrc(flashcard.emojiCode)}
+                    alt=""
+                    src={emojiSrc("26ab")}
+                    className={dotEmojiStyles}
+                  />
+                </div>
+                <div className="pure-u-1-5">
+                  <img
+                    alt={this.state.shuffledFlashcards[i].vocabulary}
+                    src={emojiSrc(this.state.shuffledFlashcards[i].emojiCode)}
                     className={emojiStyles}
                   />
                 </div>
