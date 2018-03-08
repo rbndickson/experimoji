@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import { emojiSrc } from "../utils/helpers";
 import Background from "./Background";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
 import Menu from "./Menu";
-import Experiment from "./Experiment";
+import Quiz from "./quiz/Quiz";
+import Memory from "./memory/Memory";
+import Worksheet from "./worksheet/Worksheet";
 import { css } from "emotion";
 
 const styles = css`
@@ -47,11 +49,10 @@ class App extends Component {
       <div className={styles}>
         <Background />
         <AppHeader />
-        {this.props.currentExperiment === "None" ? (
-          <Route path="/" component={Menu} />
-        ) : (
-          <Experiment name={this.props.currentExperiment} />
-        )}
+        <Route exact path="/" component={Menu} />
+        <Route path="/quiz" component={Quiz} />
+        <Route path="/memorygame" component={Memory} />
+        <Route path="/worksheet" component={Worksheet} />
         <AppFooter />
       </div>
     );
@@ -60,9 +61,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentExperiment: state.experiments.currentExperiment,
     flashcards: Object.values(state.flashcards)
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

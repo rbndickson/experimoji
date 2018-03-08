@@ -20,9 +20,9 @@ const mainStyles = css`
 class Menu extends Component {
   state = {
     experiments: [
-      { name: "Quiz" },
-      { name: "Memory Game" },
-      { name: "Writing Practise Worksheet" }
+      { name: "Quiz", link: "quiz" },
+      { name: "Memory Game", link: "memorygame" },
+      { name: "Writing Practise Worksheet", link: "worksheet" }
     ]
   };
 
@@ -32,7 +32,7 @@ class Menu extends Component {
         <main className={mainStyles}>
           <ul>
             {this.state.experiments.map(e => (
-              <MenuItem key={e.name} name={e.name} />
+              <MenuItem key={e.name} name={e.name} link={e.link} />
             ))}
           </ul>
         </main>

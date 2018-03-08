@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateCurrentExperiment, updateQuizScreen } from "../actions";
+import { Link } from "react-router-dom";
 import { emojiSrc } from "../utils/helpers";
 import { css } from "emotion";
 
@@ -27,23 +27,17 @@ const AppHeaderStyles = css`
 `;
 
 class AppHeader extends Component {
-  goHome = () => {
-    this.props.dispatch(updateQuizScreen("settings"));
-    this.props.dispatch(updateCurrentExperiment("None"));
-  };
-
   render() {
     return (
       <header className={AppHeaderStyles}>
         <div className="AppHeader-col">
-          <img
-            src={emojiSrc("1f3e0")}
-            alt="Home button"
-            className={"AppHeader-home-icon"}
-            onClick={() => {
-              this.goHome();
-            }}
-          />
+          <Link to="">
+            <img
+              src={emojiSrc("1f3e0")}
+              alt="Home button"
+              className={"AppHeader-home-icon"}
+            />
+          </Link>
         </div>
         <div className="AppHeader-col" />
         <div className="AppHeader-col" />

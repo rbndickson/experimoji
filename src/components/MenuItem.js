@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateCurrentExperiment } from "../actions";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 class MenuItem extends Component {
-  handleOnClick = name => {
-    this.props.dispatch(updateCurrentExperiment(name));
-  };
-
   render() {
     return (
       <li>
-        <Button
-          onClick={() => this.handleOnClick(this.props.name)}
-          text={this.props.name}
-        />
+        <Link to={`/${this.props.link}`} style={{ textDecoration: "none" }}>
+          <Button text={this.props.name} />
+        </Link>
       </li>
     );
   }

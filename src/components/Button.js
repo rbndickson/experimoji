@@ -15,6 +15,8 @@ const baseStyles = css`
   &:hover {
     background-color: #ffe09e;
   }
+
+  text-decoration: none !important;
 `;
 
 const xSmallStyles = css`
