@@ -2,30 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import "./Worksheet.css";
-import { emojiSrc, shuffle } from "../../utils/helpers";
+import { shuffle } from "../../utils/helpers";
+import WorksheetRow from "./WorksheetRow";
 
 const headingStyles = css`
   font-size: 36px;
-`;
-
-const textStyles = css`
-  margin: 20px 0 0 20px;
-  font-family: "Fredoka One", sans-serif;
-  font-size: 36px;
-  text-align: left;
-  color: #000;
-  opacity: 0.25;
-`;
-
-const emojiStyles = css`
-  height: 60px;
-  width: 60px;
-  padding: 10px;
-`;
-
-const dotStyles = css`
-  margin: 20px 0 0 0;
-  font-size: 42px;
 `;
 
 class Worksheet extends Component {
@@ -47,26 +28,11 @@ class Worksheet extends Component {
         }`}</h2>
         <ul>
           {this.props.flashcards.map((flashcard, i) => (
-            <li key={flashcard.vocabulary}>
-              <div className="pure-g">
-                <div className="pure-u-2-5">
-                  <div className={textStyles}>{flashcard.vocabulary}</div>
-                </div>
-                <div className="pure-u-1-5">
-                  <div className={dotStyles}>•</div>
-                </div>
-                <div className="pure-u-1-5">
-                  <div className={dotStyles}>•</div>
-                </div>
-                <div className="pure-u-1-5">
-                  <img
-                    alt={this.state.shuffledFlashcards[i].vocabulary}
-                    src={emojiSrc(this.state.shuffledFlashcards[i].emojiCode)}
-                    className={emojiStyles}
-                  />
-                </div>
-              </div>
-            </li>
+            <WorksheetRow
+              key={flashcard.vocabulary}
+              flashcardLeft={flashcard}
+              flashcardRight={this.state.shuffledFlashcards[i]}
+            />
           ))}
         </ul>
       </div>
