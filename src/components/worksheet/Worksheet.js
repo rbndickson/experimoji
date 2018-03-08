@@ -5,6 +5,16 @@ import "./Worksheet.css";
 import { shuffle } from "../../utils/helpers";
 import WorksheetRow from "./WorksheetRow";
 
+const mainStyles = css`
+  position: relative;
+  background-color: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 2;
+`;
+
 const headingStyles = css`
   font-size: 36px;
 `;
@@ -39,7 +49,7 @@ class Worksheet extends Component {
 
   render() {
     return (
-      <div id="Worksheet">
+      <div id="Worksheet" className={mainStyles}>
         <h2 className={headingStyles}>{`${this.props.language} - ${
           this.props.category
         }`}</h2>

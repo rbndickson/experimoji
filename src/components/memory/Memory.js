@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { css } from "emotion";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
 import { addFlashcard } from "../../actions";
 import MemoryGame from "./MemoryGame";
 import Button from "../Button";
+
+const wrapperStyles = css`
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const mainStyles = css`
+  position: relative;
+  background-color: #fff;
+  max-width: 600px;
+  margin: 0 5px;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 2;
+`;
 
 class Memory extends Component {
   componentWillMount() {
@@ -50,15 +66,17 @@ class Memory extends Component {
 
   render() {
     return (
-      <div>
-        <MemoryGame />
-        {this.isFinished() && (
-          <Button
-            text={"Play Again"}
-            onClick={() => this.setFlashcards()}
-            classModifier={"Button-small"}
-          />
-        )}
+      <div className={wrapperStyles}>
+        <main className={mainStyles}>
+          <MemoryGame />
+          {this.isFinished() && (
+            <Button
+              text={"Play Again"}
+              onClick={() => this.setFlashcards()}
+              classModifier={"Button-small"}
+            />
+          )}
+        </main>
       </div>
     );
   }

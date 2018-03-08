@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 import { emojiSrc } from "../utils/helpers";
 import Background from "./Background";
 import AppHeader from "./AppHeader";
-import AppMain from "./AppMain";
 import AppFooter from "./AppFooter";
+import Menu from "./Menu";
+import Experiment from "./Experiment";
 import { css } from "emotion";
 
 const styles = css`
@@ -45,7 +47,11 @@ class App extends Component {
       <div className={styles}>
         <Background />
         <AppHeader />
-        <AppMain />
+        {this.props.currentExperiment === "None" ? (
+          <Route path="/" component={Menu} />
+        ) : (
+          <Experiment name={this.props.currentExperiment} />
+        )}
         <AppFooter />
       </div>
     );
