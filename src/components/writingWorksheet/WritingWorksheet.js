@@ -4,11 +4,17 @@ import { css } from "emotion";
 import "./WritingWorksheet.css";
 import { emojiSrc, shuffle } from "../../utils/helpers";
 
+const headingStyles = css`
+  font-size: 36px;
+`;
+
 const textStyles = css`
   margin: 20px 0 0 20px;
+  font-family: "Fredoka One", sans-serif;
   font-size: 36px;
-  color: #eee;
   text-align: left;
+  color: #000;
+  opacity: 0.25;
 `;
 
 const emojiStyles = css`
@@ -37,7 +43,9 @@ class WritingWorksheet extends Component {
   render() {
     return (
       <div id="WritingWorksheet">
-        <h2>{`${this.props.language} - ${this.props.category}`}</h2>
+        <h2 className={headingStyles}>{`${this.props.language} - ${
+          this.props.category
+        }`}</h2>
         <ul>
           {this.props.flashcards.map((flashcard, i) => (
             <li key={flashcard.vocabulary}>
