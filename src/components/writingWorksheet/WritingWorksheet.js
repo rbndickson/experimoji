@@ -1,6 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./WritingWorksheet.css";
+import { css } from "emotion";
+import { emojiSrc } from "../../utils/helpers";
+
+const textStyles = css`
+  margin: 20px 0 0 40px;
+  font-size: 36px;
+  color: #eee;
+  text-align: left;
+`;
+
+const emojiStyles = css`
+  height: 60px;
+  width: 60px;
+  padding: 10px;
+`;
+
+const dotEmojiStyles = css`
+  height: 10px;
+  width: 10px;
+  margin: 25px 0;
+`;
 
 class WritingWorksheet extends Component {
   render() {
@@ -11,10 +31,21 @@ class WritingWorksheet extends Component {
           {this.props.flashcards.map(flashcard => (
             <li key={flashcard.vocabulary}>
               <div className="pure-g">
-                <div className="pure-u-1-3">{flashcard.vocabulary}</div>
-                <div className="pure-u-1-12">*</div>
-                <div className="pure-u-1-12">*</div>
-                <div className="pure-u-1-3">*</div>
+                <div className="pure-u-2-5">
+                  <div className={textStyles}>{flashcard.vocabulary}</div>
+                </div>
+                <div className="pure-u-1-5">
+                  <img src={emojiSrc("26ab")} className={dotEmojiStyles} />
+                </div>
+                <div className="pure-u-1-5">
+                  <img src={emojiSrc("26ab")} className={dotEmojiStyles} />
+                </div>
+                <div className="pure-u-1-5">
+                  <img
+                    src={emojiSrc(flashcard.emojiCode)}
+                    className={emojiStyles}
+                  />
+                </div>
               </div>
             </li>
           ))}
