@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import "./Worksheet.css";
+import "./WorksheetPrinting.css";
 import { shuffle } from "../../utils/helpers";
 import WorksheetRow from "./WorksheetRow";
 
