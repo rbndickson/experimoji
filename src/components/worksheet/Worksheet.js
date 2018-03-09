@@ -17,6 +17,10 @@ const mainStyles = css`
 
 const headingStyles = css`
   font-size: 36px;
+
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 `;
 
 const pageStyles = css`
