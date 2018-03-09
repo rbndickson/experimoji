@@ -12,14 +12,12 @@ class Flashcard extends Component {
         className={"Flashcard Flashcard-" + flashcard.status}
         onClick={() => this.props.onClick()}
       >
-        <div className={"Flashcard-content"}>
-          {flashcard.status !== "faceDown" &&
-            (flashcard.flashcardType === "vocabulary" ? (
-              <div className="Flashcard-content-text">{flashcard.data}</div>
-            ) : (
-              <img src={emojiSrc(flashcard.data)} alt={flashcard.vocabulary} />
-            ))}
-        </div>
+        {flashcard.status !== "faceDown" &&
+          (flashcard.flashcardType === "vocabulary" ? (
+            <div className="Flashcard-text">{flashcard.data}</div>
+          ) : (
+            <img src={emojiSrc(flashcard.data)} alt={flashcard.vocabulary} />
+          ))}
       </div>
     );
   }

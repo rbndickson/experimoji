@@ -1,9 +1,12 @@
 .Flashcard {
+  display: flex;
   height: 80px;
   width: 160px;
   border: solid 4px skyblue;
   border-radius: 4px;
   margin: 2px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .Flashcard-faceDown {
@@ -14,36 +17,22 @@
   border-color: lightgreen;
 }
 
-.Flashcard-content {
-  max-width: 160px;
-  max-height: 60px;
-  margin: 0 auto;
-  font-size: 18px;
+.Flashcard-text {
+  font-size: 20px;
 }
 
-.Flashcard-content img {
-  height: 60px;
-  width: 60px;
-  margin: 10px 0;
+.Flashcard img {
+  height: 85%;
 }
 
-.Flashcard-content-text {
-  margin-top: 28px;
-}
-
+/* M o b i l e */
 @media (max-width: 600px) {
   .Flashcard {
     height: 60px;
     width: 100px;
   }
 
-  .Flashcard-content img {
-    height: 50px;
-    width: 50px;
-    margin: 5px 0;
-  }
-
-  .Flashcard-content p {
-    margin-top: 18px;
+  .Flashcard-text {
+    font-size: 14px;
   }
 }
