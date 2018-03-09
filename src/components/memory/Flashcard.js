@@ -1,6 +1,40 @@
 import React, { Component } from "react";
-import "./Flashcard.css";
+import { css, cx } from "emotion";
 import { emojiSrc } from "../../utils/helpers";
+
+const styles = css`
+  display: flex;
+  height: 80px;
+  width: 160px;
+  border: solid 4px skyblue;
+  border-radius: 4px;
+  margin: 2px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 18px;
+
+  img {
+    height: 85%;
+  }
+
+  .Flashcard-text {
+    margin: 0 10px;
+  }
+
+  @media (max-width: 600px) {
+    height: 60px;
+    width: 100px;
+    font-size: 14px;
+  }
+`;
+
+const faceDownStyles = css`
+  background: skyblue;
+`;
+
+const matchedStyles = css`
+  border-color: lightgreen;
+`;
 
 class Flashcard extends Component {
   render() {
@@ -9,7 +43,13 @@ class Flashcard extends Component {
     return (
       <div
         key={flashcard.data}
-        className={"Flashcard Flashcard-" + flashcard.status}
+        className={
+          flashcard.status === "matched"
+            ? cx(styles, matchedStyles)
+            : flashcard.status === "faceDown"
+              ? cx(styles, faceDownStyles)
+              : styles
+        }
         onClick={() => this.props.onClick()}
       >
         {flashcard.status !== "faceDown" &&
