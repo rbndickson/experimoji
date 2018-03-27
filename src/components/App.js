@@ -9,6 +9,7 @@ import Menu from "./Menu";
 import Quiz from "./quiz/Quiz";
 import Memory from "./memory/Memory";
 import Worksheet from "./worksheet/Worksheet";
+import WordSearch from "./wordsearch/WordSearch";
 import { css } from "emotion";
 
 const styles = css`
@@ -53,6 +54,7 @@ class App extends Component {
         <Route path="/quiz" component={Quiz} />
         <Route path="/memorygame" component={Memory} />
         <Route path="/worksheet" component={Worksheet} />
+        <Route path="/wordsearch" component={WordSearch} />
         <AppFooter />
       </div>
     );
