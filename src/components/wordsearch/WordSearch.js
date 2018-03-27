@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "emotion";
 import WordList from "./WordList";
+import WordPuzzle from "./WordPuzzle";
 
 const styles = css`
   position: relative;
@@ -29,6 +30,7 @@ class WordSearch extends Component {
       <div className={styles}>
         <h1>Word Search</h1>
         <WordList words={words} />
+        <WordPuzzle words={words} size={10} />
       </div>
     );
   }
