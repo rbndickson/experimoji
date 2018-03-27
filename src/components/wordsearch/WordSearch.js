@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
+import WordList from "./WordList";
 
 const styles = css`
   position: relative;
