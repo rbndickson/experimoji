@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import update from "immutability-helper";
 import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
 
@@ -21,7 +22,8 @@ const gridSquareStyles = css`
 
 class WordPuzzle extends Component {
   state = {
-    grid: {},
+    puzzle: {},
+    answers: {},
     horizontalCount: 0,
     verticalCount: 0
   };
@@ -33,11 +35,13 @@ class WordPuzzle extends Component {
   createWordSearch() {
     const placements = shuffle(this.placements());
 
-    let grid = this.props.words.reduce((acc, word) => {
+    const answer = this.props.words.reduce((acc, word) => {
       return this.process(acc, word, placements);
     }, this.createGrid());
 
-    this.setState({ grid });
+    const puzzle = this.fillBlanks(answer);
+
+    this.setState({ answer: answer, puzzle: puzzle });
   }
 
   createGrid() {
@@ -100,20 +104,50 @@ class WordPuzzle extends Component {
     return grid;
   }
 
+  fillBlanks(grid) {
+    const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+
+    for (var i = 0; i < this.props.size; i++) {
+      for (var j = 0; j < this.props.size; j++) {
+        if (grid[i][j] === "*") {
+          let randomLetter = ALPHABET[Math.floor(Math.random() * 26)];
+          grid = update(grid, {
+            [i]: { [j]: { $set: randomLetter } }
+          });
+        }
+      }
+    }
+
+    return grid;
+  }
+
   render() {
-    const rows = Object.keys(this.state.grid);
+    const rows = Object.keys(this.state.puzzle);
 
     return (
-      <div className={styles}>
-        {rows.map(row => (
-          <div className={rowStyles} key={row}>
-            {rows.map(col => (
-              <div className={gridSquareStyles} key={col}>
-                {this.state.grid[row][col]}
-              </div>
-            ))}
-          </div>
-        ))}
+      <div>
+        <div className={styles}>
+          {rows.map(row => (
+            <div className={rowStyles} key={row}>
+              {rows.map(col => (
+                <div className={gridSquareStyles} key={col}>
+                  {this.state.puzzle[row][col]}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className={styles}>
+          {rows.map(row => (
+            <div className={rowStyles} key={row}>
+              {rows.map(col => (
+                <div className={gridSquareStyles} key={col}>
+                  {this.state.answer[row][col]}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
