@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
+import { shuffle } from "../../utils/helpers";
 
 const styles = css`
   margin: 50px;
@@ -26,7 +27,17 @@ class WordPuzzle extends Component {
   };
 
   componentDidMount() {
-    this.createGrid();
+    this.createWordSearch();
+  }
+
+  createWordSearch() {
+    const placements = shuffle(this.placements());
+
+    let grid = this.props.words.reduce((acc, word) => {
+      return this.process(acc, word, placements);
+    }, this.createGrid());
+
+    this.setState({ grid });
   }
 
   createGrid() {
@@ -39,7 +50,54 @@ class WordPuzzle extends Component {
       }
     }
 
-    this.setState({ grid: grid });
+    return grid;
+  }
+
+  placements() {
+    return ["horizontal", "vertical"].reduce((acc, direction) => {
+      for (var i = 0; i < this.props.size; i++) {
+        for (var j = 0; j < this.props.size; j++) {
+          acc.push({ row: i, col: j, direction: direction });
+        }
+      }
+      return acc;
+    }, []);
+  }
+
+  process(grid, word, placements) {
+    for (var i = 0; i < placements.length; i++) {
+      if (this.canInsert(grid, word, placements[i])) {
+        return this.insert(grid, word, placements[i]);
+      }
+    }
+
+    return false;
+  }
+
+  canInsert(grid, word, placement) {
+    let { row, col, direction } = placement;
+
+    for (var i = 0; i < word.length; i++) {
+      if (row >= this.props.size || col >= grid.length) {
+        return false;
+      } else if (grid[row][col] !== "*" && grid[row][col] !== word[i]) {
+        return false;
+      }
+      direction === "horizontal" ? (col += 1) : (row += 1);
+    }
+
+    return true;
+  }
+
+  insert(grid, word, placement) {
+    let { row, col, direction } = placement;
+
+    for (var i = 0; i < word.length; i++) {
+      grid[row][col] = word[i];
+      direction === "horizontal" ? (col += 1) : (row += 1);
+    }
+
+    return grid;
   }
 
   render() {
@@ -50,7 +108,7 @@ class WordPuzzle extends Component {
         {rows.map(row => (
           <div className={rowStyles} key={row}>
             {rows.map(col => (
-              <div className={gridSquareStyles}>
+              <div className={gridSquareStyles} key={col}>
                 {this.state.grid[row][col]}
               </div>
             ))}
