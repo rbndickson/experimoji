@@ -22,8 +22,10 @@ class Controls extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ newWord: "" });
-    this.props.addWord(this.state.newWord);
+    if (this.state.newWord !== "") {
+      this.props.addWord(this.state.newWord);
+      this.setState({ newWord: "" });
+    }
   }
 
   render() {
