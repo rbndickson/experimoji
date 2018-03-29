@@ -43,11 +43,11 @@ class WordPuzzle extends Component {
   }
 
   createWordSearch(props = this.props) {
-    const placements = shuffle(this.placements());
+    const placements = shuffle(this.placements(props.size));
 
     const answer = props.words.reduce((acc, word) => {
       return acc ? this.process(acc, word, placements) : acc;
-    }, this.createGrid());
+    }, this.createGrid(props.size));
 
     if (answer) {
       const puzzle = this.fillBlanks(answer);
@@ -57,12 +57,12 @@ class WordPuzzle extends Component {
     }
   }
 
-  createGrid() {
+  createGrid(size) {
     let grid = {};
 
-    for (var i = 0; i < this.props.size; i++) {
+    for (var i = 0; i < size; i++) {
       grid[i] = {};
-      for (var j = 0; j < this.props.size; j++) {
+      for (var j = 0; j < size; j++) {
         grid[i][j] = "*";
       }
     }
@@ -70,10 +70,10 @@ class WordPuzzle extends Component {
     return grid;
   }
 
-  placements() {
+  placements(size) {
     return ["horizontal", "vertical"].reduce((acc, direction) => {
-      for (var i = 0; i < this.props.size; i++) {
-        for (var j = 0; j < this.props.size; j++) {
+      for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
           acc.push({ row: i, col: j, direction: direction });
         }
       }
@@ -93,9 +93,10 @@ class WordPuzzle extends Component {
 
   canInsert(grid, word, placement) {
     let { row, col, direction } = placement;
+    const gridSize = Object.keys(grid).length;
 
     for (var i = 0; i < word.length; i++) {
-      if (row >= this.props.size || col >= grid.length) {
+      if (row >= gridSize || col >= gridSize) {
         return false;
       } else if (grid[row][col] !== "*" && grid[row][col] !== word[i]) {
         return false;
@@ -119,9 +120,10 @@ class WordPuzzle extends Component {
 
   fillBlanks(grid) {
     const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    const gridSize = Object.keys(grid).length;
 
-    for (var i = 0; i < this.props.size; i++) {
-      for (var j = 0; j < this.props.size; j++) {
+    for (var i = 0; i < gridSize; i++) {
+      for (var j = 0; j < gridSize; j++) {
         if (grid[i][j] === "*") {
           let randomLetter = ALPHABET[Math.floor(Math.random() * 26)];
           grid = update(grid, {
