@@ -14,20 +14,13 @@ const styles = css`
   z-index: 2;
 `;
 
+const initialState = {
+  words: ["black", "blue", "brown", "green", "pink", "purple", "red", "yellow"],
+  size: 10
+};
+
 class WordSearch extends Component {
-  state = {
-    size: 10,
-    words: [
-      "black",
-      "blue",
-      "brown",
-      "green",
-      "pink",
-      "purple",
-      "red",
-      "yellow"
-    ]
-  };
+  state = initialState;
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -45,6 +38,10 @@ class WordSearch extends Component {
     this.setState({ size: size });
   }
 
+  resetWordSearch() {
+    this.setState(initialState);
+  }
+
   render() {
     return (
       <div className={styles}>
@@ -53,6 +50,7 @@ class WordSearch extends Component {
           size={this.state.size}
           addWord={word => this.addWord(word)}
           updateSize={size => this.updateSize(size)}
+          resetWordSearch={() => this.resetWordSearch()}
         />
         <WordList words={this.state.words} />
         <WordPuzzle words={this.state.words} size={this.state.size} />

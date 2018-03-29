@@ -53,6 +53,9 @@ class Controls extends Component {
             <input type="submit" value="Add Word" />
           </form>
         </section>
+        <section className={controlsStyles}>
+          <button onClick={() => this.props.resetWordSearch()}>Reset</button>
+        </section>
       </div>
     );
   }
