@@ -20,10 +20,16 @@ const gridSquareStyles = css`
   text-align: center;
 `;
 
+const errorMessageStyles = css`
+  color: red;
+  padding: 100px 0;
+`;
+
 class WordPuzzle extends Component {
   state = {
     puzzle: {},
     answers: {},
+    canCreate: true,
     horizontalCount: 0,
     verticalCount: 0
   };
@@ -32,16 +38,23 @@ class WordPuzzle extends Component {
     this.createWordSearch();
   }
 
+  componentWillReceiveProps() {
+    this.createWordSearch();
+  }
+
   createWordSearch() {
     const placements = shuffle(this.placements());
 
     const answer = this.props.words.reduce((acc, word) => {
-      return this.process(acc, word, placements);
+      return acc ? this.process(acc, word, placements) : acc;
     }, this.createGrid());
 
-    const puzzle = this.fillBlanks(answer);
-
-    this.setState({ answer: answer, puzzle: puzzle });
+    if (answer) {
+      const puzzle = this.fillBlanks(answer);
+      this.setState({ answer: answer, puzzle: puzzle, canCreate: true });
+    } else {
+      this.setState({ canCreate: false });
+    }
   }
 
   createGrid() {
@@ -126,28 +139,34 @@ class WordPuzzle extends Component {
 
     return (
       <div>
-        <div className={styles}>
-          {rows.map(row => (
-            <div className={rowStyles} key={row}>
-              {rows.map(col => (
-                <div className={gridSquareStyles} key={col}>
-                  {this.state.puzzle[row][col]}
+        {this.state.canCreate ? (
+          <div>
+            <div className={styles}>
+              {rows.map(row => (
+                <div className={rowStyles} key={row}>
+                  {rows.map(col => (
+                    <div className={gridSquareStyles} key={col}>
+                      {this.state.puzzle[row][col]}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
-        </div>
-        <div className={styles}>
-          {rows.map(row => (
-            <div className={rowStyles} key={row}>
-              {rows.map(col => (
-                <div className={gridSquareStyles} key={col}>
-                  {this.state.answer[row][col]}
+            <div className={styles}>
+              {rows.map(row => (
+                <div className={rowStyles} key={row}>
+                  {rows.map(col => (
+                    <div className={gridSquareStyles} key={col}>
+                      {this.state.answer[row][col]}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <p className={errorMessageStyles}>Wordsearch size too small</p>
+        )}
       </div>
     );
   }

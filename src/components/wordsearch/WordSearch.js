@@ -13,7 +13,15 @@ const styles = css`
   z-index: 2;
 `;
 
+const controlsStyles = css`
+  margin: 20px 0;
+`;
+
 class WordSearch extends Component {
+  state = {
+    size: 10
+  };
+
   render() {
     const words = [
       "black",
@@ -29,8 +37,20 @@ class WordSearch extends Component {
     return (
       <div className={styles}>
         <h1>Word Search</h1>
+        <div className={controlsStyles}>
+          <p>Size: {this.state.size}</p>
+          <input
+            type="range"
+            value={this.state.size}
+            min="5"
+            max="16"
+            onChange={e => {
+              this.setState({ size: e.target.value });
+            }}
+          />
+        </div>
         <WordList words={words} />
-        <WordPuzzle words={words} size={10} />
+        <WordPuzzle words={words} size={this.state.size} />
       </div>
     );
   }
