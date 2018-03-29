@@ -38,14 +38,14 @@ class WordPuzzle extends Component {
     this.createWordSearch();
   }
 
-  componentWillReceiveProps() {
-    this.createWordSearch();
+  componentWillReceiveProps(nextProps) {
+    this.createWordSearch(nextProps);
   }
 
-  createWordSearch() {
+  createWordSearch(props = this.props) {
     const placements = shuffle(this.placements());
 
-    const answer = this.props.words.reduce((acc, word) => {
+    const answer = props.words.reduce((acc, word) => {
       return acc ? this.process(acc, word, placements) : acc;
     }, this.createGrid());
 
