@@ -82,6 +82,8 @@ class WordPuzzle extends Component {
   }
 
   process(grid, word, placements) {
+    word = word.replace(/\s+/g, "");
+
     for (var i = 0; i < placements.length; i++) {
       if (this.canInsert(grid, word, placements[i])) {
         return this.insert(grid, word, placements[i]);
