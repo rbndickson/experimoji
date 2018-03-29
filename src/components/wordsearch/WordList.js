@@ -14,10 +14,12 @@ const styles = css`
 
 class WordList extends Component {
   render() {
-    return (
+    return this.props.words.length > 0 ? (
       <ul className={styles}>
         {this.props.words.map(word => <li key={word}>{word}</li>)}
       </ul>
+    ) : (
+      <p>Add words to create your word search</p>
     );
   }
 }

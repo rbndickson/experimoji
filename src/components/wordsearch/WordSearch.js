@@ -42,6 +42,10 @@ class WordSearch extends Component {
     this.setState(initialState);
   }
 
+  clearWordSearch() {
+    this.setState({ words: [] });
+  }
+
   render() {
     return (
       <div className={styles}>
@@ -51,6 +55,7 @@ class WordSearch extends Component {
           addWord={word => this.addWord(word)}
           updateSize={size => this.updateSize(size)}
           resetWordSearch={() => this.resetWordSearch()}
+          clearWordSearch={() => this.clearWordSearch()}
         />
         <WordList words={this.state.words} />
         <WordPuzzle words={this.state.words} size={this.state.size} />

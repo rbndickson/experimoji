@@ -55,6 +55,7 @@ class Controls extends Component {
         </section>
         <section className={controlsStyles}>
           <button onClick={() => this.props.resetWordSearch()}>Reset</button>
+          <button onClick={() => this.props.clearWordSearch()}>Clear</button>
         </section>
       </div>
     );
