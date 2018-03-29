@@ -9,6 +9,7 @@ const styles = css`
   li {
     display: inline-block;
     padding: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -16,7 +17,15 @@ class WordList extends Component {
   render() {
     return this.props.words.length > 0 ? (
       <ul className={styles}>
-        {this.props.words.map(word => <li key={word}>{word}</li>)}
+        {this.props.words.map((word, i) => (
+          <li
+            key={`${i}-${word}`}
+            id={word}
+            onClick={e => this.props.removeWord(e.target.id)}
+          >
+            {word}
+          </li>
+        ))}
       </ul>
     ) : (
       <p>Add words to create your word search</p>
