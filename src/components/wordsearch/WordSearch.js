@@ -23,14 +23,6 @@ const initialState = {
 class WordSearch extends Component {
   state = initialState;
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextState.size !== this.state.size ||
-      nextState.isIncludingDiagonals !== this.state.isIncludingDiagonals ||
-      nextState.words !== this.state.words
-    );
-  }
-
   addWord(word) {
     let newWords = this.state.words.slice();
     newWords.push(word);
