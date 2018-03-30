@@ -40,6 +40,10 @@ class Controls extends Component {
     }
   }
 
+  handleDiagonals(e) {
+    this.props.updateIsIncludingDiagonals(e.target.checked);
+  }
+
   render() {
     return (
       <div className={styles}>
@@ -56,6 +60,15 @@ class Controls extends Component {
                   this.props.updateSize(e.target.value);
                 }}
               />
+            </section>
+            <section>
+              <input
+                type="checkbox"
+                id="isIncludingDiagonals"
+                checked={this.props.isIncludingDiagonals}
+                onChange={e => this.handleDiagonals(e)}
+              />
+              <label htmlFor="isIncludingDiagonals">Include Diagonals</label>
             </section>
           </div>
           <div className="pure-u-1-2">

@@ -16,7 +16,8 @@ const styles = css`
 
 const initialState = {
   words: ["black", "blue", "brown", "green", "pink", "purple", "red", "yellow"],
-  size: 10
+  size: 10,
+  isIncludingDiagonals: false
 };
 
 class WordSearch extends Component {
@@ -24,7 +25,9 @@ class WordSearch extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextState.size !== this.state.size || nextState.words !== this.state.words
+      nextState.size !== this.state.size ||
+      nextState.isIncludingDiagonals !== this.state.isIncludingDiagonals ||
+      nextState.words !== this.state.words
     );
   }
 
@@ -43,6 +46,12 @@ class WordSearch extends Component {
     this.setState({ size: size });
   }
 
+  updateIsIncludingDiagonals(isIncludingDiagonals) {
+    console.log(isIncludingDiagonals);
+
+    this.setState({ isIncludingDiagonals: isIncludingDiagonals });
+  }
+
   resetWordSearch() {
     this.setState(initialState);
   }
@@ -57,8 +66,12 @@ class WordSearch extends Component {
         <h1>Word Search</h1>
         <Controls
           size={this.state.size}
+          isIncludingDiagonals={this.state.isIncludingDiagonals}
           addWord={word => this.addWord(word)}
           updateSize={size => this.updateSize(size)}
+          updateIsIncludingDiagonals={isIncludingDiagonals =>
+            this.updateIsIncludingDiagonals(isIncludingDiagonals)
+          }
           resetWordSearch={() => this.resetWordSearch()}
           clearWordSearch={() => this.clearWordSearch()}
         />
@@ -66,7 +79,11 @@ class WordSearch extends Component {
           words={this.state.words}
           removeWord={word => this.removeWord(word)}
         />
-        <WordPuzzle words={this.state.words} size={this.state.size} />
+        <WordPuzzle
+          words={this.state.words}
+          size={this.state.size}
+          isIncludingDiagonals={this.state.isIncludingDiagonals}
+        />
       </div>
     );
   }

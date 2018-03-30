@@ -41,7 +41,9 @@ class WordPuzzle extends Component {
   }
 
   createWordSearch(props = this.props) {
-    const placements = shuffle(this.placements(props.size));
+    const placements = shuffle(
+      this.placements(props.size, props.isIncludingDiagonals)
+    );
 
     const answer = props.words.reduce((acc, word) => {
       return acc ? this.process(acc, word, placements) : acc;
@@ -68,18 +70,18 @@ class WordPuzzle extends Component {
     return grid;
   }
 
-  placements(size) {
-    return ["east", "south", "southEast", "northEast"].reduce(
-      (acc, direction) => {
-        for (var i = 0; i < size; i++) {
-          for (var j = 0; j < size; j++) {
-            acc.push({ row: i, col: j, direction: direction });
-          }
+  placements(size, isIncludingDiagonals) {
+    let directions = isIncludingDiagonals
+      ? ["east", "south", "southEast", "northEast"]
+      : ["east", "south"];
+    return directions.reduce((acc, direction) => {
+      for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+          acc.push({ row: i, col: j, direction: direction });
         }
-        return acc;
-      },
-      []
-    );
+      }
+      return acc;
+    }, []);
   }
 
   process(grid, word, placements) {
