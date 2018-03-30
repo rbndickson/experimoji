@@ -1,14 +1,26 @@
 import React, { Component } from "react";
 import { css } from "emotion";
 
-const controlsStyles = css`
-  margin: 20px 0;
+const styles = css`
+  width: 600px;
+  margin: 0 auto;
+  section {
+    margin: 20px 0;
+  }
 `;
 
-const textBoxStyles = css`
-  border: solid 2px silver;
-  border-radius: 4px;
-  padding: 4px;
+const formStyles = css`
+  display: block;
+  input[type="text"] {
+    width: 184px;
+    border: solid 2px silver;
+    border-radius: 4px;
+    padding: 4px;
+  }
+  input[type="submit"] {
+    margin-top: 10px;
+    width: 200px;
+  }
 `;
 
 class Controls extends Component {
@@ -30,35 +42,44 @@ class Controls extends Component {
 
   render() {
     return (
-      <div>
-        <section className={controlsStyles}>
-          <p>Size: {this.props.size}</p>
-          <input
-            type="range"
-            value={this.props.size}
-            min="5"
-            max="16"
-            onChange={e => {
-              this.props.updateSize(e.target.value);
-            }}
-          />
-        </section>
-        <section className={controlsStyles}>
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <input
-              name="word"
-              type="text"
-              className={textBoxStyles}
-              value={this.state.newWord}
-              onChange={e => this.handleChange(e)}
-            />
-            <input type="submit" value="Add Word" />
-          </form>
-        </section>
-        <section className={controlsStyles}>
-          <button onClick={() => this.props.resetWordSearch()}>Reset</button>
-          <button onClick={() => this.props.clearWordSearch()}>Clear</button>
-        </section>
+      <div className={styles}>
+        <div className="pure-g">
+          <div className="pure-u-1-2">
+            <section>
+              <p>Size: {this.props.size}</p>
+              <input
+                type="range"
+                value={this.props.size}
+                min="5"
+                max="16"
+                onChange={e => {
+                  this.props.updateSize(e.target.value);
+                }}
+              />
+            </section>
+          </div>
+          <div className="pure-u-1-2">
+            <section>
+              <form className={formStyles} onSubmit={e => this.handleSubmit(e)}>
+                <input
+                  name="word"
+                  type="text"
+                  value={this.state.newWord}
+                  onChange={e => this.handleChange(e)}
+                />
+                <input type="submit" value="Add Word" />
+              </form>
+            </section>
+            <section>
+              <button onClick={() => this.props.resetWordSearch()}>
+                Reset
+              </button>
+              <button onClick={() => this.props.clearWordSearch()}>
+                Clear All
+              </button>
+            </section>
+          </div>
+        </div>
       </div>
     );
   }
