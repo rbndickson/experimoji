@@ -23,6 +23,12 @@ const formStyles = css`
   }
 `;
 
+const removeWordInstructionStyles = css`
+  margin-top: 10px;
+  font-size: 14px;
+  color: silver;
+`;
+
 class Controls extends Component {
   state = {
     newWord: ""
@@ -82,6 +88,9 @@ class Controls extends Component {
                 />
                 <input type="submit" value="Add Word" />
               </form>
+              <div className={removeWordInstructionStyles}>
+                Click on word below to remove words
+              </div>
             </section>
             <section>
               <button onClick={() => this.props.resetWordSearch()}>
