@@ -29,9 +29,7 @@ class WordPuzzle extends Component {
   state = {
     puzzle: {},
     answers: {},
-    canCreate: true,
-    horizontalCount: 0,
-    verticalCount: 0
+    canCreate: true
   };
 
   componentDidMount() {
