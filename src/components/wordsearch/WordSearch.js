@@ -39,8 +39,6 @@ class WordSearch extends Component {
   }
 
   updateIsIncludingDiagonals(isIncludingDiagonals) {
-    console.log(isIncludingDiagonals);
-
     this.setState({ isIncludingDiagonals: isIncludingDiagonals });
   }
 
