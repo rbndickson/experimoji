@@ -71,14 +71,17 @@ class WordPuzzle extends Component {
   }
 
   placements(size) {
-    return ["horizontal", "vertical"].reduce((acc, direction) => {
-      for (var i = 0; i < size; i++) {
-        for (var j = 0; j < size; j++) {
-          acc.push({ row: i, col: j, direction: direction });
+    return ["east", "south", "southEast", "northEast"].reduce(
+      (acc, direction) => {
+        for (var i = 0; i < size; i++) {
+          for (var j = 0; j < size; j++) {
+            acc.push({ row: i, col: j, direction: direction });
+          }
         }
-      }
-      return acc;
-    }, []);
+        return acc;
+      },
+      []
+    );
   }
 
   process(grid, word, placements) {
@@ -98,12 +101,13 @@ class WordPuzzle extends Component {
     const gridSize = Object.keys(grid).length;
 
     for (var i = 0; i < word.length; i++) {
-      if (row >= gridSize || col >= gridSize) {
+      if (row < 0 || col < 0 || row >= gridSize || col >= gridSize) {
         return false;
       } else if (grid[row][col] !== "*" && grid[row][col] !== word[i]) {
         return false;
       }
-      direction === "horizontal" ? (col += 1) : (row += 1);
+
+      [row, col] = this.incrementCoordinates(row, col, direction);
     }
 
     return true;
@@ -114,10 +118,29 @@ class WordPuzzle extends Component {
 
     for (var i = 0; i < word.length; i++) {
       grid[row][col] = word[i];
-      direction === "horizontal" ? (col += 1) : (row += 1);
+      [row, col] = this.incrementCoordinates(row, col, direction);
     }
 
     return grid;
+  }
+
+  incrementCoordinates(row, col, direction) {
+    if (direction === "east") {
+      col += 1;
+    } else if (direction === "south") {
+      row += 1;
+    } else if (direction === "southEast") {
+      col += 1;
+      row += 1;
+    } else if (direction === "northEast") {
+      row -= 1;
+      col += 1;
+    } else {
+      console.log(`Incorrect direction: ${direction}`);
+      return undefined;
+    }
+
+    return [row, col];
   }
 
   fillBlanks(grid) {
