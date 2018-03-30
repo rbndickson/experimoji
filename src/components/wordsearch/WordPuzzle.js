@@ -2,25 +2,7 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
-
-const styles = css`
-  display: inline-block;
-  margin: 50px;
-  border: 1px solid #eee;
-`;
-
-const rowStyles = css`
-  display: block;
-`;
-
-const gridSquareStyles = css`
-  display: inline-block;
-  height: 26px;
-  width: 40px;
-  border: 1px solid #eee;
-  padding: 14px 0 0 0;
-  text-align: center;
-`;
+import Grid from "./Grid";
 
 const errorMessageStyles = css`
   color: red;
@@ -30,7 +12,7 @@ const errorMessageStyles = css`
 class WordPuzzle extends Component {
   state = {
     puzzle: {},
-    answers: {},
+    answer: {},
     canCreate: true
   };
 
@@ -164,34 +146,12 @@ class WordPuzzle extends Component {
   }
 
   render() {
-    const rows = Object.keys(this.state.puzzle);
-
     return (
       <div>
         {this.state.canCreate ? (
           <div>
-            <div className={styles}>
-              {rows.map(row => (
-                <div className={rowStyles} key={row}>
-                  {rows.map(col => (
-                    <div className={gridSquareStyles} key={col}>
-                      {this.state.answer[row][col]}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className={styles}>
-              {rows.map(row => (
-                <div className={rowStyles} key={row}>
-                  {rows.map(col => (
-                    <div className={gridSquareStyles} key={col}>
-                      {this.state.puzzle[row][col]}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+            <Grid data={this.state.answer} />
+            <Grid data={this.state.puzzle} />
           </div>
         ) : (
           <p className={errorMessageStyles}>Wordsearch size too small</p>
