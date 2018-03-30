@@ -7,6 +7,12 @@ const styles = css`
   section {
     margin: 20px 0;
   }
+  @media (max-width: 600px) {
+    width: 100%;
+    section {
+      margin: 5px 0;
+    }
+  }
 `;
 
 const formStyles = css`
@@ -54,7 +60,7 @@ class Controls extends Component {
     return (
       <div className={styles}>
         <div className="pure-g">
-          <div className="pure-u-1-2">
+          <div className="pure-u-1 pure-u-sm-1-2">
             <section>
               <p>Size: {this.props.size}</p>
               <input
@@ -77,7 +83,7 @@ class Controls extends Component {
               <label htmlFor="isIncludingDiagonals">Include Diagonals</label>
             </section>
           </div>
-          <div className="pure-u-1-2">
+          <div className="pure-u-1 pure-u-sm-1-2">
             <section>
               <form className={formStyles} onSubmit={e => this.handleSubmit(e)}>
                 <input

@@ -7,6 +7,7 @@ import WordPuzzle from "./WordPuzzle";
 const styles = css`
   position: relative;
   background-color: #fff;
+  min-width: 360px;
   max-width: 800px;
   margin: 0 auto;
   border-radius: 5px;

@@ -11,6 +11,9 @@ const styles = css`
     padding: 10px;
     cursor: pointer;
   }
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 class WordList extends Component {
