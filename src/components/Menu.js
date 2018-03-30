@@ -22,7 +22,8 @@ class Menu extends Component {
     experiments: [
       { name: "Quiz", link: "quiz" },
       { name: "Memory Game", link: "memorygame" },
-      { name: "Writing Practise Worksheet", link: "worksheet" }
+      { name: "Writing Practise Worksheet", link: "worksheet" },
+      { name: "Wordsearch Generator", link: "wordsearch" }
     ]
   };
 
