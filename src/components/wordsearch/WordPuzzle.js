@@ -4,7 +4,9 @@ import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
 
 const styles = css`
+  display: inline-block;
   margin: 50px;
+  border: 1px solid #eee;
 `;
 
 const rowStyles = css`
