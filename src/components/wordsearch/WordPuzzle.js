@@ -173,7 +173,7 @@ class WordPuzzle extends Component {
                 <div className={rowStyles} key={row}>
                   {rows.map(col => (
                     <div className={gridSquareStyles} key={col}>
-                      {this.state.puzzle[row][col]}
+                      {this.state.answer[row][col]}
                     </div>
                   ))}
                 </div>
@@ -184,7 +184,7 @@ class WordPuzzle extends Component {
                 <div className={rowStyles} key={row}>
                   {rows.map(col => (
                     <div className={gridSquareStyles} key={col}>
-                      {this.state.answer[row][col]}
+                      {this.state.puzzle[row][col]}
                     </div>
                   ))}
                 </div>
