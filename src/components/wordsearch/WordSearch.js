@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { css } from "emotion";
+import update from "immutability-helper";
+import { shuffle } from "../../utils/helpers";
 import Controls from "./Controls";
 import WordList from "./WordList";
 import WordPuzzle from "./WordPuzzle";
@@ -22,25 +24,64 @@ const initialState = {
 };
 
 class WordSearch extends Component {
-  state = initialState;
+  state = Object.assign(
+    initialState,
+    this.createWordSearch(
+      initialState.words,
+      initialState.size,
+      initialState.isIncludingDiagonals
+    )
+  );
 
   addWord(word) {
-    let newWords = this.state.words.slice();
-    newWords.push(word);
-    this.setState({ words: newWords });
+    let words = this.state.words.slice();
+    words.push(word);
+    const newState = Object.assign(
+      this.createWordSearch(
+        words,
+        this.state.size,
+        this.state.isIncludingDiagonals
+      ),
+      { words }
+    );
+    this.setState(newState);
   }
 
   removeWord(word) {
-    let newWords = this.state.words.filter(e => e !== word);
-    this.setState({ words: newWords });
+    let words = this.state.words.filter(e => e !== word);
+    const newState = Object.assign(
+      this.createWordSearch(
+        words,
+        this.state.size,
+        this.state.isIncludingDiagonals
+      ),
+      { words }
+    );
+    this.setState(newState);
   }
 
   updateSize(size) {
-    this.setState({ size: size });
+    const newState = Object.assign(
+      this.createWordSearch(
+        this.state.words,
+        size,
+        this.state.isIncludingDiagonals
+      ),
+      { size }
+    );
+    this.setState(newState);
   }
 
   updateIsIncludingDiagonals(isIncludingDiagonals) {
-    this.setState({ isIncludingDiagonals: isIncludingDiagonals });
+    const newState = Object.assign(
+      this.createWordSearch(
+        this.state.words,
+        this.state.size,
+        isIncludingDiagonals
+      ),
+      { isIncludingDiagonals }
+    );
+    this.setState(newState);
   }
 
   resetWordSearch() {
@@ -48,7 +89,126 @@ class WordSearch extends Component {
   }
 
   clearWordSearch() {
-    this.setState({ words: [] });
+    this.setState({ words: [], puzzle: {}, answer: {} });
+  }
+
+  createWordSearch(words, size, isIncludingDiagonals) {
+    const placements = shuffle(this.placements(size, isIncludingDiagonals));
+
+    const answer = words.reduce((acc, word) => {
+      return acc ? this.process(acc, word, placements) : acc;
+    }, this.createGrid(size));
+
+    if (answer) {
+      const puzzle = this.fillBlanks(answer);
+      return { puzzle: puzzle, answer: answer, canCreate: true };
+    } else {
+      return { canCreate: false };
+    }
+  }
+
+  createGrid(size) {
+    let grid = {};
+
+    for (var i = 0; i < size; i++) {
+      grid[i] = {};
+      for (var j = 0; j < size; j++) {
+        grid[i][j] = "*";
+      }
+    }
+
+    return grid;
+  }
+
+  placements(size, isIncludingDiagonals) {
+    let directions = isIncludingDiagonals
+      ? ["east", "south", "southEast", "northEast"]
+      : ["east", "south"];
+    return directions.reduce((acc, direction) => {
+      for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+          acc.push({ row: i, col: j, direction: direction });
+        }
+      }
+      return acc;
+    }, []);
+  }
+
+  process(grid, word, placements) {
+    word = word.replace(/\s+/g, "");
+
+    for (var i = 0; i < placements.length; i++) {
+      if (this.canInsert(grid, word, placements[i])) {
+        return this.insert(grid, word, placements[i]);
+      }
+    }
+
+    return false;
+  }
+
+  canInsert(grid, word, placement) {
+    let { row, col, direction } = placement;
+    const gridSize = Object.keys(grid).length;
+
+    for (var i = 0; i < word.length; i++) {
+      if (row < 0 || col < 0 || row >= gridSize || col >= gridSize) {
+        return false;
+      } else if (grid[row][col] !== "*" && grid[row][col] !== word[i]) {
+        return false;
+      }
+
+      [row, col] = this.incrementCoordinates(row, col, direction);
+    }
+
+    return true;
+  }
+
+  insert(grid, word, placement) {
+    let { row, col, direction } = placement;
+
+    for (var i = 0; i < word.length; i++) {
+      grid[row][col] = word[i];
+      [row, col] = this.incrementCoordinates(row, col, direction);
+    }
+
+    return grid;
+  }
+
+  incrementCoordinates(row, col, direction) {
+    if (direction === "east") {
+      col += 1;
+    } else if (direction === "south") {
+      row += 1;
+    } else if (direction === "southEast") {
+      col += 1;
+      row += 1;
+    } else if (direction === "northEast") {
+      row -= 1;
+      col += 1;
+    } else {
+      console.log(`Incorrect direction: ${direction}`);
+      return undefined;
+    }
+
+    return [row, col];
+  }
+
+  fillBlanks(grid) {
+    const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    const gridSize = Object.keys(grid).length;
+
+    for (var i = 0; i < gridSize; i++) {
+      for (var j = 0; j < gridSize; j++) {
+        if (grid[i][j] === "*") {
+          let randomLetter = ALPHABET[Math.floor(Math.random() * 26)];
+          grid = update(grid, {
+            [i]: { [j]: { $set: randomLetter } }
+          });
+        }
+      }
+    }
+
+    return grid;
   }
 
   render() {
@@ -71,9 +231,9 @@ class WordSearch extends Component {
           removeWord={word => this.removeWord(word)}
         />
         <WordPuzzle
-          words={this.state.words}
-          size={this.state.size}
-          isIncludingDiagonals={this.state.isIncludingDiagonals}
+          answer={this.state.answer}
+          puzzle={this.state.puzzle}
+          canCreate={this.state.canCreate}
         />
       </div>
     );
