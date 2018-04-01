@@ -36,19 +36,15 @@ class WordSearch extends Component {
   addWord(word) {
     let words = this.state.words.slice();
     words.push(word);
-    const newState = Object.assign(
-      this.createWordSearch(
-        words,
-        this.state.size,
-        this.state.isIncludingDiagonals
-      ),
-      { words }
-    );
-    this.setState(newState);
+    this.updateWords(words);
   }
 
   removeWord(word) {
     let words = this.state.words.filter(e => e !== word);
+    this.updateWords(words);
+  }
+
+  updateWords(words) {
     const newState = Object.assign(
       this.createWordSearch(
         words,
