@@ -32,7 +32,7 @@ class Worksheet extends Component {
     shuffledFlashcards: []
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const ROWS_PER_PAGE = 10;
     const pages = Math.ceil(this.props.flashcards.length / ROWS_PER_PAGE);
     let flashcards = [];
