@@ -29,6 +29,25 @@ const formStyles = css`
   }
 `;
 
+const buttonStyles = css`
+  padding: 4px 8px;
+  margin: 4px;
+  border: 0;
+  border-bottom: 2px solid #ffac33;
+  border-radius: 5px;
+  font-family: "Varela Round", sans-serif;
+  font-size: 14px;
+  color: #000;
+  background-color: #ffe8b6;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffe09e;
+  }
+
+  text-decoration: none !important;
+`;
+
 const removeWordInstructionStyles = css`
   margin-top: 10px;
   font-size: 14px;
@@ -92,17 +111,27 @@ class Controls extends Component {
                   value={this.state.newWord}
                   onChange={e => this.handleChange(e)}
                 />
-                <input type="submit" value="Add Word" />
+                <input
+                  type="submit"
+                  value="Add Word"
+                  className={buttonStyles}
+                />
               </form>
               <div className={removeWordInstructionStyles}>
-                Click on word below to remove words
+                Click on word below to remove
               </div>
             </section>
             <section>
-              <button onClick={() => this.props.resetWordSearch()}>
+              <button
+                className={buttonStyles}
+                onClick={() => this.props.resetWordSearch()}
+              >
                 Reset
               </button>
-              <button onClick={() => this.props.clearWordSearch()}>
+              <button
+                className={buttonStyles}
+                onClick={() => this.props.clearWordSearch()}
+              >
                 Clear All
               </button>
             </section>

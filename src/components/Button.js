@@ -19,6 +19,13 @@ const baseStyles = css`
   text-decoration: none !important;
 `;
 
+const controlStyles = css`
+  padding: 4px 8px;
+  margin: 4px;
+  border: 0;
+  font-size: 14px;
+`;
+
 const xSmallStyles = css`
   width: 60px;
   margin: 6px auto;
@@ -76,6 +83,9 @@ const styles = classModifier => {
   if (classModifier.includes("Button-medium")) {
     s.push(mediumStyles);
   }
+  if (classModifier.includes("Button-control")) {
+    s.push(controlStyles);
+  }
   if (classModifier.includes("Button-inline")) {
     s.push(inlineStyles);
   }
@@ -85,7 +95,6 @@ const styles = classModifier => {
   if (classModifier.includes("Button-green")) {
     s.push(greenStyles);
   }
-
   return cx(s);
 };
 
