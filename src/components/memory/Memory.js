@@ -22,8 +22,12 @@ const mainStyles = css`
 `;
 
 class Memory extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.setFlashcards();
+  }
+
+  shouldComponentUpdate() {
+    return this.isGameFinished();
   }
 
   setFlashcards() {
@@ -54,13 +58,15 @@ class Memory extends Component {
     });
   }
 
-  isFinished() {
+  isGameFinished() {
     let result = true;
+
     this.props.memoryGameFlashcards.forEach(f => {
       if (f.status === "faceDown") {
         result = false;
       }
     });
+
     return result;
   }
 
@@ -69,7 +75,7 @@ class Memory extends Component {
       <div className={wrapperStyles}>
         <main className={mainStyles}>
           <MemoryGame />
-          {this.isFinished() && (
+          {this.isGameFinished() && (
             <Button
               text={"Play Again"}
               onClick={() => this.setFlashcards()}
@@ -84,6 +90,7 @@ class Memory extends Component {
 
 function mapStateToProps(state) {
   const flashcards = Object.values(state.flashcards).slice(0, 4);
+
   return {
     flashcards: flashcards,
     memoryGameFlashcards: Object.values(state.memory.flashcards)

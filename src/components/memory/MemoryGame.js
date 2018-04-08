@@ -17,8 +17,8 @@ class MemoryGame extends Component {
     }
   }
 
-  shouldComponentUpdate(prevState) {
-    return this.props.flashcards !== prevState.flashcards;
+  shouldComponentUpdate(nextProps, _) {
+    return this.props.flashcards !== nextProps.flashcards;
   }
 
   handleFlashcardSelection(position) {
@@ -101,13 +101,15 @@ class MemoryGame extends Component {
   render() {
     return (
       <div className="MemoryGame-flashcards">
-        {createArrayOfNumbers(8).map(position => (
-          <Flashcard
-            key={position}
-            flashcard={this.props.flashcards[position]}
-            onClick={() => this.handleFlashcardSelection(position)}
-          />
-        ))}
+        {createArrayOfNumbers(Object.keys(this.props.flashcards).length).map(
+          position => (
+            <Flashcard
+              key={position}
+              flashcard={this.props.flashcards[position]}
+              onClick={() => this.handleFlashcardSelection(position)}
+            />
+          )
+        )}
       </div>
     );
   }
