@@ -9,18 +9,21 @@ import QuizFooter from "./QuizFooter";
 class QuizGame extends Component {
   componentWillMount() {
     if (this.props.isRetry) {
-      const previousFlashcards =
-        this.props.previousFlashcards || this.props.flashcards;
-      const newFlashcards = Object.values(previousFlashcards).map(e => ({
-        vocabulary: e.vocabulary,
-        emojiCode: e.emojiCode
-      }));
-      this.props.dispatch(setQuizFlashcards(newFlashcards));
+      this.resetQuizFlashcardsResults();
     } else {
       this.props.dispatch(
         setQuizFlashcards(shuffle(Object.values(this.props.flashcards)))
       );
     }
+  }
+
+  resetQuizFlashcardsResults() {
+    const flashcards = Object.values(this.props.quizFlashcards).map(e => ({
+      vocabulary: e.vocabulary,
+      emojiCode: e.emojiCode
+    }));
+
+    this.props.dispatch(setQuizFlashcards(flashcards));
   }
 
   render() {
@@ -37,7 +40,7 @@ class QuizGame extends Component {
 function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
-    previousFlashcards: state.quiz.flashcards,
+    quizFlashcards: state.quiz.flashcards,
     questionIndex: state.quiz.questionIndex,
     isRetry: state.quiz.isRetry
   };
