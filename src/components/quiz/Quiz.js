@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import {
-  updateQuizScreen,
-  updateScore,
-  updateCurrentQuestionIndex,
-  setQuizFlashcards
-} from "../../actions";
+import { updateQuizScreen, setQuizFlashcards } from "../../actions";
 import QuizTitle from "./QuizTitle";
 import QuizStart from "./QuizStart";
 import QuizGame from "./QuizGame";
@@ -30,8 +25,6 @@ const mainStyles = css`
 class Quiz extends Component {
   componentDidMount() {
     this.props.dispatch(updateQuizScreen("settings"));
-    this.props.dispatch(updateScore(0));
-    this.props.dispatch(updateCurrentQuestionIndex(0));
   }
 
   componentDidUpdate() {
