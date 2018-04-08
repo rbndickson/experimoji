@@ -28,11 +28,10 @@ const mainStyles = css`
 `;
 
 class Quiz extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(updateQuizScreen("settings"));
     this.props.dispatch(updateScore(0));
     this.props.dispatch(updateCurrentQuestionIndex(0));
-    this.props.dispatch(setQuizFlashcards(this.props.flashcards));
   }
 
   componentDidUpdate() {
