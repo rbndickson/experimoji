@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { updateQuizScreen, setQuizFlashcards } from "../../actions";
+import { updateQuizScreen } from "../../actions";
 import QuizTitle from "./QuizTitle";
 import QuizStart from "./QuizStart";
 import QuizGame from "./QuizGame";

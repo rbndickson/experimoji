@@ -17,13 +17,13 @@ class QuizResultsList extends Component {
           <div>
             <h4>Words you answered incorrectly:</h4>
             <ul>
-              {this.props.flashcards
-                .filter(flashcard => flashcard.answerResult === "incorrect")
-                .map(flashcard => (
+              {this.props.questions
+                .filter(question => question.answerResult === "incorrect")
+                .map(question => (
                   <QuizResultsItem
-                    vocabulary={flashcard.vocabulary}
-                    emojiCode={flashcard.emojiCode}
-                    key={`${flashcard.vocabulary}${flashcard.emojiCode}`}
+                    vocabulary={question.vocabulary}
+                    emojiCode={question.emojiCode}
+                    key={`${question.vocabulary}${question.emojiCode}`}
                   />
                 ))}
             </ul>
@@ -33,13 +33,13 @@ class QuizResultsList extends Component {
           <div>
             <h4>Words you answered correctly:</h4>
             <ul>
-              {this.props.flashcards
-                .filter(flashcard => flashcard.answerResult === "correct")
-                .map(flashcard => (
+              {this.props.questions
+                .filter(question => question.answerResult === "correct")
+                .map(question => (
                   <QuizResultsItem
-                    vocabulary={flashcard.vocabulary}
-                    emojiCode={flashcard.emojiCode}
-                    key={`${flashcard.vocabulary}${flashcard.emojiCode}`}
+                    vocabulary={question.vocabulary}
+                    emojiCode={question.emojiCode}
+                    key={`${question.vocabulary}${question.emojiCode}`}
                   />
                 ))}
             </ul>
@@ -52,7 +52,7 @@ class QuizResultsList extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.quiz.flashcards),
+    questions: Object.values(state.quiz.questions),
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex
   };

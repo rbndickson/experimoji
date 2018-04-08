@@ -2,7 +2,7 @@ import { data } from "../data";
 
 import {
   UPDATE_QUIZ_SCREEN,
-  SET_QUIZ_FLASHCARDS,
+  SET_QUESTIONS,
   UPDATE_CURRENT_QUESTION_INDEX,
   SET_SHOW_QUIZ_ANSWER,
   UPDATE_SCORE,
@@ -33,10 +33,10 @@ function quiz(state = initialQuizState, action) {
         ...state,
         quizScreen: action.screen
       };
-    case SET_QUIZ_FLASHCARDS:
+    case SET_QUESTIONS:
       return {
         ...state,
-        flashcards: action.flashcards
+        questions: action.questions
       };
     case UPDATE_CURRENT_QUESTION_INDEX:
       return {
@@ -56,10 +56,10 @@ function quiz(state = initialQuizState, action) {
     case RECORD_ANSWER_RESULT:
       return {
         ...state,
-        flashcards: {
-          ...state["flashcards"],
-          [action.flashcardIndex]: {
-            ...state["flashcards"][action.flashcardIndex],
+        questions: {
+          ...state["questions"],
+          [action.questionIndex]: {
+            ...state["questions"][action.questionIndex],
             answerResult: action.answerResult
           }
         }

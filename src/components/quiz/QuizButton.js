@@ -33,18 +33,21 @@ const styles = css`
 `;
 
 const correctStyles = css`
-  background-color: #a6d388;
+  background-color: #d9ffbd;
+  background-repeat: no-repeat;
 
   &:hover {
-    background-color: #a6d388;
+    background-color: #d9ffbd;
+    background-repeat: no-repeat;
   }
 `;
 
 const incorrectStyles = css`
-  background-color: #ea596e;
+  background-color: #ffbdd3;
+  opacity: 0.25;
 
   &:hover {
-    background-color: #ea596e;
+    background-color: #ffbdd3;
   }
 `;
 
@@ -66,7 +69,7 @@ class QuizButton extends Component {
   }
 
   currentQuestionUnsnswered() {
-    return !this.props.flashcards[this.props.currentQuestionIndex].answerResult;
+    return !this.props.questions[this.props.currentQuestionIndex].answerResult;
   }
 
   dispatchCorrect() {
@@ -119,13 +122,13 @@ class QuizButton extends Component {
 }
 
 function mapStateToProps(state) {
-  const flashcards = state.quiz.flashcards;
+  const questions = state.quiz.questions;
 
   return {
-    flashcards: state.quiz.flashcards,
+    questions: questions,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
-    correctAnswer: flashcards[state.quiz.currentQuestionIndex].vocabulary,
+    correctAnswer: questions[state.quiz.currentQuestionIndex].vocabulary,
     showQuizAnswer: state.quiz.showQuizAnswer
   };
 }

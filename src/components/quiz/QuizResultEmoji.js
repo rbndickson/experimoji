@@ -32,7 +32,6 @@ class QuizResultEmoji extends Component {
   resultEmoji() {
     const resultPercentage =
       this.props.score / this.props.currentQuestionIndex * 100;
-    console.log(resultPercentage);
 
     if (resultPercentage === 100) return shuffle(resultEmoji["perfect"])[0];
     else if (resultPercentage >= 75) return shuffle(resultEmoji["great"])[0];

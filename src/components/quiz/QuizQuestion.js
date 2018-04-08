@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { emojiSrc, shuffle } from "../../utils/helpers";
+import { emojiSrc } from "../../utils/helpers";
 import QuizButtons from "./QuizButtons";
 
 const styles = css`
@@ -10,65 +10,23 @@ const styles = css`
 `;
 
 class QuizQuestion extends Component {
-  state = {
-    answers: []
-  };
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.currentQuestionIndex !== nextProps.currentQuestionIndex;
-  }
-
-  componentWillMount() {
-    this.setAnswers(this.props.flashcards, this.props.flashcard);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setAnswers(nextProps.flashcards, nextProps.flashcard);
-  }
-
-  setAnswers(flashcards, flashcard) {
-    const answers = this.createAnswers(Object.values(flashcards), flashcard);
-    this.setState({ answers: answers });
-  }
-
-  createAnswers(flashcards, correctFlashcard) {
-    const incorrectFlashcards = shuffle(
-      flashcards
-        .filter(f => f !== correctFlashcard)
-        .map(flashcard => flashcard.vocabulary)
-    );
-
-    const answers =
-      this.props.level === "easy"
-        ? incorrectFlashcards.splice(0, 2)
-        : incorrectFlashcards.splice(0, 5);
-
-    answers.push(correctFlashcard.vocabulary);
-
-    return shuffle(answers);
-  }
-
   render() {
+    const { question } = this.props;
+
     return (
       <div className={styles}>
-        <img
-          alt={this.props.flashcard.vocabulary}
-          src={emojiSrc(this.props.flashcard.emojiCode)}
-        />
-        <QuizButtons answers={this.state.answers} />
+        <img alt={question.vocabulary} src={emojiSrc(question.emojiCode)} />
+        <QuizButtons question={question} />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const flashcards = state.quiz.flashcards;
+  const questions = state.quiz.questions;
 
   return {
-    flashcard: flashcards[state.quiz.currentQuestionIndex],
-    flashcards: flashcards,
-    currentQuestionIndex: state.quiz.currentQuestionIndex,
-    level: state.quiz.level
+    question: questions[state.quiz.currentQuestionIndex]
   };
 }
 

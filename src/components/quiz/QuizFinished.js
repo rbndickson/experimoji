@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { emojiSrc } from "../../utils/helpers";
-import { updateQuizScreen, resetQuiz, setQuizFlashcards } from "../../actions";
+import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
 import QuizResult from "./QuizResult";
 import QuizResultEmoji from "./QuizResultEmoji";
 import QuizResultsList from "./QuizResultsList";
@@ -38,12 +38,12 @@ class QuizFinished extends Component {
 
   tryAgainNewCards() {
     this.props.dispatch(updateQuizScreen("game"));
-    this.props.dispatch(setQuizFlashcards(undefined));
+    this.props.dispatch(setQuestions(undefined));
     this.props.dispatch(resetQuiz());
   }
 
   tryAgainSameCards() {
-    this.props.dispatch(setQuizFlashcards(this.props.quizFlashcards));
+    this.props.dispatch(setQuestions(this.props.questions));
     this.props.dispatch(updateQuizScreen("game"));
     this.props.dispatch(resetQuiz());
   }
@@ -100,7 +100,7 @@ class QuizFinished extends Component {
 
 function mapStateToProps(state) {
   return {
-    quizFlashcards: state.quiz.flashcards,
+    questions: state.quiz.questions,
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     language: state.quiz.language,

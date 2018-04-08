@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   updateScore,
   updateCurrentQuestionIndex,
-  setQuizFlashcards
+  setQuestions
 } from "../../actions";
 import { shuffle } from "../../utils/helpers";
 import QuizHeader from "./QuizHeader";
@@ -14,43 +14,54 @@ class QuizGame extends Component {
   componentDidMount() {
     this.props.dispatch(updateScore(0));
     this.props.dispatch(updateCurrentQuestionIndex(0));
-    if (this.props.quizFlashcards) {
-      this.setRetryFlashcards();
+    if (this.props.questions) {
+      this.setRetryQuestions();
     } else {
-      this.setNewQuizFlashcards();
+      this.setNewQuizQuestions();
     }
   }
 
-  setNewQuizFlashcards() {
+  setNewQuizQuestions() {
     const shuffledFlashcards = shuffle(Object.values(this.props.flashcards));
-    const flashcards = shuffledFlashcards.reduce((acc, e, i) => {
-      acc[i] = e;
+    const questions = shuffledFlashcards.reduce((acc, e, i) => {
+      acc[i] = this.createQuestion(e);
       return acc;
     }, {});
 
-    this.props.dispatch(setQuizFlashcards(flashcards));
+    this.props.dispatch(setQuestions(questions));
   }
 
-  setRetryFlashcards() {
-    const flashcards = Object.values(this.props.quizFlashcards).reduce(
+  setRetryQuestions() {
+    const questions = Object.values(this.props.questions).reduce(
       (acc, e, i) => {
         acc[i] = {
           vocabulary: e.vocabulary,
-          emojiCode: e.emojiCode
+          emojiCode: e.emojiCode,
+          incorrectAnswers: e.incorrectAnswers
         };
         return acc;
       },
       {}
     );
 
-    this.props.dispatch(setQuizFlashcards(flashcards));
+    this.props.dispatch(setQuestions(questions));
+  }
+
+  createQuestion(flashcard) {
+    const incorrectAnswers = shuffle(
+      Object.values(this.props.flashcards)
+        .filter(f => f !== flashcard)
+        .map(f => f.vocabulary)
+    ).splice(0, 5);
+
+    return { ...flashcard, incorrectAnswers: incorrectAnswers };
   }
 
   render() {
     return (
       <div>
         <QuizHeader />
-        {this.props.quizFlashcards && <QuizQuestion />}
+        {this.props.questions && <QuizQuestion />}
         <QuizFooter />
       </div>
     );
@@ -60,7 +71,7 @@ class QuizGame extends Component {
 function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
-    quizFlashcards: state.quiz.flashcards,
+    questions: state.quiz.questions,
     questionIndex: state.quiz.questionIndex
   };
 }

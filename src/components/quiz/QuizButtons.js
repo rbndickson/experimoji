@@ -14,8 +14,19 @@ const colStyles = css`
 `;
 
 class QuizButtons extends Component {
+  answers() {
+    let incorrectAnswers = this.props.question.incorrectAnswers;
+
+    if (this.props.level === "easy") {
+      incorrectAnswers = incorrectAnswers.slice(0, 2);
+    }
+
+    let answerPool = incorrectAnswers.concat(this.props.question.vocabulary);
+    return answerPool.sort();
+  }
+
   render() {
-    const { answers } = this.props;
+    const answers = this.answers();
 
     return this.props.level === "easy" ? (
       <div className={styles}>

@@ -1,5 +1,5 @@
 export const UPDATE_QUIZ_SCREEN = "UPDATE_QUIZ_SCREEN";
-export const SET_QUIZ_FLASHCARDS = "SET_QUIZ_FLASHCARDS";
+export const SET_QUESTIONS = "SET_QUESTIONS";
 export const UPDATE_CURRENT_QUESTION_INDEX = "UPDATE_CURRENT_QUESTION_INDEX";
 export const SET_SHOW_QUIZ_ANSWER = "SET_SHOW_QUIZ_ANSWER";
 export const UPDATE_SCORE = "UPDATE_SCORE";
@@ -15,10 +15,10 @@ export function updateQuizScreen(screen) {
   };
 }
 
-export function setQuizFlashcards(flashcards) {
+export function setQuestions(questions) {
   return {
-    type: SET_QUIZ_FLASHCARDS,
-    flashcards
+    type: SET_QUESTIONS,
+    questions
   };
 }
 
@@ -43,10 +43,10 @@ export function updateScore(score) {
   };
 }
 
-export function recordAnswerResult(flashcardIndex, answerResult) {
+export function recordAnswerResult(questionIndex, answerResult) {
   return {
     type: RECORD_ANSWER_RESULT,
-    flashcardIndex,
+    questionIndex,
     answerResult
   };
 }
