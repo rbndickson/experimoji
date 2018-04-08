@@ -210,7 +210,7 @@ class WordSearch extends Component {
   render() {
     return (
       <div className={styles}>
-        <h1>Word Search</h1>
+        <h1>Word Search Generator</h1>
         <Controls
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}
