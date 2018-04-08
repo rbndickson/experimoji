@@ -9,8 +9,7 @@ import {
   RECORD_ANSWER_RESULT,
   UPDATE_QUIZ_QUESTION_AMOUNT,
   UPDATE_QUIZ_LEVEL,
-  RESET_QUIZ,
-  SET_QUIZ_RETRY
+  RESET_QUIZ
 } from "../actions";
 
 const initialQuizState = {
@@ -24,7 +23,6 @@ const initialQuizState = {
   quizScreen: "settings",
   questionAmount: 10,
   level: "easy",
-  isRetry: false,
   isClickable: true
 };
 
@@ -81,11 +79,6 @@ function quiz(state = initialQuizState, action) {
         ...state,
         currentQuestionIndex: 0,
         score: 0
-      };
-    case SET_QUIZ_RETRY:
-      return {
-        ...state,
-        isRetry: action.isRetry
       };
     default:
       return state;

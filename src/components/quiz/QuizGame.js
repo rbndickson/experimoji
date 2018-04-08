@@ -7,21 +7,35 @@ import QuizQuestion from "./QuizQuestion";
 import QuizFooter from "./QuizFooter";
 
 class QuizGame extends Component {
-  componentWillMount() {
-    if (this.props.isRetry) {
-      this.resetQuizFlashcardsResults();
+  componentDidMount() {
+    if (this.props.quizFlashcards) {
+      this.setRetryFlashcards();
     } else {
-      this.props.dispatch(
-        setQuizFlashcards(shuffle(Object.values(this.props.flashcards)))
-      );
+      this.setNewQuizFlashcards();
     }
   }
 
-  resetQuizFlashcardsResults() {
-    const flashcards = Object.values(this.props.quizFlashcards).map(e => ({
-      vocabulary: e.vocabulary,
-      emojiCode: e.emojiCode
-    }));
+  setNewQuizFlashcards() {
+    const shuffledFlashcards = shuffle(Object.values(this.props.flashcards));
+    const flashcards = shuffledFlashcards.reduce((acc, e, i) => {
+      acc[i] = e;
+      return acc;
+    }, {});
+
+    this.props.dispatch(setQuizFlashcards(flashcards));
+  }
+
+  setRetryFlashcards() {
+    const flashcards = Object.values(this.props.quizFlashcards).reduce(
+      (acc, e, i) => {
+        acc[i] = {
+          vocabulary: e.vocabulary,
+          emojiCode: e.emojiCode
+        };
+        return acc;
+      },
+      {}
+    );
 
     this.props.dispatch(setQuizFlashcards(flashcards));
   }
@@ -30,7 +44,7 @@ class QuizGame extends Component {
     return (
       <div>
         <QuizHeader />
-        <QuizQuestion />
+        {this.props.quizFlashcards && <QuizQuestion />}
         <QuizFooter />
       </div>
     );
@@ -41,8 +55,7 @@ function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
     quizFlashcards: state.quiz.flashcards,
-    questionIndex: state.quiz.questionIndex,
-    isRetry: state.quiz.isRetry
+    questionIndex: state.quiz.questionIndex
   };
 }
 
