@@ -91,13 +91,27 @@ class WordSearch extends Component {
   createWordSearch(words, size, isIncludingDiagonals) {
     const placements = shuffle(this.placements(size, isIncludingDiagonals));
 
-    const answer = words.reduce((acc, word) => {
-      return acc ? this.process(acc, word, placements) : acc;
-    }, this.createGrid(size));
+    const counts = {
+      east: 0,
+      south: 0,
+      southEast: 0,
+      northEast: 0
+    };
+
+    const answer = words.reduce(
+      (ans, word) => {
+        if (ans) {
+          return this.process(ans, word, placements);
+        } else {
+          return ans;
+        }
+      },
+      { grid: this.createGrid(size), counts: counts }
+    );
 
     if (answer) {
-      const puzzle = this.fillBlanks(answer);
-      return { puzzle: puzzle, answer: answer, canCreate: true };
+      const puzzle = this.fillBlanks(answer.grid);
+      return { puzzle: puzzle, answer: answer.grid, canCreate: true };
     } else {
       return { canCreate: false };
     }
@@ -130,16 +144,45 @@ class WordSearch extends Component {
     }, []);
   }
 
-  process(grid, word, placements) {
+  process(answer, word, placements) {
     word = word.replace(/\s+/g, "");
+    const directions = this.directionsSortedByCount(answer.counts);
 
-    for (var i = 0; i < placements.length; i++) {
-      if (this.canInsert(grid, word, placements[i])) {
-        return this.insert(grid, word, placements[i]);
+    // sort placements by preference
+    let sortedPlacements = [];
+
+    directions.forEach(direction => {
+      const p = placements.filter(p => p.direction === direction);
+      sortedPlacements = sortedPlacements.concat(p);
+    });
+
+    for (var i = 0; i < sortedPlacements.length; i++) {
+      const placement = sortedPlacements[i];
+      if (this.canInsert(answer.grid, word, placement)) {
+        const direction = placement.direction;
+        const directionCount = answer.counts[direction];
+
+        return {
+          grid: this.insert(answer.grid, word, placement),
+          counts: { ...answer.counts, [direction]: directionCount + 1 }
+        };
       }
     }
-
     return false;
+  }
+
+  directionsSortedByCount(directions) {
+    let result = [];
+
+    for (let direction in directions) {
+      result.push([direction, directions[direction]]);
+    }
+
+    return result
+      .sort(function(a, b) {
+        return a[1] - b[1];
+      })
+      .map(e => e[0]);
   }
 
   canInsert(grid, word, placement) {
