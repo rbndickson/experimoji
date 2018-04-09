@@ -57,19 +57,20 @@ class Worksheet extends Component {
         <h2 className={headingStyles}>{`${this.props.language} - ${
           this.props.category
         }`}</h2>
-        {this.state.flashcards.map((page, i) => (
-          <div key={`page${i}`} className={pageStyles}>
-            <ul>
-              {page.map((flashcard, ii) => (
-                <WorksheetRow
-                  key={flashcard.vocabulary}
-                  flashcardLeft={flashcard}
-                  flashcardRight={this.state.shuffledFlashcards[i][ii]}
-                />
-              ))}
-            </ul>
-          </div>
-        ))}
+        {this.state.flashcards &&
+          this.state.flashcards.map((page, i) => (
+            <div key={`page${i}`} className={pageStyles}>
+              <ul>
+                {page.map((flashcard, ii) => (
+                  <WorksheetRow
+                    key={flashcard.vocabulary}
+                    flashcardLeft={flashcard}
+                    flashcardRight={this.state.shuffledFlashcards[i][ii]}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
       </div>
     );
   }
