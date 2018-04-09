@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { emojiSrc } from "../../utils/helpers";
+import QuizAnswer from "./QuizAnswer";
 import QuizButtons from "./QuizButtons";
 
 const styles = css`
@@ -16,6 +17,7 @@ class QuizQuestion extends Component {
     return (
       <div className={styles}>
         <img alt={question.vocabulary} src={emojiSrc(question.emojiCode)} />
+        <QuizAnswer />
         <QuizButtons question={question} />
       </div>
     );
