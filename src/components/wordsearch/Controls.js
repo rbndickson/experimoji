@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
+import Button from "../Button";
 
 const styles = css`
   width: 600px;
@@ -76,7 +77,7 @@ class Controls extends Component {
   }
 
   render() {
-    return (
+    return this.props.view === "create" ? (
       <div className={styles}>
         <div className="pure-g">
           <div className="pure-u-1 pure-u-sm-1-2">
@@ -100,6 +101,13 @@ class Controls extends Component {
                 onChange={e => this.handleDiagonals(e)}
               />
               <label htmlFor="isIncludingDiagonals">Include Diagonals</label>
+            </section>
+            <section>
+              <Button
+                text={"Print View"}
+                classModifier={"Button-green"}
+                onClick={() => this.props.showPrintView()}
+              />
             </section>
           </div>
           <div className="pure-u-1 pure-u-sm-1-2">
@@ -137,6 +145,16 @@ class Controls extends Component {
             </section>
           </div>
         </div>
+      </div>
+    ) : (
+      <div className={"non-print"}>
+        <button
+          className={buttonStyles}
+          onClick={() => this.props.showCreateView()}
+        >
+          Show Settings
+        </button>
+        <h4>Print word search using your browswer</h4>
       </div>
     );
   }

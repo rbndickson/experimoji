@@ -9,7 +9,7 @@ const errorMessageStyles = css`
 
 class WordPuzzle extends Component {
   render() {
-    return (
+    return this.props.view === "create" ? (
       <div>
         {this.props.canCreate ? (
           <div>
@@ -19,6 +19,11 @@ class WordPuzzle extends Component {
         ) : (
           <p className={errorMessageStyles}>Wordsearch size too small</p>
         )}
+      </div>
+    ) : (
+      <div>
+        <Grid data={this.props.puzzle} />
+        <Grid data={this.props.answer} />
       </div>
     );
   }

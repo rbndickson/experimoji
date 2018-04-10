@@ -20,7 +20,8 @@ const styles = css`
 const initialState = {
   words: ["black", "blue", "brown", "green", "pink", "purple", "red", "yellow"],
   size: 10,
-  isIncludingDiagonals: false
+  isIncludingDiagonals: false,
+  view: "create"
 };
 
 class WordSearch extends Component {
@@ -250,13 +251,18 @@ class WordSearch extends Component {
     return grid;
   }
 
+  updateView(view) {
+    this.setState({ view: view });
+  }
+
   render() {
     return (
       <div className={styles}>
-        <h1>Word Search Generator</h1>
+        <h1 class={"non-print"}>Word Search Generator</h1>
         <Controls
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}
+          view={this.state.view}
           addWord={word => this.addWord(word)}
           updateSize={size => this.updateSize(size)}
           updateIsIncludingDiagonals={isIncludingDiagonals =>
@@ -264,6 +270,8 @@ class WordSearch extends Component {
           }
           resetWordSearch={() => this.resetWordSearch()}
           clearWordSearch={() => this.clearWordSearch()}
+          showPrintView={() => this.updateView("print")}
+          showCreateView={() => this.updateView("create")}
         />
         <WordList
           words={this.state.words}
@@ -273,6 +281,7 @@ class WordSearch extends Component {
           answer={this.state.answer}
           puzzle={this.state.puzzle}
           canCreate={this.state.canCreate}
+          view={this.state.view}
         />
       </div>
     );
