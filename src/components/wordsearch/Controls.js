@@ -77,6 +77,9 @@ class Controls extends Component {
   }
 
   render() {
+    const MIN_WORDSEARCH_SIZE = 5;
+    const MAX_WORDSEARCH_SIZE = 15;
+
     return this.props.view === "create" ? (
       <div className={styles}>
         <div className="pure-g">
@@ -86,8 +89,8 @@ class Controls extends Component {
               <input
                 type="range"
                 value={this.props.size}
-                min="5"
-                max="16"
+                min={MIN_WORDSEARCH_SIZE}
+                max={MAX_WORDSEARCH_SIZE}
                 onChange={e => {
                   this.props.updateSize(e.target.value);
                 }}
