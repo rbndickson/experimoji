@@ -1,9 +1,0 @@
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  #Worksheet,
-  #Worksheet * {
-    visibility: visible;
-  }
-}

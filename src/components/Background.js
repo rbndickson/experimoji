@@ -44,28 +44,34 @@ const styles = css`
 class Background extends Component {
   render() {
     return (
-      <div className={styles}>
-        <img src={emojiSrc("1f31e")} className={"Background-sun"} alt={"sun"} />
-        <img
-          src={emojiSrc("2601")}
-          className={"Background-cloud Background-cloud-1"}
-          alt={"cloud"}
-        />
-        <img
-          src={emojiSrc("2601")}
-          className={"Background-cloud Background-cloud-2"}
-          alt={"cloud"}
-        />
-        <img
-          src={emojiSrc("2601")}
-          className={"Background-cloud Background-cloud-3"}
-          alt={"cloud"}
-        />
-        <img
-          src={emojiSrc("2601")}
-          className={"Background-cloud Background-cloud-4"}
-          alt={"cloud"}
-        />
+      <div className={"non-print"}>
+        <div className={styles}>
+          <img
+            src={emojiSrc("1f31e")}
+            className={"Background-sun"}
+            alt={"sun"}
+          />
+          <img
+            src={emojiSrc("2601")}
+            className={"Background-cloud Background-cloud-1"}
+            alt={"cloud"}
+          />
+          <img
+            src={emojiSrc("2601")}
+            className={"Background-cloud Background-cloud-2"}
+            alt={"cloud"}
+          />
+          <img
+            src={emojiSrc("2601")}
+            className={"Background-cloud Background-cloud-3"}
+            alt={"cloud"}
+          />
+          <img
+            src={emojiSrc("2601")}
+            className={"Background-cloud Background-cloud-4"}
+            alt={"cloud"}
+          />
+        </div>
       </div>
     );
   }

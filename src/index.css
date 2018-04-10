@@ -17,3 +17,9 @@ li {
 h1 {
   font-size: 26px;
 }
+
+@media print {
+  .non-print {
+    display: none;
+  }
+}

@@ -52,8 +52,10 @@ class App extends Component {
   render() {
     return (
       <div className={styles}>
-        <Background />
-        <AppHeader />
+        <div className={"non-print"}>
+          <Background />
+          <AppHeader />
+        </div>
         <Route exact path="/" component={Menu} />
         <Route path="/quiz" component={Quiz} />
         <Route path="/memorygame" component={Memory} />
