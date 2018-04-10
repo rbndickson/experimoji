@@ -37,8 +37,11 @@ class WordSearch extends Component {
 
   addWord(word) {
     let words = this.state.words.slice();
-    words.push(word);
-    this.updateWords(words);
+
+    if (!words.includes(word)) {
+      words.push(word);
+      this.updateWords(words);
+    }
   }
 
   removeWord(word) {
