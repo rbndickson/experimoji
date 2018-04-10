@@ -137,7 +137,7 @@ class Controls extends Component {
         >
           Show Settings
         </button>
-        <h4>Print word search using your browswer</h4>
+        <h4>Print word search using your browser</h4>
       </div>
     );
   }
