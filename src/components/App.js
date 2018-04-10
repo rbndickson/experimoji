@@ -31,6 +31,10 @@ const styles = css`
   p {
     margin: 0;
   }
+
+  @media print {
+    min-height: auto;
+  }
 `;
 
 class App extends Component {
