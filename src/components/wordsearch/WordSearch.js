@@ -18,6 +18,7 @@ const styles = css`
 `;
 
 const initialState = {
+  title: "Colors",
   words: ["black", "blue", "brown", "green", "pink", "purple", "red", "yellow"],
   size: 10,
   isIncludingDiagonals: false,
@@ -57,6 +58,10 @@ class WordSearch extends Component {
     this.setState(newState);
   }
 
+  updateTitle(title) {
+    this.setState({ title: title });
+  }
+
   updateSize(size) {
     const newState = Object.assign(
       this.createWordSearch(
@@ -86,7 +91,7 @@ class WordSearch extends Component {
   }
 
   clearWordSearch() {
-    this.setState({ words: [], puzzle: {}, answer: {} });
+    this.setState({ title: "", words: [], puzzle: {}, answer: {} });
   }
 
   createWordSearch(words, size, isIncludingDiagonals) {
@@ -258,11 +263,12 @@ class WordSearch extends Component {
   render() {
     return (
       <div className={styles}>
-        <h1 class={"non-print"}>Word Search Generator</h1>
+        <h1 className={"non-print"}>Word Search Generator</h1>
         <Controls
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}
           view={this.state.view}
+          updateTitle={title => this.updateTitle(title)}
           addWord={word => this.addWord(word)}
           updateSize={size => this.updateSize(size)}
           updateIsIncludingDiagonals={isIncludingDiagonals =>
@@ -273,6 +279,7 @@ class WordSearch extends Component {
           showPrintView={() => this.updateView("print")}
           showCreateView={() => this.updateView("create")}
         />
+        <h2>{this.state.title}</h2>
         <WordList
           words={this.state.words}
           removeWord={word => this.removeWord(word)}

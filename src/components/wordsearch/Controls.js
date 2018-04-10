@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
+import TextForm from "./TextForm";
 import Button from "../Button";
 
 const styles = css`
@@ -13,20 +14,6 @@ const styles = css`
     section {
       margin: 5px 0;
     }
-  }
-`;
-
-const formStyles = css`
-  display: block;
-  input[type="text"] {
-    width: 184px;
-    border: solid 2px silver;
-    border-radius: 4px;
-    padding: 4px;
-  }
-  input[type="submit"] {
-    margin-top: 10px;
-    width: 200px;
   }
 `;
 
@@ -56,20 +43,14 @@ const removeWordInstructionStyles = css`
 `;
 
 class Controls extends Component {
-  state = {
-    newWord: ""
-  };
-
-  handleChange(e) {
-    this.setState({ newWord: e.target.value });
+  handleNewWordSubmit(word) {
+    if (word !== "") {
+      this.props.addWord(word);
+    }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.newWord !== "") {
-      this.props.addWord(this.state.newWord);
-      this.setState({ newWord: "" });
-    }
+  handleTitleSubmit(title) {
+    this.props.updateTitle(title);
   }
 
   handleDiagonals(e) {
@@ -115,19 +96,18 @@ class Controls extends Component {
           </div>
           <div className="pure-u-1 pure-u-sm-1-2">
             <section>
-              <form className={formStyles} onSubmit={e => this.handleSubmit(e)}>
-                <input
-                  name="word"
-                  type="text"
-                  value={this.state.newWord}
-                  onChange={e => this.handleChange(e)}
-                />
-                <input
-                  type="submit"
-                  value="Add Word"
-                  className={buttonStyles}
-                />
-              </form>
+              <TextForm
+                name="title"
+                submitValue={"Edit Title"}
+                handleSubmit={e => this.handleTitleSubmit(e)}
+              />
+            </section>
+            <section>
+              <TextForm
+                name="word"
+                submitValue={"Add Word"}
+                handleSubmit={e => this.handleNewWordSubmit(e)}
+              />
               <div className={removeWordInstructionStyles}>
                 Click on word below to remove
               </div>
