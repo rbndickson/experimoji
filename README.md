@@ -15,6 +15,7 @@ A place to test out ideas for [Emoji Flashcards](https://www.emojiflashcards.com
 - Live flashcard display (with WebSockets)
 - Crossword creator
 - Pictionary worksheet (match with vocabulary or by numbers)
+- Board game
 
 ---
 
