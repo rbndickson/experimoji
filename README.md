@@ -16,6 +16,7 @@ A place to test out ideas for [Emoji Flashcards](https://www.emojiflashcards.com
 - Crossword creator
 - Pictionary worksheet (match with vocabulary or by numbers)
 - Board game
+- Plurals worksheet
 
 ---
 
