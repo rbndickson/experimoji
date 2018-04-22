@@ -23,7 +23,8 @@ class Menu extends Component {
       { name: "Quiz", link: "quiz" },
       { name: "Memory Game", link: "memorygame" },
       { name: "Writing Practise Worksheet", link: "worksheet" },
-      { name: "Word Search Generator", link: "wordsearch" }
+      { name: "Word Search Generator", link: "wordsearch" },
+      { name: "Pictionary", link: "pictionary" }
     ]
   };
 
