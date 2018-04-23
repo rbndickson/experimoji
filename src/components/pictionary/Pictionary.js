@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
+import { shuffle } from "../../utils/helpers";
 import Wordlist from "./WordList";
+import PictureGrid from "./PictureGrid";
 
 const mainStyles = css`
   position: relative;
@@ -22,22 +24,28 @@ const headingStyles = css`
 `;
 
 class Pictionary extends Component {
+  state = {
+    pictures: shuffle(this.props.flashcards)
+  };
+
+  words() {
+    return this.props.flashcards.map(flashcard => flashcard.vocabulary);
+  }
+
   render() {
     return (
       <main className={mainStyles}>
         <h1 className={headingStyles}>Pictionary</h1>
-        <Wordlist words={this.props.words} />
+        <Wordlist words={this.words()} />
+        {this.state.pictures && <PictureGrid pictures={this.state.pictures} />}
       </main>
     );
   }
 }
 
 function mapStateToProps(state) {
-  let flashcards = Object.values(state.flashcards);
-
   return {
-    words: flashcards.map(e => e.vocabulary).slice(0, 16),
-    emojiCodes: flashcards.map(e => e.emojiCode)
+    flashcards: Object.values(state.flashcards).slice(0, 16)
   };
 }
 
