@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
+import Wordlist from "./WordList";
 
 const mainStyles = css`
   position: relative;
@@ -25,9 +26,19 @@ class Pictionary extends Component {
     return (
       <main className={mainStyles}>
         <h1 className={headingStyles}>Pictionary</h1>
+        <Wordlist words={this.props.words} />
       </main>
     );
   }
 }
 
-export default Pictionary;
+function mapStateToProps(state) {
+  let flashcards = Object.values(state.flashcards);
+
+  return {
+    words: flashcards.map(e => e.vocabulary).slice(0, 16),
+    emojiCodes: flashcards.map(e => e.emojiCode)
+  };
+}
+
+export default connect(mapStateToProps)(Pictionary);
