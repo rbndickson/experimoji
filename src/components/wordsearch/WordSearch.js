@@ -1,22 +1,10 @@
 import React, { Component } from "react";
-import { css } from "emotion";
 import update from "immutability-helper";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
 import Controls from "./Controls";
 import WordList from "./WordList";
 import WordPuzzle from "./WordPuzzle";
-
-const styles = css`
-  position: relative;
-  background-color: #fff;
-  min-width: 360px;
-  max-width: 800px;
-  margin: 0 auto;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 2;
-`;
 
 const initialState = {
   title: "Colors",
@@ -266,7 +254,7 @@ class WordSearch extends Component {
 
   render() {
     return (
-      <div className={styles}>
+      <div>
         <div className={"non-print"}>
           <Title text={"Word Search Generator"} />
         </div>

@@ -1,26 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
 import { addFlashcard } from "../../actions";
 import Title from "../Title";
 import Button from "../Button";
 import MemoryGame from "./MemoryGame";
-
-const wrapperStyles = css`
-  max-width: 600px;
-  margin: 0 auto;
-`;
-
-const mainStyles = css`
-  position: relative;
-  background-color: #fff;
-  max-width: 600px;
-  margin: 0 5px;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 2;
-`;
 
 class Memory extends Component {
   componentDidMount() {
@@ -73,20 +57,18 @@ class Memory extends Component {
 
   render() {
     return (
-      <div className={wrapperStyles}>
-        <main className={mainStyles}>
-          <Title
-            text={`${this.props.language} ${this.props.category} Memory Game`}
+      <div>
+        <Title
+          text={`${this.props.language} ${this.props.category} Memory Game`}
+        />
+        <MemoryGame />
+        {this.isGameFinished() && (
+          <Button
+            text={"Play Again"}
+            onClick={() => this.setFlashcards()}
+            classModifier={"Button-small"}
           />
-          <MemoryGame />
-          {this.isGameFinished() && (
-            <Button
-              text={"Play Again"}
-              onClick={() => this.setFlashcards()}
-              classModifier={"Button-small"}
-            />
-          )}
-        </main>
+        )}
       </div>
     );
   }

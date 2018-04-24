@@ -5,16 +5,6 @@ import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
 import WorksheetRow from "./WorksheetRow";
 
-const styles = css`
-  position: relative;
-  background-color: #fff;
-  max-width: 800px;
-  margin: 0 auto;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 2;
-`;
-
 const pageStyles = css`
   page-break-inside: avoid;
 `;
@@ -45,7 +35,7 @@ class Worksheet extends Component {
 
   render() {
     return (
-      <div id="Worksheet" className={styles}>
+      <div id="Worksheet">
         <Title text={`${this.props.language} - ${this.props.category}`} />
         {this.state.flashcards &&
           this.state.flashcards.map((page, i) => (

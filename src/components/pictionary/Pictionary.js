@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
 import Wordlist from "./WordList";
 import PictureGrid from "./PictureGrid";
-
-const styles = css`
-  position: relative;
-  background-color: #fff;
-  max-width: 800px;
-  margin: 0 auto;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 2;
-`;
 
 class Pictionary extends Component {
   state = {
@@ -27,7 +16,7 @@ class Pictionary extends Component {
 
   render() {
     return (
-      <div className={styles}>
+      <div>
         <Title
           text={`${this.props.language} ${this.props.category} Pictionary`}
         />

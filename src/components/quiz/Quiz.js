@@ -1,26 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
 import { updateQuizScreen } from "../../actions";
 import Title from "../Title";
 import QuizStart from "./QuizStart";
 import QuizGame from "./QuizGame";
 import QuizFinished from "./QuizFinished";
-
-const wrapperStyles = css`
-  max-width: 600px;
-  margin: 0 auto;
-`;
-
-const quizStyles = css`
-  position: relative;
-  background-color: #fff;
-  max-width: 600px;
-  margin: 0 5px;
-  border-radius: 5px;
-  padding: 10px;
-  z-index: 2;
-`;
 
 class Quiz extends Component {
   componentDidMount() {
@@ -38,13 +22,11 @@ class Quiz extends Component {
 
   render() {
     return (
-      <div className={wrapperStyles}>
-        <div className={quizStyles}>
-          <Title text={`${this.props.language} ${this.props.category} Quiz`} />
-          {this.props.quizScreen === "finished" && <QuizFinished />}
-          {this.props.quizScreen === "settings" && <QuizStart />}
-          {this.props.quizScreen === "game" && <QuizGame />}
-        </div>
+      <div>
+        <Title text={`${this.props.language} ${this.props.category} Quiz`} />
+        {this.props.quizScreen === "finished" && <QuizFinished />}
+        {this.props.quizScreen === "settings" && <QuizStart />}
+        {this.props.quizScreen === "game" && <QuizGame />}
       </div>
     );
   }
