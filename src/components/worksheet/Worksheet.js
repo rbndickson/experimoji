@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
+import Title from "../Title";
 import WorksheetRow from "./WorksheetRow";
 
 const mainStyles = css`
@@ -12,14 +13,6 @@ const mainStyles = css`
   border-radius: 5px;
   padding: 10px;
   z-index: 2;
-`;
-
-const headingStyles = css`
-  font-size: 36px;
-
-  @media (max-width: 600px) {
-    font-size: 22px;
-  }
 `;
 
 const pageStyles = css`
@@ -53,9 +46,7 @@ class Worksheet extends Component {
   render() {
     return (
       <div id="Worksheet" className={mainStyles}>
-        <h2 className={headingStyles}>{`${this.props.language} - ${
-          this.props.category
-        }`}</h2>
+        <Title text={`${this.props.language} - ${this.props.category}`} />
         {this.state.flashcards &&
           this.state.flashcards.map((page, i) => (
             <div key={`page${i}`} className={pageStyles}>

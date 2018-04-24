@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
+import Title from "../Title";
 import Wordlist from "./WordList";
 import PictureGrid from "./PictureGrid";
 
@@ -13,14 +14,6 @@ const mainStyles = css`
   border-radius: 5px;
   padding: 10px;
   z-index: 2;
-`;
-
-const headingStyles = css`
-  font-size: 36px;
-
-  @media (max-width: 600px) {
-    font-size: 22px;
-  }
 `;
 
 class Pictionary extends Component {
@@ -35,7 +28,9 @@ class Pictionary extends Component {
   render() {
     return (
       <main className={mainStyles}>
-        <h1 className={headingStyles}>Pictionary</h1>
+        <Title
+          text={`${this.props.language} ${this.props.category} Pictionary`}
+        />
         <Wordlist words={this.words()} />
         {this.state.pictures && <PictureGrid pictures={this.state.pictures} />}
       </main>
@@ -45,6 +40,8 @@ class Pictionary extends Component {
 
 function mapStateToProps(state) {
   return {
+    category: state.worksheet.category,
+    language: state.worksheet.language,
     flashcards: Object.values(state.flashcards).slice(0, 16)
   };
 }

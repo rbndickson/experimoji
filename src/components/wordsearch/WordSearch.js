@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { css } from "emotion";
 import update from "immutability-helper";
 import { shuffle } from "../../utils/helpers";
+import Title from "../Title";
 import Controls from "./Controls";
 import WordList from "./WordList";
 import WordPuzzle from "./WordPuzzle";
@@ -266,7 +267,9 @@ class WordSearch extends Component {
   render() {
     return (
       <div className={styles}>
-        <h1 className={"non-print"}>Word Search Generator</h1>
+        <div className={"non-print"}>
+          <Title text={"Word Search Generator"} />
+        </div>
         <Controls
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}

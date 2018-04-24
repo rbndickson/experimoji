@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { css } from "emotion";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
 import { addFlashcard } from "../../actions";
-import MemoryGame from "./MemoryGame";
+import Title from "../Title";
 import Button from "../Button";
+import MemoryGame from "./MemoryGame";
 
 const wrapperStyles = css`
   max-width: 600px;
@@ -74,6 +75,9 @@ class Memory extends Component {
     return (
       <div className={wrapperStyles}>
         <main className={mainStyles}>
+          <Title
+            text={`${this.props.language} ${this.props.category} Memory Game`}
+          />
           <MemoryGame />
           {this.isGameFinished() && (
             <Button
@@ -92,6 +96,8 @@ function mapStateToProps(state) {
   const flashcards = Object.values(state.flashcards).slice(0, 4);
 
   return {
+    category: state.worksheet.category,
+    language: state.worksheet.language,
     flashcards: flashcards,
     memoryGameFlashcards: Object.values(state.memory.flashcards)
   };
