@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, withRouter } from "react-router-dom";
 import { emojiSrc } from "../utils/helpers";
-import Background from "./Background";
+import BackgroundEmoji from "./BackgroundEmoji";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
 import Menu from "./Menu";
@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <div className={styles}>
         <div className={"non-print"}>
-          <Background />
+          <BackgroundEmoji />
           <AppHeader />
         </div>
         <Route exact path="/" component={Menu} />
