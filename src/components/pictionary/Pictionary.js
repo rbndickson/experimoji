@@ -6,7 +6,7 @@ import Title from "../Title";
 import Wordlist from "./WordList";
 import PictureGrid from "./PictureGrid";
 
-const mainStyles = css`
+const styles = css`
   position: relative;
   background-color: #fff;
   max-width: 800px;
@@ -27,13 +27,13 @@ class Pictionary extends Component {
 
   render() {
     return (
-      <main className={mainStyles}>
+      <div className={styles}>
         <Title
           text={`${this.props.language} ${this.props.category} Pictionary`}
         />
         <Wordlist words={this.words()} />
         {this.state.pictures && <PictureGrid pictures={this.state.pictures} />}
-      </main>
+      </div>
     );
   }
 }

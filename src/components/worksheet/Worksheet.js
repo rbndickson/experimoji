@@ -5,7 +5,7 @@ import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
 import WorksheetRow from "./WorksheetRow";
 
-const mainStyles = css`
+const styles = css`
   position: relative;
   background-color: #fff;
   max-width: 800px;
@@ -45,7 +45,7 @@ class Worksheet extends Component {
 
   render() {
     return (
-      <div id="Worksheet" className={mainStyles}>
+      <div id="Worksheet" className={styles}>
         <Title text={`${this.props.language} - ${this.props.category}`} />
         {this.state.flashcards &&
           this.state.flashcards.map((page, i) => (

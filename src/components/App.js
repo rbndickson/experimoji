@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, withRouter } from "react-router-dom";
-import { emojiSrc } from "../utils/helpers";
 import BackgroundEmoji from "./BackgroundEmoji";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
-import Menu from "./Menu";
-import Quiz from "./quiz/Quiz";
-import Memory from "./memory/Memory";
-import Worksheet from "./worksheet/Worksheet";
-import WordSearch from "./wordsearch/WordSearch";
-import Pictionary from "./pictionary/Pictionary";
+import AppMain from "./AppMain";
 import { css } from "emotion";
 
 const styles = css`
@@ -39,17 +32,6 @@ const styles = css`
 `;
 
 class App extends Component {
-  componentDidMount() {
-    this.preloadImages();
-  }
-
-  preloadImages() {
-    this.props.flashcards.forEach(e => {
-      let imageObject = new Image();
-      imageObject.src = emojiSrc(e.emojiCode);
-    });
-  }
-
   render() {
     return (
       <div className={styles}>
@@ -57,22 +39,11 @@ class App extends Component {
           <BackgroundEmoji />
           <AppHeader />
         </div>
-        <Route exact path="/" component={Menu} />
-        <Route path="/quiz" component={Quiz} />
-        <Route path="/memorygame" component={Memory} />
-        <Route path="/worksheet" component={Worksheet} />
-        <Route path="/wordsearch" component={WordSearch} />
-        <Route path="/pictionary" component={Pictionary} />
+        <AppMain />
         <AppFooter />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    flashcards: Object.values(state.flashcards)
-  };
-}
-
-export default withRouter(connect(mapStateToProps)(App));
+export default App;

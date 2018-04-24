@@ -12,7 +12,7 @@ const wrapperStyles = css`
   margin: 0 auto;
 `;
 
-const mainStyles = css`
+const quizStyles = css`
   position: relative;
   background-color: #fff;
   max-width: 600px;
@@ -39,12 +39,12 @@ class Quiz extends Component {
   render() {
     return (
       <div className={wrapperStyles}>
-        <main className={mainStyles}>
+        <div className={quizStyles}>
           <Title text={`${this.props.language} ${this.props.category} Quiz`} />
           {this.props.quizScreen === "finished" && <QuizFinished />}
           {this.props.quizScreen === "settings" && <QuizStart />}
           {this.props.quizScreen === "game" && <QuizGame />}
-        </main>
+        </div>
       </div>
     );
   }
