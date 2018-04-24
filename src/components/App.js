@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import BackgroundEmoji from "./BackgroundEmoji";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
