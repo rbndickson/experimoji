@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import Emoji from "./Emoji";
+import Emoji from "../Emoji";
 import AnswerBox from "./AnswerBox";
 
 const styles = css`
@@ -13,7 +13,15 @@ class PictureGrid extends Component {
       <div>
         {this.props.pictures.map(picture => (
           <div key={picture.emojiCode} className={styles}>
-            <Emoji emojiCode={picture.emojiCode} altText={picture.vocabulary} />
+            <Emoji
+              emojiCode={picture.emojiCode}
+              altText={picture.vocabulary}
+              styles={{
+                height: 180,
+                width: 180,
+                padding: 30
+              }}
+            />
             <AnswerBox />
           </div>
         ))}
