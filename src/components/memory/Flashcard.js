@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css, cx } from "emotion";
 import Emoji from "../Emoji";
+import FlashcardText from "./FlashcardText";
 
 const styles = css`
   display: flex;
@@ -12,14 +13,6 @@ const styles = css`
   justify-content: space-around;
   align-items: center;
   font-size: 18px;
-
-  img {
-    height: 85%;
-  }
-
-  .Flashcard-text {
-    margin: 0 10px;
-  }
 
   @media (max-width: 600px) {
     height: 60px;
@@ -37,27 +30,44 @@ const matchedStyles = css`
 `;
 
 class Flashcard extends Component {
-  render() {
+  flashcardStyles() {
+    switch (this.props.flashcard.status) {
+      case "matched":
+        return cx(styles, matchedStyles);
+      case "faceDown":
+        return cx(styles, faceDownStyles);
+      default:
+        return styles;
+    }
+  }
+
+  flashcardFace() {
     const flashcard = this.props.flashcard;
 
+    switch (flashcard.flashcardType) {
+      case "vocabulary":
+        return <FlashcardText text={flashcard.data} />;
+      case "picture":
+        return (
+          <Emoji
+            emojiCode={flashcard.data}
+            altText={flashcard.vocabulary}
+            styles={{ height: 60 }}
+          />
+        );
+      default:
+        return <p>Uh oh</p>;
+    }
+  }
+
+  render() {
     return (
       <div
-        key={flashcard.data}
-        className={
-          flashcard.status === "matched"
-            ? cx(styles, matchedStyles)
-            : flashcard.status === "faceDown"
-              ? cx(styles, faceDownStyles)
-              : styles
-        }
+        key={this.props.flashcard.data}
+        className={this.flashcardStyles()}
         onClick={() => this.props.onClick()}
       >
-        {flashcard.status !== "faceDown" &&
-          (flashcard.flashcardType === "vocabulary" ? (
-            <div className="Flashcard-text">{flashcard.data}</div>
-          ) : (
-            <Emoji emojiCode={flashcard.data} altText={flashcard.vocabulary} />
-          ))}
+        {this.props.flashcard.status !== "faceDown" && this.flashcardFace()}
       </div>
     );
   }
