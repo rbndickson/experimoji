@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
-import Controls from "./Controls";
-import WordList from "./WordList";
-import WordPuzzle from "./WordPuzzle";
+import WordSearchControls from "./WordSearchControls";
+import WordSearchWordList from "./WordSearchWordList";
+import WordSearchPuzzle from "./WordSearchPuzzle";
 
 const initialState = {
   title: "Colors",
@@ -258,7 +258,7 @@ class WordSearch extends Component {
         <div className={"non-print"}>
           <Title text={"Word Search Generator"} />
         </div>
-        <Controls
+        <WordSearchControls
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}
           view={this.state.view}
@@ -274,11 +274,11 @@ class WordSearch extends Component {
           showCreateView={() => this.updateView("create")}
         />
         <h2>{this.state.title}</h2>
-        <WordList
+        <WordSearchWordList
           words={this.state.words}
           removeWord={word => this.removeWord(word)}
         />
-        <WordPuzzle
+        <WordSearchPuzzle
           answer={this.state.answer}
           puzzle={this.state.puzzle}
           canCreate={this.state.canCreate}

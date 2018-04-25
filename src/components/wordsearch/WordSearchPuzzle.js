@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import Grid from "./Grid";
+import WordSearchGrid from "./WordSearchGrid";
 
 const errorMessageStyles = css`
   color: red;
   padding: 100px 0;
 `;
 
-class WordPuzzle extends Component {
+class WordSearchPuzzle extends Component {
   render() {
     return this.props.view === "create" ? (
       <div>
         {this.props.canCreate ? (
           <div>
-            <Grid data={this.props.answer} />
-            <Grid data={this.props.puzzle} />
+            <WordSearchGrid data={this.props.answer} />
+            <WordSearchGrid data={this.props.puzzle} />
           </div>
         ) : (
           <p className={errorMessageStyles}>Wordsearch size too small</p>
@@ -22,11 +22,11 @@ class WordPuzzle extends Component {
       </div>
     ) : (
       <div>
-        <Grid data={this.props.puzzle} />
-        <Grid data={this.props.answer} />
+        <WordSearchGrid data={this.props.puzzle} />
+        <WordSearchGrid data={this.props.answer} />
       </div>
     );
   }
 }
 
-export default WordPuzzle;
+export default WordSearchPuzzle;

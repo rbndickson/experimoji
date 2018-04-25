@@ -31,7 +31,7 @@ const gridSquareStyles = css`
   }
 `;
 
-class Grid extends Component {
+class WordSearchGrid extends Component {
   render() {
     const rows = Object.keys(this.props.data);
 
@@ -53,4 +53,4 @@ class Grid extends Component {
   }
 }
 
-export default Grid;
+export default WordSearchGrid;

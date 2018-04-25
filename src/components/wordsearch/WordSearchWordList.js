@@ -16,7 +16,7 @@ const styles = css`
   }
 `;
 
-class WordList extends Component {
+class WordSearchWordList extends Component {
   render() {
     return this.props.words.length > 0 ? (
       <ul className={styles}>
@@ -36,4 +36,4 @@ class WordList extends Component {
   }
 }
 
-export default WordList;
+export default WordSearchWordList;

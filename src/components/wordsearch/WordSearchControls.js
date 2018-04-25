@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import TextForm from "./TextForm";
+import WordSearchForm from "./WordSearchForm";
 import Button from "../Button";
 
 const styles = css`
   width: 600px;
   margin: 0 auto;
+
   section {
     margin: 20px 0;
   }
+
   @media (max-width: 600px) {
     width: 100%;
     section {
@@ -42,7 +44,7 @@ const removeWordInstructionStyles = css`
   color: silver;
 `;
 
-class Controls extends Component {
+class WordSearchControls extends Component {
   handleNewWordSubmit(word) {
     if (word !== "") {
       this.props.addWord(word);
@@ -96,14 +98,14 @@ class Controls extends Component {
           </div>
           <div className="pure-u-1 pure-u-sm-1-2">
             <section>
-              <TextForm
+              <WordSearchForm
                 name="title"
                 submitValue={"Edit Title"}
                 handleSubmit={e => this.handleTitleSubmit(e)}
               />
             </section>
             <section>
-              <TextForm
+              <WordSearchForm
                 name="word"
                 submitValue={"Add Word"}
                 handleSubmit={e => this.handleNewWordSubmit(e)}
@@ -143,4 +145,4 @@ class Controls extends Component {
   }
 }
 
-export default Controls;
+export default WordSearchControls;

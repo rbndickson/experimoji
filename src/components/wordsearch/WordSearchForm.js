@@ -34,7 +34,7 @@ const buttonStyles = css`
   text-decoration: none !important;
 `;
 
-class TextForm extends Component {
+class WordSearchForm extends Component {
   state = {
     inputValue: ""
   };
@@ -68,4 +68,4 @@ class TextForm extends Component {
   }
 }
 
-export default TextForm;
+export default WordSearchForm;
