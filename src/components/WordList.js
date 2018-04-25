@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { css } from "emotion";
 
 const styles = css`
-  width: 780px;
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 4px;
+
   li {
     display: inline-block;
     padding: 10px;
   }
+
   @media (max-width: 600px) {
     width: 100%;
   }

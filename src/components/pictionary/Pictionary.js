@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
-import Wordlist from "./WordList";
-import PictureGrid from "./PictureGrid";
+import Wordlist from "../WordList";
+import PictionaryGrid from "./PictionaryGrid";
 
 class Pictionary extends Component {
   state = {
@@ -21,7 +21,9 @@ class Pictionary extends Component {
           text={`${this.props.language} ${this.props.category} Pictionary`}
         />
         <Wordlist words={this.words()} />
-        {this.state.pictures && <PictureGrid pictures={this.state.pictures} />}
+        {this.state.pictures && (
+          <PictionaryGrid pictures={this.state.pictures} />
+        )}
       </div>
     );
   }

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { css } from "emotion";
 import Emoji from "../Emoji";
-import AnswerBox from "./AnswerBox";
+import AnswerBox from "../AnswerBox";
 
 const styles = css`
   display: inline-block;
 `;
 
-class PictureGrid extends Component {
+class PictionaryGrid extends Component {
   render() {
     return (
       <div>
@@ -22,7 +22,7 @@ class PictureGrid extends Component {
                 padding: 30
               }}
             />
-            <AnswerBox />
+            <AnswerBox styles={{ height: 40 }} />
           </div>
         ))}
       </div>
@@ -30,4 +30,4 @@ class PictureGrid extends Component {
   }
 }
 
-export default PictureGrid;
+export default PictionaryGrid;
