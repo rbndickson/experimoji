@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
+import PrintPage from "../PrintPage";
 import WorksheetRow from "./WorksheetRow";
-
-const pageStyles = css`
-  page-break-inside: avoid;
-`;
 
 class Worksheet extends Component {
   state = {
@@ -39,7 +35,7 @@ class Worksheet extends Component {
         <Title text={`${this.props.language} - ${this.props.category}`} />
         {this.state.flashcards &&
           this.state.flashcards.map((page, i) => (
-            <div key={`page${i}`} className={pageStyles}>
+            <PrintPage key={`page${i}`}>
               <ul>
                 {page.map((flashcard, ii) => (
                   <WorksheetRow
@@ -49,7 +45,7 @@ class Worksheet extends Component {
                   />
                 ))}
               </ul>
-            </div>
+            </PrintPage>
           ))}
       </div>
     );
