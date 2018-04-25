@@ -1,8 +1,0 @@
-.MemoryGame-flashcards {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 400px;
-  margin: 10px auto 0 auto;
-}

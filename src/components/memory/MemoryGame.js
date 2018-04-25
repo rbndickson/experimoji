@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./MemoryGame.css";
+import { css } from "emotion";
 import { createArrayOfNumbers, sleep } from "../../utils/helpers";
 import {
   updateFlashcardStatus,
@@ -8,6 +8,15 @@ import {
   updateMemoryGameScore
 } from "../../actions";
 import Flashcard from "./Flashcard";
+
+const styles = css`
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 400px;
+  margin: 10px auto 0 auto;
+`;
 
 class MemoryGame extends Component {
   componentDidUpdate() {
@@ -100,7 +109,7 @@ class MemoryGame extends Component {
 
   render() {
     return (
-      <div className="MemoryGame-flashcards">
+      <div className={styles}>
         {createArrayOfNumbers(Object.keys(this.props.flashcards).length).map(
           position => (
             <Flashcard
