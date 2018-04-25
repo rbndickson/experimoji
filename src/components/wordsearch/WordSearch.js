@@ -3,7 +3,7 @@ import update from "immutability-helper";
 import { shuffle } from "../../utils/helpers";
 import Title from "../Title";
 import WordSearchControls from "./WordSearchControls";
-import WordSearchWordList from "./WordSearchWordList";
+import WordList from "../WordList";
 import WordSearchPuzzle from "./WordSearchPuzzle";
 
 const initialState = {
@@ -274,9 +274,9 @@ class WordSearch extends Component {
           showCreateView={() => this.updateView("create")}
         />
         <h2>{this.state.title}</h2>
-        <WordSearchWordList
+        <WordList
           words={this.state.words}
-          removeWord={word => this.removeWord(word)}
+          onClick={word => this.removeWord(word)}
         />
         <WordSearchPuzzle
           answer={this.state.answer}
