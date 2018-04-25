@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import { emojiSrc } from "../../utils/helpers";
+import Emoji from "../Emoji";
 
 const textStyles = css`
   margin-left: 10px;
@@ -54,10 +54,10 @@ class Worksheet extends Component {
             <div className={dotStyles}>•</div>
           </div>
           <div className="pure-u-1-8">
-            <img
-              alt={flashcardRight.vocabulary}
-              src={emojiSrc(flashcardRight.emojiCode)}
-              className={emojiStyles}
+            <Emoji
+              emojiCode={flashcardRight.emojiCode}
+              altText={`${flashcardRight.vocabulary} picture`}
+              styles={emojiStyles}
             />
           </div>
         </div>
