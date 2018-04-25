@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { updateQuizScreen, resetQuiz } from "../../actions";
-import { emojiSrc } from "../../utils/helpers";
+import Emoji from "../Emoji";
 
 const styles = css`
   display: flex;
@@ -30,14 +30,15 @@ class QuizFooter extends Component {
   render() {
     return (
       <div className={styles}>
-        <div>
-          <img
-            src={emojiSrc("1f519")}
+        <div
+          onClick={() => {
+            this.goBack();
+          }}
+        >
+          <Emoji
+            emojiCode={"1f519"}
             alt="Back button"
-            className={backIconStyles}
-            onClick={() => {
-              this.goBack();
-            }}
+            styles={backIconStyles}
           />
         </div>
       </div>

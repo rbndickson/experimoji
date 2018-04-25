@@ -1,34 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { emojiSrc } from "../../utils/helpers";
+import Emoji from "../Emoji";
 
-const quizStartImagesStyles = css`
+const styles = css`
   @media (max-width: 600px) {
     display: none;
   }
 `;
 
-const emojiStyles = css`
-  height: 90px;
-  width: 90px;
-  padding: 10px;
-  box-sizing: border-box;
-`;
+const emojiStyles = { height: 90, width: 90, padding: 10 };
 
 class QuizStartImages extends Component {
   render() {
     return (
-      <section className={quizStartImagesStyles}>
-        <img
-          className={emojiStyles}
-          alt="Language emoji icon"
-          src={emojiSrc(this.props.languageEmojiCode)}
+      <section className={styles}>
+        <Emoji
+          emojiCode={this.props.languageEmojiCode}
+          altText={""}
+          styles={emojiStyles}
         />
-        <img
-          className={emojiStyles}
-          alt="Category emoji icon"
-          src={emojiSrc(this.props.categoryEmojicode)}
+        <Emoji
+          emojiCode={this.props.categoryEmojicode}
+          altText={""}
+          styles={emojiStyles}
         />
       </section>
     );

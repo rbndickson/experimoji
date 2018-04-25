@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
-import { emojiSrc, shuffle } from "../../utils/helpers";
-
-const styles = css`
-  height: 150px;
-  width: 150px;
-  margin: 0 auto 20px auto;
-`;
+import { shuffle } from "../../utils/helpers";
+import Emoji from "../Emoji";
 
 const oneHundredEmojiCode = "1f4af",
   partyPopperEmojiCode = "1f389",
@@ -41,7 +35,13 @@ class QuizResultEmoji extends Component {
   }
 
   render() {
-    return <img alt="" className={styles} src={emojiSrc(this.resultEmoji())} />;
+    return (
+      <Emoji
+        emojiCode={this.resultEmoji()}
+        altText=""
+        styles={{ height: 150, width: 150, margin: "0 auto 20px auto" }}
+      />
+    );
   }
 }
 

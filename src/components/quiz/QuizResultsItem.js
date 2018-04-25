@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { emojiSrc } from "../../utils/helpers";
+import Emoji from "../Emoji";
 import { css } from "emotion";
 
 const styles = css`
@@ -10,20 +10,14 @@ const styles = css`
   margin: 0 auto 6px auto;
 `;
 
-const emojiStyles = css`
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-`;
-
 class QuizResultsItem extends Component {
   render() {
     return (
       <li className={styles}>
-        <img
-          src={emojiSrc(this.props.emojiCode)}
-          className={emojiStyles}
-          alt={this.props.vocabulary}
+        <Emoji
+          emojiCode={this.props.emojiCode}
+          styles={{ width: 25, height: 25, marginRight: 10 }}
+          altText={this.props.vocabulary}
         />
         {this.props.vocabulary}
       </li>

@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { emojiSrc } from "../../utils/helpers";
 import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
+import Emoji from "../Emoji";
 import QuizResult from "./QuizResult";
 import QuizResultEmoji from "./QuizResultEmoji";
 import QuizResultsList from "./QuizResultsList";
 import Button from "../Button";
-
-const emojiStyles = css`
-  width: 1em;
-  height: 1em;
-  margin: 0 5px;
-  vertical-align: -0.1em;
-`;
 
 const sharingListStyles = css`
   width: 200px;
@@ -66,11 +59,8 @@ class QuizFinished extends Component {
           <ul className={sharingListStyles}>
             <li>
               <a href={twitterLink} target="popup">
-                Share on Twitter<img
-                  alt=""
-                  className={emojiStyles}
-                  src={emojiSrc("1f426")}
-                />
+                Share on Twitter
+                <Emoji emojiCode={"1f426"} altText="" inline={true} />
               </a>
             </li>
           </ul>
