@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { css, cx } from "emotion";
-import { emojiSrc } from "../../utils/helpers";
+import Emoji from "../Emoji";
 
 const styles = css`
   display: flex;
@@ -56,7 +56,7 @@ class Flashcard extends Component {
           (flashcard.flashcardType === "vocabulary" ? (
             <div className="Flashcard-text">{flashcard.data}</div>
           ) : (
-            <img src={emojiSrc(flashcard.data)} alt={flashcard.vocabulary} />
+            <Emoji emojiCode={flashcard.data} altText={flashcard.vocabulary} />
           ))}
       </div>
     );
