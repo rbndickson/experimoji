@@ -19,25 +19,6 @@ const styles = css`
   }
 `;
 
-const buttonStyles = css`
-  padding: 4px 8px;
-  margin: 4px;
-  border: 0;
-  border-bottom: 2px solid #ffac33;
-  border-radius: 5px;
-  font-family: "Varela Round", sans-serif;
-  font-size: 14px;
-  color: #000;
-  background-color: #ffe8b6;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #ffe09e;
-  }
-
-  text-decoration: none !important;
-`;
-
 const removeWordInstructionStyles = css`
   margin-top: 10px;
   font-size: 14px;
@@ -115,30 +96,27 @@ class WordSearchControls extends Component {
               </div>
             </section>
             <section>
-              <button
-                className={buttonStyles}
+              <Button
+                text={"Reset"}
+                classModifier={"Button-control Button-inline"}
                 onClick={() => this.props.resetWordSearch()}
-              >
-                Reset
-              </button>
-              <button
-                className={buttonStyles}
+              />
+              <Button
+                text={"Clear All"}
+                classModifier={"Button-control Button-inline"}
                 onClick={() => this.props.clearWordSearch()}
-              >
-                Clear All
-              </button>
+              />
             </section>
           </div>
         </div>
       </div>
     ) : (
       <div className={"non-print"}>
-        <button
-          className={buttonStyles}
+        <Button
+          text={"Show Settings"}
+          classModifier={"Button-control Button-inline"}
           onClick={() => this.props.showCreateView()}
-        >
-          Show Settings
-        </button>
+        />
         <h4>Print word search using your browser</h4>
       </div>
     );

@@ -20,9 +20,11 @@ const baseStyles = css`
 `;
 
 const controlStyles = css`
+  width: auto;
   padding: 4px 8px;
   margin: 4px;
   border: 0;
+  border-bottom: 2px solid #ffac33;
   font-size: 14px;
 `;
 
