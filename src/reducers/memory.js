@@ -22,7 +22,7 @@ function memory(state = initialMemoryState, action) {
             flashcardType: action.flashcardType,
             data: action.data,
             emojiCode: action.emojiCode,
-            status: action.status,
+            status: "faceDown",
             position: action.position
           }
         }

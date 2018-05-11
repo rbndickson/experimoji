@@ -20,39 +20,29 @@ class Memory extends Component {
       createArrayOfNumbers(this.props.flashcards.length * 2)
     );
 
-    let flashcards = this.props.flashcards.reduce((acc, e) => {
-      acc.push({
-        position: positions.pop(),
-        flashcardType: "vocabulary",
-        data: e.vocabulary,
-        emojiCode: e.emojiCode,
-        status: "faceDown"
+    this.props.flashcards
+      .reduce((acc, e) => {
+        acc.push({
+          position: positions.pop(),
+          flashcardType: "vocabulary",
+          vocabulary: e.vocabulary,
+          emojiCode: e.emojiCode
+        });
+        acc.push({
+          position: positions.pop(),
+          flashcardType: "picture",
+          vocabulary: e.vocabulary,
+          emojiCode: e.emojiCode
+        });
+        return acc;
+      }, [])
+      .forEach(flashcard => {
+        this.props.dispatch(addFlashcard(flashcard));
       });
-      acc.push({
-        position: positions.pop(),
-        flashcardType: "picture",
-        data: e.emojiCode,
-        emojiCode: e.emojiCode,
-        status: "faceDown"
-      });
-      return acc;
-    }, []);
-
-    flashcards.forEach(flashcard => {
-      this.props.dispatch(addFlashcard(flashcard));
-    });
   }
 
   isGameFinished() {
-    let result = true;
-
-    this.props.memoryGameFlashcards.forEach(f => {
-      if (f.status === "faceDown") {
-        result = false;
-      }
-    });
-
-    return result;
+    return !this.props.memoryGameFlashcards.some(f => f.status === "faceDown");
   }
 
   render() {

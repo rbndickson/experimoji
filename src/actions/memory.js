@@ -6,17 +6,15 @@ export const UPDATE_MEMORY_GAME_SCORE = "UPDATE_MEMORY_GAME_SCORE";
 export function addFlashcard({
   position,
   flashcardType,
-  data,
-  emojiCode,
-  status
+  vocabulary,
+  emojiCode
 }) {
   return {
     type: ADD_FLASHCARD,
     position,
     flashcardType,
-    data,
-    emojiCode,
-    status
+    vocabulary,
+    emojiCode
   };
 }
 
