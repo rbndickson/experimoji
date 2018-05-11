@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
-import { createArrayOfNumbers, sleep } from "../../utils/helpers";
+import { sleep } from "../../utils/helpers";
 import {
   updateFlashcardStatus,
   setClickable,
@@ -20,7 +20,7 @@ const styles = css`
 
 class MemoryGame extends Component {
   componentDidUpdate() {
-    if (this.selectedFlashcardPositions().length === 2) {
+    if (this.selectedFlashcards().length === 2) {
       this.props.dispatch(updateMemoryGameScore(this.props.score + 1));
       this.checkForMatch();
     }
@@ -41,51 +41,41 @@ class MemoryGame extends Component {
     }
   }
 
-  selectedFlashcardPositions() {
-    const flashcards = this.props.flashcards;
-    let selectedFlashcardPositions = [];
-
-    for (var position in flashcards) {
-      if (flashcards.hasOwnProperty(position)) {
-        if (flashcards[position].status === "selected") {
-          selectedFlashcardPositions.push(position);
-        }
-      }
-    }
-    return selectedFlashcardPositions;
+  selectedFlashcards() {
+    return Object.values(this.props.flashcards).filter(
+      flashcard => flashcard.status === "selected"
+    );
   }
 
   checkForMatch() {
-    const positions = this.selectedFlashcardPositions();
-    const flashcard1 = this.props.flashcards[positions[0]];
-    const flashcard2 = this.props.flashcards[positions[1]];
+    const selectedFlashcards = this.selectedFlashcards();
 
-    if (flashcard1.emojiCode === flashcard2.emojiCode) {
-      this.updateFlashcardsToMatched(positions);
+    if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
+      this.updateFlashcardsToMatched();
     } else {
-      this.displayAndHide(positions);
+      this.displayAndHide();
     }
   }
 
-  async displayAndHide(positions) {
+  async displayAndHide() {
     this.props.dispatch(setClickable(false));
     await sleep(2000);
-    positions.forEach(position => {
-      this.setFlashcardFaceDown(position);
+    this.selectedFlashcards().forEach(flashcard => {
+      this.setFlashcardFaceDown(flashcard.position);
     });
-    this.hideCards(positions);
+    this.hideCards();
     this.props.dispatch(setClickable(true));
   }
 
-  updateFlashcardsToMatched(positions) {
-    positions.forEach(position => {
-      this.setFlashcardMatched(position);
+  updateFlashcardsToMatched() {
+    this.selectedFlashcards().forEach(flashcard => {
+      this.setFlashcardMatched(flashcard.position);
     });
   }
 
-  hideCards(positions) {
-    positions.forEach(position => {
-      this.setFlashcardFaceDown(position);
+  hideCards() {
+    this.selectedFlashcards().forEach(flashcard => {
+      this.setFlashcardFaceDown(flashcard.position);
     });
   }
 
@@ -110,15 +100,13 @@ class MemoryGame extends Component {
   render() {
     return (
       <div className={styles}>
-        {createArrayOfNumbers(Object.keys(this.props.flashcards).length).map(
-          position => (
-            <Flashcard
-              key={position}
-              flashcard={this.props.flashcards[position]}
-              onClick={() => this.handleFlashcardSelection(position)}
-            />
-          )
-        )}
+        {Object.values(this.props.flashcards).map(flashcard => (
+          <Flashcard
+            key={flashcard.position}
+            flashcard={flashcard}
+            onClick={() => this.handleFlashcardSelection(flashcard.position)}
+          />
+        ))}
       </div>
     );
   }
