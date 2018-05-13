@@ -25,7 +25,7 @@ export function updateFlashcardStatus({ position, status }) {
     status
   };
 }
-
+marp;
 export function setClickable(isClickable) {
   return {
     type: SET_CLICKABLE,
