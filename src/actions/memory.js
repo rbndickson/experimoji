@@ -1,5 +1,7 @@
 export const ADD_FLASHCARD = "ADD_FLASHCARD";
-export const UPDATE_FLASHCARD_STATUS = "UPDATE_FLASHCARD_STATUS";
+export const SELECT_FLASHCARD = "SELECT_FLASHCARD";
+export const DESELECT_FLASHCARD = "DESELECT_FLASHCARD";
+export const SET_FLASHCARD_TO_MATCHED = "SET_FLASHCARD_TO_MATCHED";
 export const SET_CLICKABLE = "SET_CLICKABLE";
 export const UPDATE_MEMORY_GAME_SCORE = "UPDATE_MEMORY_GAME_SCORE";
 
@@ -18,14 +20,27 @@ export function addFlashcard({
   };
 }
 
-export function updateFlashcardStatus({ position, status }) {
+export function selectFlashcard({ flashcard }) {
   return {
-    type: UPDATE_FLASHCARD_STATUS,
-    position,
-    status
+    type: SELECT_FLASHCARD,
+    flashcard
   };
 }
-marp;
+
+export function deselectFlashcard({ flashcard }) {
+  return {
+    type: DESELECT_FLASHCARD,
+    flashcard
+  };
+}
+
+export function setFlashcardToMatched({ flashcard }) {
+  return {
+    type: SET_FLASHCARD_TO_MATCHED,
+    flashcard
+  };
+}
+
 export function setClickable(isClickable) {
   return {
     type: SET_CLICKABLE,

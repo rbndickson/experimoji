@@ -11,10 +11,6 @@ class Memory extends Component {
     this.setFlashcards();
   }
 
-  shouldComponentUpdate() {
-    return this.isGameFinished();
-  }
-
   setFlashcards() {
     let positions = shuffle(
       createArrayOfNumbers(this.props.flashcards.length * 2)
@@ -42,7 +38,7 @@ class Memory extends Component {
   }
 
   isGameFinished() {
-    return !this.props.memoryGameFlashcards.some(f => f.status === "faceDown");
+    return this.props.memoryGameFlashcards.every(f => f.isMatched);
   }
 
   render() {

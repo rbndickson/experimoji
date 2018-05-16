@@ -1,6 +1,8 @@
 import {
   ADD_FLASHCARD,
-  UPDATE_FLASHCARD_STATUS,
+  SELECT_FLASHCARD,
+  DESELECT_FLASHCARD,
+  SET_FLASHCARD_TO_MATCHED,
   SET_CLICKABLE,
   UPDATE_MEMORY_GAME_SCORE
 } from "../actions";
@@ -20,34 +22,51 @@ function memory(state = initialMemoryState, action) {
           ...state["flashcards"],
           [action.position]: {
             flashcardType: action.flashcardType,
-            data: action.data,
+            vocabulary: action.vocabulary,
             emojiCode: action.emojiCode,
-            status: "faceDown",
+            isSelected: false,
+            isMatched: false,
             position: action.position
           }
         }
       };
-    case UPDATE_FLASHCARD_STATUS:
+    case SELECT_FLASHCARD:
       return {
         ...state,
         flashcards: {
           ...state["flashcards"],
-          [action.position]: {
-            ...state["flashcards"][action.position],
-            status: action.status
+          [action.flashcard.position]: {
+            ...state["flashcards"][action.flashcard.position],
+            isSelected: true
+          }
+        }
+      };
+    case DESELECT_FLASHCARD:
+      return {
+        ...state,
+        flashcards: {
+          ...state["flashcards"],
+          [action.flashcard.position]: {
+            ...state["flashcards"][action.flashcard.position],
+            isSelected: false
+          }
+        }
+      };
+    case SET_FLASHCARD_TO_MATCHED:
+      return {
+        ...state,
+        flashcards: {
+          ...state["flashcards"],
+          [action.flashcard.position]: {
+            ...state["flashcards"][action.flashcard.position],
+            isMatched: true
           }
         }
       };
     case SET_CLICKABLE:
-      return {
-        ...state,
-        isClickable: action.isClickable
-      };
+      return { ...state, isClickable: action.isClickable };
     case UPDATE_MEMORY_GAME_SCORE:
-      return {
-        ...state,
-        score: action.score
-      };
+      return { ...state, score: action.score };
     default:
       return state;
   }

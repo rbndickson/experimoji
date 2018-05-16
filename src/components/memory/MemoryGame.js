@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { css } from "emotion";
 import { sleep } from "../../utils/helpers";
 import {
-  updateFlashcardStatus,
+  selectFlashcard,
+  deselectFlashcard,
+  setFlashcardToMatched,
   setClickable,
   updateMemoryGameScore
 } from "../../actions";
@@ -20,9 +22,11 @@ const styles = css`
 
 class MemoryGame extends Component {
   componentDidUpdate() {
-    if (this.selectedFlashcards().length === 2) {
+    const selectedFlashcards = this.selectedFlashcards();
+
+    if (selectedFlashcards.length === 2) {
       this.props.dispatch(updateMemoryGameScore(this.props.score + 1));
-      this.checkForMatch();
+      this.checkForMatch(selectedFlashcards);
     }
   }
 
@@ -30,71 +34,43 @@ class MemoryGame extends Component {
     return this.props.flashcards !== nextProps.flashcards;
   }
 
-  handleFlashcardSelection(position) {
+  handleFlashcardSelection(flashcard) {
     if (this.props.isClickable) {
-      this.props.dispatch(
-        updateFlashcardStatus({
-          position: position,
-          status: "selected"
-        })
-      );
+      this.props.dispatch(selectFlashcard({ flashcard }));
     }
   }
 
   selectedFlashcards() {
     return Object.values(this.props.flashcards).filter(
-      flashcard => flashcard.status === "selected"
+      flashcard => flashcard.isSelected
     );
   }
 
-  checkForMatch() {
-    const selectedFlashcards = this.selectedFlashcards();
-
-    if (selectedFlashcards[0].emojiCode === selectedFlashcards[1].emojiCode) {
-      this.updateFlashcardsToMatched();
+  checkForMatch(flashcards) {
+    if (flashcards[0].emojiCode === flashcards[1].emojiCode) {
+      this.updateFlashcardsToMatched(flashcards);
     } else {
-      this.displayAndHide();
+      this.displayAndHide(flashcards);
     }
   }
 
-  async displayAndHide() {
+  async displayAndHide(flashcards) {
     this.props.dispatch(setClickable(false));
+
     await sleep(2000);
-    this.selectedFlashcards().forEach(flashcard => {
-      this.setFlashcardFaceDown(flashcard.position);
+
+    flashcards.forEach(flashcard => {
+      this.props.dispatch(deselectFlashcard({ flashcard }));
     });
-    this.hideCards();
+
     this.props.dispatch(setClickable(true));
   }
 
-  updateFlashcardsToMatched() {
-    this.selectedFlashcards().forEach(flashcard => {
-      this.setFlashcardMatched(flashcard.position);
+  updateFlashcardsToMatched(flashcards) {
+    flashcards.forEach(flashcard => {
+      this.props.dispatch(deselectFlashcard({ flashcard }));
+      this.props.dispatch(setFlashcardToMatched({ flashcard }));
     });
-  }
-
-  hideCards() {
-    this.selectedFlashcards().forEach(flashcard => {
-      this.setFlashcardFaceDown(flashcard.position);
-    });
-  }
-
-  setFlashcardFaceDown(position) {
-    this.props.dispatch(
-      updateFlashcardStatus({
-        position: position,
-        status: "faceDown"
-      })
-    );
-  }
-
-  setFlashcardMatched(position) {
-    this.props.dispatch(
-      updateFlashcardStatus({
-        position: position,
-        status: "matched"
-      })
-    );
   }
 
   render() {
@@ -104,7 +80,7 @@ class MemoryGame extends Component {
           <Flashcard
             key={flashcard.position}
             flashcard={flashcard}
-            onClick={() => this.handleFlashcardSelection(flashcard.position)}
+            onClick={() => this.handleFlashcardSelection(flashcard)}
           />
         ))}
       </div>

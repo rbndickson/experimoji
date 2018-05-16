@@ -21,7 +21,7 @@ const styles = css`
   }
 `;
 
-const faceDownStyles = css`
+const unselectedStyles = css`
   background: skyblue;
 `;
 
@@ -31,13 +31,12 @@ const matchedStyles = css`
 
 class Flashcard extends Component {
   flashcardStyles() {
-    switch (this.props.flashcard.status) {
-      case "matched":
-        return cx(styles, matchedStyles);
-      case "faceDown":
-        return cx(styles, faceDownStyles);
-      default:
-        return styles;
+    if (this.props.flashcard.isMatched) {
+      return cx(styles, matchedStyles);
+    } else if (this.props.flashcard.isSelected) {
+      return styles;
+    } else {
+      return cx(styles, unselectedStyles);
     }
   }
 
@@ -46,11 +45,11 @@ class Flashcard extends Component {
 
     switch (flashcard.flashcardType) {
       case "vocabulary":
-        return <FlashcardText text={flashcard.data} />;
+        return <FlashcardText text={flashcard.vocabulary} />;
       case "picture":
         return (
           <Emoji
-            emojiCode={flashcard.data}
+            emojiCode={flashcard.emojiCode}
             altText={flashcard.vocabulary}
             styles={{ height: 60 }}
           />
@@ -61,13 +60,15 @@ class Flashcard extends Component {
   }
 
   render() {
+    const flashcard = this.props.flashcard;
+
     return (
       <div
-        key={this.props.flashcard.data}
+        key={flashcard.position}
         className={this.flashcardStyles()}
         onClick={() => this.props.onClick()}
       >
-        {this.props.flashcard.status !== "faceDown" && this.flashcardFace()}
+        {(flashcard.isSelected || flashcard.isMatched) && this.flashcardFace()}
       </div>
     );
   }
