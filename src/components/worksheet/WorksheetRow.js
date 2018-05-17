@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "emotion";
 import Emoji from "../Emoji";
+import WorksheetDot from "./WorksheetDot";
 
 const textStyles = css`
   margin-left: 10px;
@@ -26,16 +27,6 @@ const emojiStyles = css`
   }
 `;
 
-const dotStyles = css`
-  font-size: 36px;
-  line-height: 60px;
-
-  @media (max-width: 600px) {
-    font-size: 24px;
-    line-height: 30px;
-  }
-`;
-
 class Worksheet extends Component {
   render() {
     const flashcardLeft = this.props.flashcardLeft;
@@ -48,10 +39,10 @@ class Worksheet extends Component {
             <div className={textStyles}>{flashcardLeft.vocabulary}</div>
           </div>
           <div className="pure-u-1-4">
-            <div className={dotStyles}>•</div>
+            <WorksheetDot />
           </div>
           <div className="pure-u-1-8">
-            <div className={dotStyles}>•</div>
+            <WorksheetDot />
           </div>
           <div className="pure-u-1-8">
             <Emoji
