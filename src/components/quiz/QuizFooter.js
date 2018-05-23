@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { updateQuizScreen, resetQuiz } from "../../actions";
-import Emoji from "../Emoji";
 import BackButton from "../BackButton";
 
 const styles = css`
