@@ -16,12 +16,11 @@ function placements(size, isIncludingDiagonals) {
 }
 
 function createGrid(size) {
-  let grid = {};
+  let grid = [];
 
   for (var i = 0; i < size; i++) {
-    grid[i] = {};
     for (var j = 0; j < size; j++) {
-      grid[i][j] = "*";
+      j === 0 ? (grid[i] = ["*"]) : (grid[i][j] = "*");
     }
   }
 
