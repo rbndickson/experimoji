@@ -16,17 +16,17 @@ const rowStyles = css`
 `;
 
 const gridSquareStyles = css`
-  display: inline-block;
-  height: 26px;
+  float: left;
+  height: 30px;
   width: 40px;
   border: 1px solid #eee;
-  padding: 14px 0 0 0;
+  padding-top: 10px;
   text-align: center;
 
   @media (max-width: 700px) {
     height: 14px;
     width: 20px;
-    padding: 6px 0 0 0;
+    padding-top: 6px;
     font-size: 10px;
   }
 `;
@@ -42,7 +42,9 @@ class WordSearchGrid extends Component {
             <div className={rowStyles} key={row}>
               {rows.map(col => (
                 <div className={gridSquareStyles} key={col}>
-                  {this.props.data[row][col]}
+                  {this.props.data[row][col] === "*"
+                    ? ""
+                    : this.props.data[row][col]}
                 </div>
               ))}
             </div>
