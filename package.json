@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "emotion": "^9.2.12",
-    "immutability-helper": "^2.9.1",
+    "immutability-helper": "^3.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2",
