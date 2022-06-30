@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, withRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { css } from "emotion";
 import { emojiSrc } from "../utils/helpers";
 import Menu from "./Menu";
@@ -9,6 +9,12 @@ import Memory from "./memory/Memory";
 import Worksheet from "./worksheet/Worksheet";
 import WordSearch from "./wordsearch/WordSearch";
 import Pictionary from "./pictionary/Pictionary";
+
+const wrapperStyles = css`
+  margin: 0 auto;
+  min-width: 360px;
+  max-width: 800px;
+`;
 
 const styles = css`
   position: relative;
@@ -31,26 +37,18 @@ class AppMain extends Component {
     });
   }
 
-  wrapperStyles(path) {
-    const miniApps = ["/", "/quiz", "/memorygame"];
-
-    return css`
-      margin: 0 auto;
-      min-width: 360px;
-      max-width: ${miniApps.includes(path) ? "600" : "800"}px;
-    `;
-  }
-
   render() {
     return (
-      <div className={this.wrapperStyles(this.props.location.pathname)}>
+      <div className={wrapperStyles}>
         <main className={styles}>
-          <Route exact path="/" component={Menu} />
-          <Route path="/quiz" component={Quiz} />
-          <Route path="/memorygame" component={Memory} />
-          <Route path="/worksheet" component={Worksheet} />
-          <Route path="/wordsearch" component={WordSearch} />
-          <Route path="/pictionary" component={Pictionary} />
+          <Routes>
+            <Route path="/" element={<Menu />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/memorygame" element={<Memory />} />
+            <Route path="/worksheet" element={<Worksheet />} />
+            <Route path="/wordsearch" element={<WordSearch />} />
+            <Route path="/pictionary" element={<Pictionary />} />
+          </Routes>
         </main>
       </div>
     );
@@ -63,4 +61,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(AppMain));
+export default connect(mapStateToProps)(AppMain);
