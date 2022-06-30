@@ -7,7 +7,7 @@
     "immutability-helper": "^3.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^7.2",
+    "react-redux": "^8.0",
     "react-router-dom": "^6.0",
     "react-scripts": "^5.0",
     "redux": "^4.0",
