@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 import WordSearchGrid from "./WordSearchGrid";
 
 const errorMessageStyles = css`

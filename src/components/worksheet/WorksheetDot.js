@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 
 const dotStyles = css`
   font-size: 36px;

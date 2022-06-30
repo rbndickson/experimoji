@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 
 const styles = css`
   display: flex;

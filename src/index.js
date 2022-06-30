@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { HashRouter } from "react-router-dom";
 import "./index.css";
 import App from "./components/App";
@@ -13,12 +13,14 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <Provider store={store}>
     <HashRouter>
       <App />
     </HashRouter>
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
+
 registerServiceWorker();

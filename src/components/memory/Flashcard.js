@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css, cx } from "emotion";
+import { css, cx } from "@emotion/css"
 import Emoji from "../Emoji";
 import FlashcardText from "./FlashcardText";
 

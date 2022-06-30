@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Emoji from "../Emoji";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 
 const styles = css`
   display: flex;

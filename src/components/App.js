@@ -3,7 +3,7 @@ import BackgroundEmoji from "./BackgroundEmoji";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
 import AppMain from "./AppMain";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 
 const styles = css`
   text-align: center;
