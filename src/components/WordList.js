@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 
 const styles = css`
   margin: 0 auto;

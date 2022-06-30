@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 import { emojiSrc } from "../utils/helpers";
 import Menu from "./Menu";
 import Quiz from "./quiz/Quiz";

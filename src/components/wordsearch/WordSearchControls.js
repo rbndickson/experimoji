@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 import WordSearchForm from "./WordSearchForm";
 import ControlsGroup from "../ControlsGroup";
 import Button from "../Button";

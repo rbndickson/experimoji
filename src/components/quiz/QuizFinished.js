@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
 import Emoji from "../Emoji";
 import QuizResult from "./QuizResult";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "emotion";
+import { css } from "@emotion/css"
 import QuizResultsItem from "./QuizResultsItem";
 
 const styles = css`
