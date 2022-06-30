@@ -27,7 +27,7 @@ function mapStateToProps(state) {
   return {
     flashcards: Object.values(state.flashcards),
     category: state.worksheet.category,
-    language: state.worksheet.language
+    language: state.worksheet.language,
   };
 }
 

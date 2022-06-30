@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
 import Emoji from "../Emoji";
 import QuizResult from "./QuizResult";
@@ -42,11 +42,7 @@ class QuizFinished extends Component {
   }
 
   render() {
-    const sharingText = `I scored ${this.props.score} out of ${
-      this.props.currentQuestionIndex
-    } on the ${this.props.language} ${
-      this.props.category
-    } emoji quiz! How about you?`;
+    const sharingText = `I scored ${this.props.score} out of ${this.props.currentQuestionIndex} on the ${this.props.language} ${this.props.category} emoji quiz! How about you?`;
 
     const twitterLink = `https://twitter.com/intent/tweet?text=${sharingText}`;
 
@@ -94,7 +90,7 @@ function mapStateToProps(state) {
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     language: state.quiz.language,
-    category: state.quiz.category
+    category: state.quiz.category,
   };
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { updateQuizQuestionAmount, updateQuizLevel } from "../../actions";
 import Button from "../Button";
 
@@ -17,24 +17,24 @@ const inputStyles = css`
 `;
 
 class QuizSettings extends Component {
-  handleQuestionAmountChange = e => {
+  handleQuestionAmountChange = (e) => {
     e.preventDefault();
 
     this.setQuestionAmount(e.target.value);
   };
 
-  setQuestionAmount = questionAmount => {
+  setQuestionAmount = (questionAmount) => {
     this.props.dispatch(updateQuizQuestionAmount(questionAmount));
   };
 
-  handlelevelChange = level => {
+  handlelevelChange = (level) => {
     this.props.dispatch(updateQuizLevel(level));
   };
 
   render() {
     const maxQuestionAmount = Object.keys(this.props.flashcards).length;
     const questionAmounts = [5, 10, 20, maxQuestionAmount].filter(
-      e => e <= maxQuestionAmount
+      (e) => e <= maxQuestionAmount
     );
 
     return (
@@ -47,7 +47,7 @@ class QuizSettings extends Component {
                 {this.props.questionAmount}
               </div>
               <div>
-                {questionAmounts.map(e => (
+                {questionAmounts.map((e) => (
                   <Button
                     key={parseInt(e, 0)}
                     classModifier={"Button-x-small Button-inline"}
@@ -104,7 +104,7 @@ function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
     questionAmount: state.quiz.questionAmount,
-    level: state.quiz.level
+    level: state.quiz.level,
   };
 }
 

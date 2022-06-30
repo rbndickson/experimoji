@@ -7,7 +7,7 @@ import WorksheetRow from "./WorksheetRow";
 class WorksheetPage extends Component {
   state = {
     rightFlashcards: [],
-    leftFlashcards: []
+    leftFlashcards: [],
   };
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class WorksheetPage extends Component {
 
     this.setState({
       leftFlashcards: leftFlashcards,
-      rightFlashcards: rightFlashcards
+      rightFlashcards: rightFlashcards,
     });
   }
 
@@ -43,7 +43,7 @@ class WorksheetPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards)
+    flashcards: Object.values(state.flashcards),
   };
 }
 

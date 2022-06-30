@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { updateQuizScreen, resetQuiz } from "../../actions";
 import BackButton from "../BackButton";
 

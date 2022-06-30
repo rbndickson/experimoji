@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   height: 20px;
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 
   return {
     question: questions[state.quiz.currentQuestionIndex],
-    showQuizAnswer: state.quiz.showQuizAnswer
+    showQuizAnswer: state.quiz.showQuizAnswer,
   };
 }
 

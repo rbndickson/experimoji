@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import QuizButton from "./QuizButton";
 
 const styles = css`
@@ -31,16 +31,22 @@ class QuizButtons extends Component {
     return this.props.level === "easy" ? (
       <div className={styles}>
         <div className={colStyles}>
-          {answers.map(e => <QuizButton key={e} answer={e} />)}
+          {answers.map((e) => (
+            <QuizButton key={e} answer={e} />
+          ))}
         </div>
       </div>
     ) : (
       <div className={styles}>
         <div className={colStyles}>
-          {answers.splice(0, 3).map(e => <QuizButton key={e} answer={e} />)}
+          {answers.splice(0, 3).map((e) => (
+            <QuizButton key={e} answer={e} />
+          ))}
         </div>
         <div className={colStyles}>
-          {answers.splice(0, 3).map(e => <QuizButton key={e} answer={e} />)}
+          {answers.splice(0, 3).map((e) => (
+            <QuizButton key={e} answer={e} />
+          ))}
         </div>
       </div>
     );
@@ -49,7 +55,7 @@ class QuizButtons extends Component {
 
 function mapStateToProps(state) {
   return {
-    level: state.quiz.level
+    level: state.quiz.level,
   };
 }
 

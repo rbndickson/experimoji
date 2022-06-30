@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css, cx } from "@emotion/css"
+import { css, cx } from "@emotion/css";
 
 import {
   updateCurrentQuestionIndex,
   setShowQuizAnswer,
   updateScore,
-  recordAnswerResult
+  recordAnswerResult,
 } from "../../actions";
 
 const styles = css`
@@ -61,7 +61,7 @@ class QuizButton extends Component {
 
       const _this = this;
 
-      setTimeout(function() {
+      setTimeout(function () {
         _this.hideAnswer();
         _this.incrementQuestion();
       }, 2000);
@@ -129,7 +129,7 @@ function mapStateToProps(state) {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
     correctAnswer: questions[state.quiz.currentQuestionIndex].vocabulary,
-    showQuizAnswer: state.quiz.showQuizAnswer
+    showQuizAnswer: state.quiz.showQuizAnswer,
   };
 }
 

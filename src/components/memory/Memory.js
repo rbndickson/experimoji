@@ -22,23 +22,23 @@ class Memory extends Component {
           position: positions.pop(),
           flashcardType: "vocabulary",
           vocabulary: e.vocabulary,
-          emojiCode: e.emojiCode
+          emojiCode: e.emojiCode,
         });
         acc.push({
           position: positions.pop(),
           flashcardType: "picture",
           vocabulary: e.vocabulary,
-          emojiCode: e.emojiCode
+          emojiCode: e.emojiCode,
         });
         return acc;
       }, [])
-      .forEach(flashcard => {
+      .forEach((flashcard) => {
         this.props.dispatch(addFlashcard(flashcard));
       });
   }
 
   isGameFinished() {
-    return this.props.memoryGameFlashcards.every(f => f.isMatched);
+    return this.props.memoryGameFlashcards.every((f) => f.isMatched);
   }
 
   render() {
@@ -67,7 +67,7 @@ function mapStateToProps(state) {
     category: state.worksheet.category,
     language: state.worksheet.language,
     flashcards: flashcards,
-    memoryGameFlashcards: Object.values(state.memory.flashcards)
+    memoryGameFlashcards: Object.values(state.memory.flashcards),
   };
 }
 

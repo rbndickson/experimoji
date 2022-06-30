@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { emojiSrc } from "../utils/helpers";
 import Menu from "./Menu";
 import Quiz from "./quiz/Quiz";
@@ -31,7 +31,7 @@ class AppMain extends Component {
   }
 
   preloadImages() {
-    this.props.flashcards.forEach(e => {
+    this.props.flashcards.forEach((e) => {
       let imageObject = new Image();
       imageObject.src = emojiSrc(e.emojiCode);
     });
@@ -57,7 +57,7 @@ class AppMain extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards)
+    flashcards: Object.values(state.flashcards),
   };
 }
 

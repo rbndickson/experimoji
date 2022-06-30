@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import Emoji from "../Emoji";
 
 const styles = css`
@@ -33,7 +33,7 @@ class QuizStartImages extends Component {
 function mapStateToProps(state) {
   return {
     languageEmojiCode: state.quiz.languageEmojiCode,
-    categoryEmojicode: state.quiz.categoryEmojicode
+    categoryEmojicode: state.quiz.categoryEmojicode,
   };
 }
 

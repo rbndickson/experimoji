@@ -7,11 +7,11 @@ import PictionaryGrid from "./PictionaryGrid";
 
 class Pictionary extends Component {
   state = {
-    pictures: shuffle(this.props.flashcards)
+    pictures: shuffle(this.props.flashcards),
   };
 
   words() {
-    return this.props.flashcards.map(flashcard => flashcard.vocabulary);
+    return this.props.flashcards.map((flashcard) => flashcard.vocabulary);
   }
 
   render() {
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
   return {
     category: state.worksheet.category,
     language: state.worksheet.language,
-    flashcards: Object.values(state.flashcards).slice(0, 16)
+    flashcards: Object.values(state.flashcards).slice(0, 16),
   };
 }
 

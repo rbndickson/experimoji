@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   margin: 20px 0;
@@ -9,6 +9,6 @@ const styles = css`
   }
 `;
 
-const ControlsGroup = props => <div className={styles}>{props.children}</div>;
+const ControlsGroup = (props) => <div className={styles}>{props.children}</div>;
 
 export default ControlsGroup;

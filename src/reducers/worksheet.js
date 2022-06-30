@@ -4,7 +4,7 @@ const initialState = {
   language: data.language,
   category: data.category,
   languageEmojiCode: data.languageEmojiCode,
-  categoryEmojicode: data.categoryEmojicode
+  categoryEmojicode: data.categoryEmojicode,
 };
 
 function worksheet(state = initialState, action) {

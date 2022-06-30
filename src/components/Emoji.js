@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const baseStyles = css`
   box-sizing: border-box;

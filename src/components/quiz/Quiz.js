@@ -38,7 +38,7 @@ function mapStateToProps(state) {
     category: state.quiz.category,
     quizScreen: state.quiz.quizScreen,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
-    questionAmount: state.quiz.questionAmount
+    questionAmount: state.quiz.questionAmount,
   };
 }
 

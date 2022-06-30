@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const formStyles = css`
   display: block;
@@ -36,7 +36,7 @@ const buttonStyles = css`
 
 class WordSearchForm extends Component {
   state = {
-    inputValue: ""
+    inputValue: "",
   };
 
   handleChange(e) {
@@ -51,12 +51,12 @@ class WordSearchForm extends Component {
 
   render() {
     return (
-      <form className={formStyles} onSubmit={e => this.handleSubmit(e)}>
+      <form className={formStyles} onSubmit={(e) => this.handleSubmit(e)}>
         <input
           name={this.props.name}
           type="text"
           value={this.state.inputValue}
-          onChange={e => this.handleChange(e)}
+          onChange={(e) => this.handleChange(e)}
         />
         <input
           type="submit"

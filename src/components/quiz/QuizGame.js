@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   updateScore,
   updateCurrentQuestionIndex,
-  setQuestions
+  setQuestions,
 } from "../../actions";
 import { shuffle } from "../../utils/helpers";
 import QuizHeader from "./QuizHeader";
@@ -37,7 +37,7 @@ class QuizGame extends Component {
         acc[i] = {
           vocabulary: e.vocabulary,
           emojiCode: e.emojiCode,
-          incorrectAnswers: e.incorrectAnswers
+          incorrectAnswers: e.incorrectAnswers,
         };
         return acc;
       },
@@ -50,8 +50,8 @@ class QuizGame extends Component {
   createQuestion(flashcard) {
     const incorrectAnswers = shuffle(
       Object.values(this.props.flashcards)
-        .filter(f => f !== flashcard)
-        .map(f => f.vocabulary)
+        .filter((f) => f !== flashcard)
+        .map((f) => f.vocabulary)
     ).splice(0, 5);
 
     return { ...flashcard, incorrectAnswers: incorrectAnswers };
@@ -72,7 +72,7 @@ function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
     questions: state.quiz.questions,
-    questionIndex: state.quiz.questionIndex
+    questionIndex: state.quiz.questionIndex,
   };
 }
 

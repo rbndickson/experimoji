@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   display: flex;
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
   return {
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
-    questionAmount: state.quiz.questionAmount
+    questionAmount: state.quiz.questionAmount,
   };
 }
 

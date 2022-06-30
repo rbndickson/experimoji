@@ -11,35 +11,35 @@ export const UPDATE_QUIZ_LEVEL = "UPDATE_QUIZ_LEVEL";
 export function updateQuizScreen(screen) {
   return {
     type: UPDATE_QUIZ_SCREEN,
-    screen
+    screen,
   };
 }
 
 export function setQuestions(questions) {
   return {
     type: SET_QUESTIONS,
-    questions
+    questions,
   };
 }
 
 export function updateCurrentQuestionIndex(questionIndex) {
   return {
     type: UPDATE_CURRENT_QUESTION_INDEX,
-    questionIndex
+    questionIndex,
   };
 }
 
 export function setShowQuizAnswer(showQuizAnswer) {
   return {
     type: SET_SHOW_QUIZ_ANSWER,
-    showQuizAnswer
+    showQuizAnswer,
   };
 }
 
 export function updateScore(score) {
   return {
     type: UPDATE_SCORE,
-    score
+    score,
   };
 }
 
@@ -47,26 +47,26 @@ export function recordAnswerResult(questionIndex, answerResult) {
   return {
     type: RECORD_ANSWER_RESULT,
     questionIndex,
-    answerResult
+    answerResult,
   };
 }
 
 export function updateQuizQuestionAmount(questionAmount) {
   return {
     type: UPDATE_QUIZ_QUESTION_AMOUNT,
-    questionAmount
+    questionAmount,
   };
 }
 
 export function updateQuizLevel(level) {
   return {
     type: UPDATE_QUIZ_LEVEL,
-    level
+    level,
   };
 }
 
 export function resetQuiz() {
   return {
-    type: RESET_QUIZ
+    type: RESET_QUIZ,
   };
 }

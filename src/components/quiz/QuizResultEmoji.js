@@ -19,13 +19,13 @@ const resultEmoji = {
   great: [starEmojiCode, highFiveEmojiCode],
   good: [smileyCatEmojiCode, rocketEmojiCode],
   poor: [writingEmojiCode, cloverEmojiCode],
-  veryPoor: [seedingEmojiCode, booksEmojiCode]
+  veryPoor: [seedingEmojiCode, booksEmojiCode],
 };
 
 class QuizResultEmoji extends Component {
   resultEmoji() {
     const resultPercentage =
-      this.props.score / this.props.currentQuestionIndex * 100;
+      (this.props.score / this.props.currentQuestionIndex) * 100;
 
     if (resultPercentage === 100) return shuffle(resultEmoji["perfect"])[0];
     else if (resultPercentage >= 75) return shuffle(resultEmoji["great"])[0];
@@ -48,7 +48,7 @@ class QuizResultEmoji extends Component {
 function mapStateToProps(state) {
   return {
     score: state.quiz.score,
-    currentQuestionIndex: state.quiz.currentQuestionIndex
+    currentQuestionIndex: state.quiz.currentQuestionIndex,
   };
 }
 
