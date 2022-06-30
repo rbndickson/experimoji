@@ -30,7 +30,7 @@ class AppHeader extends Component {
   render() {
     return (
       <header className={AppHeaderStyles}>
-        <div className="AppHeader-col">
+        <div className="AppHeader-col non-print">
           <Link to="">
             <img
               src={emojiSrc("1f3e0")}

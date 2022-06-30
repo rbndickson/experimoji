@@ -34,10 +34,8 @@ class App extends Component {
   render() {
     return (
       <div className={styles}>
-        <div className={"non-print"}>
-          <BackgroundEmoji />
-          <AppHeader />
-        </div>
+        <BackgroundEmoji />
+        <AppHeader />
         <AppMain />
         <AppFooter />
       </div>
