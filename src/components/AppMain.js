@@ -43,11 +43,11 @@ class AppMain extends Component {
         <main className={styles}>
           <Routes>
             <Route path="/" element={<Menu />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/memorygame" element={<Memory />} />
-            <Route path="/worksheet" element={<Worksheet />} />
-            <Route path="/wordsearch" element={<WordSearch />} />
-            <Route path="/pictionary" element={<Pictionary />} />
+            <Route path="quiz" element={<Quiz />} />
+            <Route path="memorygame" element={<Memory />} />
+            <Route path="worksheet" element={<Worksheet />} />
+            <Route path="wordsearch" element={<WordSearch />} />
+            <Route path="pictionary" element={<Pictionary />} />
           </Routes>
         </main>
       </div>
