@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
 import QuizButton from "./QuizButton";
@@ -13,44 +13,42 @@ const colStyles = css`
   flex: 1;
 `;
 
-class QuizButtons extends Component {
-  answers() {
-    let incorrectAnswers = this.props.question.incorrectAnswers;
+function QuizButtons({ level, question }) {
+  const createAnswers = () => {
+    let incorrectAnswers = question.incorrectAnswers;
 
-    if (this.props.level === "easy") {
+    if (level === "easy") {
       incorrectAnswers = incorrectAnswers.slice(0, 2);
     }
 
-    let answerPool = incorrectAnswers.concat(this.props.question.vocabulary);
+    let answerPool = incorrectAnswers.concat(question.vocabulary);
     return answerPool.sort();
-  }
+  };
 
-  render() {
-    const answers = this.answers();
+  const answers = createAnswers();
 
-    return this.props.level === "easy" ? (
-      <div className={styles}>
-        <div className={colStyles}>
-          {answers.map((e) => (
-            <QuizButton key={e} answer={e} />
-          ))}
-        </div>
+  return level === "easy" ? (
+    <div className={styles}>
+      <div className={colStyles}>
+        {answers.map((e) => (
+          <QuizButton key={e} answer={e} />
+        ))}
       </div>
-    ) : (
-      <div className={styles}>
-        <div className={colStyles}>
-          {answers.splice(0, 3).map((e) => (
-            <QuizButton key={e} answer={e} />
-          ))}
-        </div>
-        <div className={colStyles}>
-          {answers.splice(0, 3).map((e) => (
-            <QuizButton key={e} answer={e} />
-          ))}
-        </div>
+    </div>
+  ) : (
+    <div className={styles}>
+      <div className={colStyles}>
+        {answers.splice(0, 3).map((e) => (
+          <QuizButton key={e} answer={e} />
+        ))}
       </div>
-    );
-  }
+      <div className={colStyles}>
+        {answers.splice(0, 3).map((e) => (
+          <QuizButton key={e} answer={e} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
 import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
@@ -23,65 +23,70 @@ const sharingListStyles = css`
   }
 `;
 
-class QuizFinished extends Component {
-  goToSettings() {
-    this.props.dispatch(updateQuizScreen("settings"));
-    this.props.dispatch(resetQuiz());
-  }
+function QuizFinished({
+  dispatch,
+  currentQuestionIndex,
+  category,
+  language,
+  questions,
+  score,
+}) {
+  const goToSettings = () => {
+    dispatch(updateQuizScreen("settings"));
+    dispatch(resetQuiz());
+  };
 
-  tryAgainNewCards() {
-    this.props.dispatch(updateQuizScreen("game"));
-    this.props.dispatch(setQuestions(undefined));
-    this.props.dispatch(resetQuiz());
-  }
+  const tryAgainNewCards = () => {
+    dispatch(updateQuizScreen("game"));
+    dispatch(setQuestions(undefined));
+    dispatch(resetQuiz());
+  };
 
-  tryAgainSameCards() {
-    this.props.dispatch(setQuestions(this.props.questions));
-    this.props.dispatch(updateQuizScreen("game"));
-    this.props.dispatch(resetQuiz());
-  }
+  const tryAgainSameCards = () => {
+    dispatch(setQuestions(questions));
+    dispatch(updateQuizScreen("game"));
+    dispatch(resetQuiz());
+  };
 
-  render() {
-    const sharingText = `I scored ${this.props.score} out of ${this.props.currentQuestionIndex} on the ${this.props.language} ${this.props.category} emoji quiz! How about you?`;
+  const sharingText = `I scored ${score} out of ${currentQuestionIndex} on the ${language} ${category} emoji quiz! How about you?`;
 
-    const twitterLink = `https://twitter.com/intent/tweet?text=${sharingText}`;
+  const twitterLink = `https://twitter.com/intent/tweet?text=${sharingText}`;
 
-    return (
+  return (
+    <div>
+      <h2>Quiz Complete!</h2>
+      <QuizResult />
+      <QuizResultEmoji />
       <div>
-        <h2>Quiz Complete!</h2>
-        <QuizResult />
-        <QuizResultEmoji />
-        <div>
-          <ul className={sharingListStyles}>
-            <li>
-              <a href={twitterLink} target="popup">
-                Share on Twitter
-                <Emoji emojiCode={"1f426"} altText="" inline={true} />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className={"QuizFinished-buttons"}>
-          <Button
-            onClick={() => this.tryAgainSameCards()}
-            text={"Retry Same Cards"}
-            classModifier={"Button-medium"}
-          />
-          <Button
-            onClick={() => this.tryAgainNewCards()}
-            text={"Try Again With New Cards"}
-            classModifier={"Button-medium"}
-          />
-          <Button
-            onClick={() => this.goToSettings()}
-            text={"Settings"}
-            classModifier={"Button-medium"}
-          />
-          <QuizResultsList />
-        </div>
+        <ul className={sharingListStyles}>
+          <li>
+            <a href={twitterLink} target="popup">
+              Share on Twitter
+              <Emoji emojiCode={"1f426"} altText="" inline={true} />
+            </a>
+          </li>
+        </ul>
       </div>
-    );
-  }
+      <div className={"QuizFinished-buttons"}>
+        <Button
+          onClick={() => tryAgainSameCards()}
+          text={"Retry Same Cards"}
+          classModifier={"Button-medium"}
+        />
+        <Button
+          onClick={() => tryAgainNewCards()}
+          text={"Try Again With New Cards"}
+          classModifier={"Button-medium"}
+        />
+        <Button
+          onClick={() => goToSettings()}
+          text={"Settings"}
+          classModifier={"Button-medium"}
+        />
+        <QuizResultsList />
+      </div>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {

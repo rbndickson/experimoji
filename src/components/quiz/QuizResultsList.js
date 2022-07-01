@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
 import QuizResultsItem from "./QuizResultsItem";
@@ -8,46 +8,44 @@ const styles = css`
   margin: 0 auto;
 `;
 
-class QuizResultsList extends Component {
-  render() {
-    return (
-      <div className={styles}>
-        <h3>Review</h3>
-        {this.props.score < this.props.currentQuestionIndex && (
-          <div>
-            <h4>Words you answered incorrectly:</h4>
-            <ul>
-              {this.props.questions
-                .filter((question) => question.answerResult === "incorrect")
-                .map((question) => (
-                  <QuizResultsItem
-                    vocabulary={question.vocabulary}
-                    emojiCode={question.emojiCode}
-                    key={`${question.vocabulary}${question.emojiCode}`}
-                  />
-                ))}
-            </ul>
-          </div>
-        )}
-        {this.props.score > 0 && (
-          <div>
-            <h4>Words you answered correctly:</h4>
-            <ul>
-              {this.props.questions
-                .filter((question) => question.answerResult === "correct")
-                .map((question) => (
-                  <QuizResultsItem
-                    vocabulary={question.vocabulary}
-                    emojiCode={question.emojiCode}
-                    key={`${question.vocabulary}${question.emojiCode}`}
-                  />
-                ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    );
-  }
+function QuizResultsList({ currentQuestionIndex, score, questions }) {
+  return (
+    <div className={styles}>
+      <h3>Review</h3>
+      {score < currentQuestionIndex && (
+        <div>
+          <h4>Words you answered incorrectly:</h4>
+          <ul>
+            {questions
+              .filter((question) => question.answerResult === "incorrect")
+              .map((question) => (
+                <QuizResultsItem
+                  vocabulary={question.vocabulary}
+                  emojiCode={question.emojiCode}
+                  key={`${question.vocabulary}${question.emojiCode}`}
+                />
+              ))}
+          </ul>
+        </div>
+      )}
+      {score > 0 && (
+        <div>
+          <h4>Words you answered correctly:</h4>
+          <ul>
+            {questions
+              .filter((question) => question.answerResult === "correct")
+              .map((question) => (
+                <QuizResultsItem
+                  vocabulary={question.vocabulary}
+                  emojiCode={question.emojiCode}
+                  key={`${question.vocabulary}${question.emojiCode}`}
+                />
+              ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
