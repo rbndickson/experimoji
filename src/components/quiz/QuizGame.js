@@ -12,6 +12,7 @@ import QuizFooter from "./QuizFooter";
 
 class QuizGame extends Component {
   componentDidMount() {
+    // Reset quiz
     this.props.dispatch(updateScore(0));
     this.props.dispatch(updateCurrentQuestionIndex(0));
     if (this.props.questions) {
