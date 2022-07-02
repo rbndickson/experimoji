@@ -23,7 +23,7 @@ class QuizGame extends Component {
   }
 
   setNewQuizQuestions() {
-    const shuffledFlashcards = shuffle(Object.values(this.props.flashcards));
+    const shuffledFlashcards = shuffle(this.props.flashcards);
     const questions = shuffledFlashcards.reduce((acc, e, i) => {
       acc[i] = this.createQuestion(e);
       return acc;
@@ -50,7 +50,7 @@ class QuizGame extends Component {
 
   createQuestion(flashcard) {
     const incorrectAnswers = shuffle(
-      Object.values(this.props.flashcards)
+      this.props.flashcards
         .filter((f) => f !== flashcard)
         .map((f) => f.vocabulary)
     ).splice(0, 5);

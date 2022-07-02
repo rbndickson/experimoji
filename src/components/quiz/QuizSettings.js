@@ -25,7 +25,7 @@ function QuizSettings({ dispatch, flashcards, level, questionAmount }) {
     dispatch(updateQuizLevel(level));
   };
 
-  const maxQuestionAmount = Object.keys(flashcards).length;
+  const maxQuestionAmount = flashcards.length;
   const questionAmounts = [5, 10, 20, maxQuestionAmount].filter(
     (e) => e <= maxQuestionAmount
   );
