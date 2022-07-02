@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import WordSearchForm from "./WordSearchForm";
 import ControlsGroup from "../ControlsGroup";
 import Button from "../Button";
@@ -39,7 +39,7 @@ class WordSearchControls extends Component {
               value={this.props.size}
               min={MIN_WORDSEARCH_SIZE}
               max={MAX_WORDSEARCH_SIZE}
-              onChange={e => {
+              onChange={(e) => {
                 this.props.updateSize(e.target.value);
               }}
             />
@@ -49,7 +49,7 @@ class WordSearchControls extends Component {
               type="checkbox"
               id="isIncludingDiagonals"
               checked={this.props.isIncludingDiagonals}
-              onChange={e => this.handleDiagonals(e)}
+              onChange={(e) => this.handleDiagonals(e)}
             />
             <label htmlFor="isIncludingDiagonals">Include Diagonals</label>
           </ControlsGroup>
@@ -66,14 +66,14 @@ class WordSearchControls extends Component {
             <WordSearchForm
               name="title"
               submitValue={"Edit Title"}
-              handleSubmit={e => this.handleTitleSubmit(e)}
+              handleSubmit={(e) => this.handleTitleSubmit(e)}
             />
           </ControlsGroup>
           <ControlsGroup>
             <WordSearchForm
               name="word"
               submitValue={"Add Word"}
-              handleSubmit={e => this.handleNewWordSubmit(e)}
+              handleSubmit={(e) => this.handleNewWordSubmit(e)}
             />
           </ControlsGroup>
           <div className={removeWordInstructionStyles}>

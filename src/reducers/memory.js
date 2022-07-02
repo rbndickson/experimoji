@@ -4,13 +4,13 @@ import {
   DESELECT_FLASHCARD,
   SET_FLASHCARD_TO_MATCHED,
   SET_CLICKABLE,
-  UPDATE_MEMORY_GAME_SCORE
+  UPDATE_MEMORY_GAME_SCORE,
 } from "../actions";
 
 const initialMemoryState = {
   score: 0,
   flashcards: {},
-  isClickable: true
+  isClickable: true,
 };
 
 function memory(state = initialMemoryState, action) {
@@ -26,9 +26,9 @@ function memory(state = initialMemoryState, action) {
             emojiCode: action.emojiCode,
             isSelected: false,
             isMatched: false,
-            position: action.position
-          }
-        }
+            position: action.position,
+          },
+        },
       };
     case SELECT_FLASHCARD:
       return {
@@ -37,9 +37,9 @@ function memory(state = initialMemoryState, action) {
           ...state["flashcards"],
           [action.flashcard.position]: {
             ...state["flashcards"][action.flashcard.position],
-            isSelected: true
-          }
-        }
+            isSelected: true,
+          },
+        },
       };
     case DESELECT_FLASHCARD:
       return {
@@ -48,9 +48,9 @@ function memory(state = initialMemoryState, action) {
           ...state["flashcards"],
           [action.flashcard.position]: {
             ...state["flashcards"][action.flashcard.position],
-            isSelected: false
-          }
-        }
+            isSelected: false,
+          },
+        },
       };
     case SET_FLASHCARD_TO_MATCHED:
       return {
@@ -59,9 +59,9 @@ function memory(state = initialMemoryState, action) {
           ...state["flashcards"],
           [action.flashcard.position]: {
             ...state["flashcards"][action.flashcard.position],
-            isMatched: true
-          }
-        }
+            isMatched: true,
+          },
+        },
       };
     case SET_CLICKABLE:
       return { ...state, isClickable: action.isClickable };

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   display: flex;
@@ -16,26 +16,20 @@ const styles = css`
   }
 `;
 
-class QuizHeader extends Component {
-  render() {
-    return (
-      <header className={styles}>
-        <div>
-          {`Question: ${this.props.currentQuestionIndex + 1} of ${
-            this.props.questionAmount
-          }`}
-        </div>
-        <div>{`Score: ${this.props.score}`}</div>
-      </header>
-    );
-  }
+function QuizHeader({ currentQuestionIndex, score, questionAmount }) {
+  return (
+    <header className={styles}>
+      <div>{`Question: ${currentQuestionIndex + 1} of ${questionAmount}`}</div>
+      <div>{`Score: ${score}`}</div>
+    </header>
+  );
 }
 
 function mapStateToProps(state) {
   return {
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
-    questionAmount: state.quiz.questionAmount
+    questionAmount: state.quiz.questionAmount,
   };
 }
 

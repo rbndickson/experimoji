@@ -1,5 +1,5 @@
 import React from "react";
-import { css, cx } from "@emotion/css"
+import { css, cx } from "@emotion/css";
 
 const baseStyles = css`
   padding: 10px 0;
@@ -69,7 +69,7 @@ const greenStyles = css`
   }
 `;
 
-const styles = classModifier => {
+const styles = (classModifier) => {
   let s = [baseStyles];
 
   if (!classModifier) {

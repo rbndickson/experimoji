@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   font-size: 32px;
@@ -9,6 +9,6 @@ const styles = css`
   }
 `;
 
-const Title = props => <h1 className={styles}>{props.text}</h1>;
+const Title = (props) => <h1 className={styles}>{props.text}</h1>;
 
 export default Title;

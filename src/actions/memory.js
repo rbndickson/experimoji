@@ -9,48 +9,48 @@ export function addFlashcard({
   position,
   flashcardType,
   vocabulary,
-  emojiCode
+  emojiCode,
 }) {
   return {
     type: ADD_FLASHCARD,
     position,
     flashcardType,
     vocabulary,
-    emojiCode
+    emojiCode,
   };
 }
 
 export function selectFlashcard({ flashcard }) {
   return {
     type: SELECT_FLASHCARD,
-    flashcard
+    flashcard,
   };
 }
 
 export function deselectFlashcard({ flashcard }) {
   return {
     type: DESELECT_FLASHCARD,
-    flashcard
+    flashcard,
   };
 }
 
 export function setFlashcardToMatched({ flashcard }) {
   return {
     type: SET_FLASHCARD_TO_MATCHED,
-    flashcard
+    flashcard,
   };
 }
 
 export function setClickable(isClickable) {
   return {
     type: SET_CLICKABLE,
-    isClickable
+    isClickable,
   };
 }
 
 export function updateMemoryGameScore(score) {
   return {
     type: UPDATE_MEMORY_GAME_SCORE,
-    score
+    score,
   };
 }

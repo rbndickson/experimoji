@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   height: 20px;
@@ -8,16 +8,12 @@ const styles = css`
   font-weight: bold;
 `;
 
-class QuizAnswer extends Component {
-  render() {
-    return (
-      <div className={styles}>
-        {this.props.showQuizAnswer && (
-          <div>{this.props.question.vocabulary}</div>
-        )}
-      </div>
-    );
-  }
+function QuizAnswer({ showQuizAnswer, question }) {
+  return (
+    <div className={styles}>
+      {showQuizAnswer && <div>{question.vocabulary}</div>}
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
@@ -25,7 +21,7 @@ function mapStateToProps(state) {
 
   return {
     question: questions[state.quiz.currentQuestionIndex],
-    showQuizAnswer: state.quiz.showQuizAnswer
+    showQuizAnswer: state.quiz.showQuizAnswer,
   };
 }
 

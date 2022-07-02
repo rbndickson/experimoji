@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { sleep } from "../../utils/helpers";
 import {
   selectFlashcard,
   deselectFlashcard,
   setFlashcardToMatched,
   setClickable,
-  updateMemoryGameScore
+  updateMemoryGameScore,
 } from "../../actions";
 import Flashcard from "./Flashcard";
 
@@ -42,7 +42,7 @@ class MemoryGame extends Component {
 
   selectedFlashcards() {
     return Object.values(this.props.flashcards).filter(
-      flashcard => flashcard.isSelected
+      (flashcard) => flashcard.isSelected
     );
   }
 
@@ -59,7 +59,7 @@ class MemoryGame extends Component {
 
     await sleep(2000);
 
-    flashcards.forEach(flashcard => {
+    flashcards.forEach((flashcard) => {
       this.props.dispatch(deselectFlashcard({ flashcard }));
     });
 
@@ -67,7 +67,7 @@ class MemoryGame extends Component {
   }
 
   updateFlashcardsToMatched(flashcards) {
-    flashcards.forEach(flashcard => {
+    flashcards.forEach((flashcard) => {
       this.props.dispatch(deselectFlashcard({ flashcard }));
       this.props.dispatch(setFlashcardToMatched({ flashcard }));
     });
@@ -76,7 +76,7 @@ class MemoryGame extends Component {
   render() {
     return (
       <div className={styles}>
-        {Object.values(this.props.flashcards).map(flashcard => (
+        {Object.values(this.props.flashcards).map((flashcard) => (
           <Flashcard
             key={flashcard.position}
             flashcard={flashcard}
@@ -92,7 +92,7 @@ function mapStateToProps(state) {
   return {
     flashcards: state.memory.flashcards,
     isClickable: state.memory.isClickable,
-    score: state.memory.score
+    score: state.memory.score,
   };
 }
 

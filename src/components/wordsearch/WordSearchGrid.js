@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   display: inline-block;
@@ -38,9 +38,9 @@ class WordSearchGrid extends Component {
     return (
       <div>
         <div className={styles}>
-          {rows.map(row => (
+          {rows.map((row) => (
             <div className={rowStyles} key={row}>
-              {rows.map(col => (
+              {rows.map((col) => (
                 <div className={gridSquareStyles} key={col}>
                   {this.props.data[row][col] === "*"
                     ? ""

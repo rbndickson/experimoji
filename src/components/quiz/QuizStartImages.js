@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import Emoji from "../Emoji";
 
 const styles = css`
@@ -11,29 +11,19 @@ const styles = css`
 
 const emojiStyles = { height: 90, width: 90, padding: 10 };
 
-class QuizStartImages extends Component {
-  render() {
-    return (
-      <section className={styles}>
-        <Emoji
-          emojiCode={this.props.languageEmojiCode}
-          altText={""}
-          styles={emojiStyles}
-        />
-        <Emoji
-          emojiCode={this.props.categoryEmojicode}
-          altText={""}
-          styles={emojiStyles}
-        />
-      </section>
-    );
-  }
+function QuizStartImages({ categoryEmojicode, languageEmojiCode }) {
+  return (
+    <section className={styles}>
+      <Emoji emojiCode={languageEmojiCode} altText={""} styles={emojiStyles} />
+      <Emoji emojiCode={categoryEmojicode} altText={""} styles={emojiStyles} />
+    </section>
+  );
 }
 
 function mapStateToProps(state) {
   return {
     languageEmojiCode: state.quiz.languageEmojiCode,
-    categoryEmojicode: state.quiz.categoryEmojicode
+    categoryEmojicode: state.quiz.categoryEmojicode,
   };
 }
 

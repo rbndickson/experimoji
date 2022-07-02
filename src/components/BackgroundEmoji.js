@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import { emojiSrc } from "../utils/helpers";
 
 const styles = css`

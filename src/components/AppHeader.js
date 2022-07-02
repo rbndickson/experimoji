@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { emojiSrc } from "../utils/helpers";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const AppHeaderStyles = css`
   display: flex;
@@ -30,7 +30,7 @@ class AppHeader extends Component {
   render() {
     return (
       <header className={AppHeaderStyles}>
-        <div className="AppHeader-col">
+        <div className="AppHeader-col non-print">
           <Link to="">
             <img
               src={emojiSrc("1f3e0")}

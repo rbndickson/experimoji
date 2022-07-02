@@ -3,7 +3,7 @@ import BackgroundEmoji from "./BackgroundEmoji";
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
 import AppMain from "./AppMain";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   text-align: center;
@@ -34,10 +34,8 @@ class App extends Component {
   render() {
     return (
       <div className={styles}>
-        <div className={"non-print"}>
-          <BackgroundEmoji />
-          <AppHeader />
-        </div>
+        <BackgroundEmoji />
+        <AppHeader />
         <AppMain />
         <AppFooter />
       </div>

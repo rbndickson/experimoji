@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const baseStyles = css`
   margin: 0 10px;
@@ -7,6 +7,6 @@ const baseStyles = css`
   border-radius: 4px;
 `;
 
-const AnswerBox = props => <div className={css(baseStyles, props.styles)} />;
+const AnswerBox = (props) => <div className={css(baseStyles, props.styles)} />;
 
 export default AnswerBox;

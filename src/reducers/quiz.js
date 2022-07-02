@@ -9,7 +9,7 @@ import {
   RECORD_ANSWER_RESULT,
   UPDATE_QUIZ_QUESTION_AMOUNT,
   UPDATE_QUIZ_LEVEL,
-  RESET_QUIZ
+  RESET_QUIZ,
 } from "../actions";
 
 const initialQuizState = {
@@ -23,7 +23,7 @@ const initialQuizState = {
   quizScreen: "settings",
   questionAmount: 10,
   level: "easy",
-  isClickable: true
+  isClickable: true,
 };
 
 function quiz(state = initialQuizState, action) {
@@ -31,27 +31,27 @@ function quiz(state = initialQuizState, action) {
     case UPDATE_QUIZ_SCREEN:
       return {
         ...state,
-        quizScreen: action.screen
+        quizScreen: action.screen,
       };
     case SET_QUESTIONS:
       return {
         ...state,
-        questions: action.questions
+        questions: action.questions,
       };
     case UPDATE_CURRENT_QUESTION_INDEX:
       return {
         ...state,
-        currentQuestionIndex: action.questionIndex
+        currentQuestionIndex: action.questionIndex,
       };
     case SET_SHOW_QUIZ_ANSWER:
       return {
         ...state,
-        showQuizAnswer: action.showQuizAnswer
+        showQuizAnswer: action.showQuizAnswer,
       };
     case UPDATE_SCORE:
       return {
         ...state,
-        score: action.score
+        score: action.score,
       };
     case RECORD_ANSWER_RESULT:
       return {
@@ -60,25 +60,25 @@ function quiz(state = initialQuizState, action) {
           ...state["questions"],
           [action.questionIndex]: {
             ...state["questions"][action.questionIndex],
-            answerResult: action.answerResult
-          }
-        }
+            answerResult: action.answerResult,
+          },
+        },
       };
     case UPDATE_QUIZ_QUESTION_AMOUNT:
       return {
         ...state,
-        questionAmount: action.questionAmount
+        questionAmount: action.questionAmount,
       };
     case UPDATE_QUIZ_LEVEL:
       return {
         ...state,
-        level: action.level
+        level: action.level,
       };
     case RESET_QUIZ:
       return {
         ...state,
         currentQuestionIndex: 0,
-        score: 0
+        score: 0,
       };
     default:
       return state;

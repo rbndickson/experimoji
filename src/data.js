@@ -10,11 +10,11 @@ export const data = {
     "1f335derKaktus": { vocabulary: "der Kaktus", emojiCode: "1f335" },
     "1f33fdasGewürzkraut": {
       vocabulary: "das Gewürzkraut",
-      emojiCode: "1f33f"
+      emojiCode: "1f33f",
     },
     "2744dieSchneeflocke": {
       vocabulary: "die Schneeflocke",
-      emojiCode: "2744"
+      emojiCode: "2744",
     },
     "1f332derNadelbaum": { vocabulary: "der Nadelbaum", emojiCode: "1f332" },
     "1f342dasLaub": { vocabulary: "das Laub ", emojiCode: "1f342" },
@@ -22,7 +22,7 @@ export const data = {
     "1f30bderVulkan": { vocabulary: "der Vulkan", emojiCode: "1f30b" },
     "1f338dieKirschblüte": {
       vocabulary: "die Kirschblüte",
-      emojiCode: "1f338"
+      emojiCode: "1f338",
     },
     "1f33cdieBlume": { vocabulary: "die Blume", emojiCode: "1f33c" },
     "1f30cdieGalaxie": { vocabulary: "die Galaxie", emojiCode: "1f30c" },
@@ -35,17 +35,17 @@ export const data = {
     "1f5fbderBerg": { vocabulary: "der Berg", emojiCode: "1f5fb" },
     "1f33bdieSonnenblume": {
       vocabulary: "die Sonnenblume",
-      emojiCode: "1f33b"
+      emojiCode: "1f33b",
     },
     "1f33aderHibiskus": { vocabulary: "der Hibiskus", emojiCode: "1f33a" },
     "1f331derSetzling": { vocabulary: "der Setzling", emojiCode: "1f331" },
     "1f31fderStern": { vocabulary: "der Stern", emojiCode: "1f31f" },
     "1f31edieSonne": { vocabulary: "die Sonne", emojiCode: "1f31e" },
     "1f31dderMond": { vocabulary: "der Mond", emojiCode: "1f31d" },
-    "1f33edieFeldfrucht": { vocabulary: "die Feldfrucht", emojiCode: "1f33e" }
+    "1f33edieFeldfrucht": { vocabulary: "die Feldfrucht", emojiCode: "1f33e" },
   },
   language: "German",
   category: "Nature",
   languageEmojiCode: "1f1e9-1f1ea",
-  categoryEmojicode: "1f333"
+  categoryEmojicode: "1f333",
 };

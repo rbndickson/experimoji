@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 import Emoji from "../Emoji";
 import WorksheetDot from "./WorksheetDot";
 

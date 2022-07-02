@@ -34,8 +34,8 @@ function process(answer, word, placements) {
   // sort placements by preference
   let sortedPlacements = [];
 
-  directions.forEach(direction => {
-    const p = placements.filter(p => p.direction === direction);
+  directions.forEach((direction) => {
+    const p = placements.filter((p) => p.direction === direction);
     sortedPlacements = sortedPlacements.concat(p);
   });
 
@@ -47,7 +47,7 @@ function process(answer, word, placements) {
 
       return {
         grid: insert(answer.grid, word, placement),
-        counts: { ...answer.counts, [direction]: directionCount + 1 }
+        counts: { ...answer.counts, [direction]: directionCount + 1 },
       };
     }
   }
@@ -62,10 +62,10 @@ function directionsSortedByCount(directions) {
   }
 
   return result
-    .sort(function(a, b) {
+    .sort(function (a, b) {
       return a[1] - b[1];
     })
-    .map(e => e[0]);
+    .map((e) => e[0]);
 }
 
 function canInsert(grid, word, placement) {
@@ -124,7 +124,7 @@ function fillBlanks(grid) {
       if (grid[i][j] === "*") {
         let randomLetter = ALPHABET[Math.floor(Math.random() * 26)];
         grid = update(grid, {
-          [i]: { [j]: { $set: randomLetter } }
+          [i]: { [j]: { $set: randomLetter } },
         });
       }
     }
@@ -140,7 +140,7 @@ export const createWordSearch = (words, size, isIncludingDiagonals) => {
     east: 0,
     south: 0,
     southEast: 0,
-    northEast: 0
+    northEast: 0,
   };
 
   const answer = words.reduce(

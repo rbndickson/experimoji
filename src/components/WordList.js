@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css } from "@emotion/css"
+import { css } from "@emotion/css";
 
 const styles = css`
   margin: 0 auto;
@@ -39,7 +39,7 @@ class WordList extends Component {
                 ? css(wordStyles, { cursor: "pointer" })
                 : wordStyles
             }
-            onClick={e => this.handleOnClick(e)}
+            onClick={(e) => this.handleOnClick(e)}
           >
             {word}
           </li>

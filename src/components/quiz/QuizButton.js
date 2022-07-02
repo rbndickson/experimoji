@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { css, cx } from "@emotion/css"
+import { css, cx } from "@emotion/css";
 
 import {
   updateCurrentQuestionIndex,
   setShowQuizAnswer,
   updateScore,
-  recordAnswerResult
+  recordAnswerResult,
 } from "../../actions";
 
 const styles = css`
@@ -51,74 +51,69 @@ const incorrectStyles = css`
   }
 `;
 
-class QuizButton extends Component {
-  handleUserAnswer() {
-    if (this.currentQuestionUnsnswered()) {
-      this.showAnswer();
-      this.isAnswerCorrect()
-        ? this.dispatchCorrect()
-        : this.dispatchIncorrect();
+function QuizButton({
+  dispatch,
+  answer,
+  correctAnswer,
+  currentQuestionIndex,
+  score,
+  showQuizAnswer,
+  questions,
+}) {
+  const handleUserAnswer = () => {
+    if (currentQuestionUnsnswered()) {
+      showAnswer();
+      isAnswerCorrect() ? dispatchCorrect() : dispatchIncorrect();
 
-      const _this = this;
-
-      setTimeout(function() {
-        _this.hideAnswer();
-        _this.incrementQuestion();
+      setTimeout(function () {
+        hideAnswer();
+        incrementQuestion();
       }, 2000);
     }
-  }
+  };
 
-  currentQuestionUnsnswered() {
-    return !this.props.questions[this.props.currentQuestionIndex].answerResult;
-  }
+  const currentQuestionUnsnswered = () => {
+    return !questions[currentQuestionIndex].answerResult;
+  };
 
-  dispatchCorrect() {
-    const { currentQuestionIndex, score } = this.props;
-    this.props.dispatch(updateScore(score + 1));
-    this.props.dispatch(recordAnswerResult(currentQuestionIndex, "correct"));
-  }
+  const dispatchCorrect = () => {
+    dispatch(updateScore(score + 1));
+    dispatch(recordAnswerResult(currentQuestionIndex, "correct"));
+  };
 
-  dispatchIncorrect() {
-    const { currentQuestionIndex } = this.props;
-    this.props.dispatch(recordAnswerResult(currentQuestionIndex, "incorrect"));
-  }
+  const dispatchIncorrect = () => {
+    dispatch(recordAnswerResult(currentQuestionIndex, "incorrect"));
+  };
 
-  showAnswer() {
-    this.props.dispatch(setShowQuizAnswer(true));
-  }
+  const showAnswer = () => {
+    dispatch(setShowQuizAnswer(true));
+  };
 
-  hideAnswer() {
-    this.props.dispatch(setShowQuizAnswer(false));
-  }
+  const hideAnswer = () => {
+    dispatch(setShowQuizAnswer(false));
+  };
 
-  incrementQuestion() {
-    this.props.dispatch(
-      updateCurrentQuestionIndex(this.props.currentQuestionIndex + 1)
-    );
-  }
+  const incrementQuestion = () => {
+    dispatch(updateCurrentQuestionIndex(currentQuestionIndex + 1));
+  };
 
-  isAnswerCorrect() {
-    return this.props.answer === this.props.correctAnswer;
-  }
+  const isAnswerCorrect = () => {
+    return answer === correctAnswer;
+  };
 
-  buttonClass() {
-    return this.props.showQuizAnswer
-      ? this.props.answer === this.props.correctAnswer
+  const buttonClass = () => {
+    return showQuizAnswer
+      ? answer === correctAnswer
         ? cx(styles, correctStyles)
         : cx(styles, incorrectStyles)
       : styles;
-  }
+  };
 
-  render() {
-    return (
-      <button
-        className={this.buttonClass()}
-        onClick={() => this.handleUserAnswer()}
-      >
-        {this.props.answer}
-      </button>
-    );
-  }
+  return (
+    <button className={buttonClass()} onClick={() => handleUserAnswer()}>
+      {answer}
+    </button>
+  );
 }
 
 function mapStateToProps(state) {
@@ -129,7 +124,7 @@ function mapStateToProps(state) {
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     score: state.quiz.score,
     correctAnswer: questions[state.quiz.currentQuestionIndex].vocabulary,
-    showQuizAnswer: state.quiz.showQuizAnswer
+    showQuizAnswer: state.quiz.showQuizAnswer,
   };
 }
 

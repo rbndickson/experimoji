@@ -10,7 +10,7 @@ const initialState = {
   words: ["black", "blue", "brown", "green", "pink", "purple", "red", "yellow"],
   size: 10,
   isIncludingDiagonals: false,
-  view: "create"
+  view: "create",
 };
 
 class WordSearch extends Component {
@@ -33,7 +33,7 @@ class WordSearch extends Component {
   }
 
   removeWord(word) {
-    let words = this.state.words.filter(e => e !== word);
+    let words = this.state.words.filter((e) => e !== word);
     this.updateWords(words);
   }
 
@@ -87,10 +87,10 @@ class WordSearch extends Component {
           size={this.state.size}
           isIncludingDiagonals={this.state.isIncludingDiagonals}
           view={this.state.view}
-          updateTitle={title => this.updateTitle(title)}
-          addWord={word => this.addWord(word)}
-          updateSize={size => this.updateSize(size)}
-          updateIsIncludingDiagonals={isIncludingDiagonals =>
+          updateTitle={(title) => this.updateTitle(title)}
+          addWord={(word) => this.addWord(word)}
+          updateSize={(size) => this.updateSize(size)}
+          updateIsIncludingDiagonals={(isIncludingDiagonals) =>
             this.updateIsIncludingDiagonals(isIncludingDiagonals)
           }
           resetWordSearch={() => this.resetWordSearch()}
@@ -101,7 +101,7 @@ class WordSearch extends Component {
         <h2>{this.state.title}</h2>
         <WordList
           words={this.state.words}
-          onClick={word => this.removeWord(word)}
+          onClick={(word) => this.removeWord(word)}
         />
         <WordSearchPuzzle
           answer={this.state.answer}
