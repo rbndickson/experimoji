@@ -33,7 +33,7 @@ function mapStateToProps(state) {
   return {
     category: state.worksheet.category,
     language: state.worksheet.language,
-    flashcards: Object.values(state.flashcards).slice(0, 16),
+    flashcards: state.flashcards.slice(0, 16),
   };
 }
 

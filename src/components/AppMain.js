@@ -57,7 +57,7 @@ class AppMain extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: Object.values(state.flashcards),
+    flashcards: state.flashcards,
   };
 }
 

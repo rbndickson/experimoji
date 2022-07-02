@@ -61,7 +61,7 @@ class Memory extends Component {
 }
 
 function mapStateToProps(state) {
-  const flashcards = Object.values(state.flashcards).slice(0, 4);
+  const flashcards = state.flashcards.slice(0, 4);
 
   return {
     category: state.worksheet.category,

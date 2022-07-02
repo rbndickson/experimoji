@@ -42,9 +42,7 @@ class WorksheetPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    flashcards: Object.values(state.flashcards),
-  };
+  return { flashcards: state.flashcards };
 }
 
 export default connect(mapStateToProps)(WorksheetPage);

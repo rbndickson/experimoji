@@ -1,6 +1,8 @@
 import { data } from "../data";
 
-function flashcards(state = data.flashcards, action) {
+const initialFlashcardsState = data.flashcards;
+
+function flashcards(state = initialFlashcardsState, action) {
   switch (action.type) {
     default:
       return state;
