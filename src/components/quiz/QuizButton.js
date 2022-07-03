@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { css, cx } from "@emotion/css";
 
 import {
-  updateCurrentQuestionIndex,
-  setShowQuizAnswer,
-  updateScore,
-  recordAnswerResult,
-} from "../../actions";
+  quizCurrentQuestionIndexUpdated,
+  quizAnswerShown,
+  quizScoreUpdated,
+  quizAnswerCorrect,
+  quizAnswerIncorrect,
+} from "../../features/quiz/quizSlice";
 
 const styles = css`
   font-size: 16px;
@@ -77,24 +78,24 @@ function QuizButton({
   };
 
   const dispatchCorrect = () => {
-    dispatch(updateScore(score + 1));
-    dispatch(recordAnswerResult(currentQuestionIndex, "correct"));
+    dispatch(quizScoreUpdated(score + 1));
+    dispatch(quizAnswerCorrect(currentQuestionIndex));
   };
 
   const dispatchIncorrect = () => {
-    dispatch(recordAnswerResult(currentQuestionIndex, "incorrect"));
+    dispatch(quizAnswerIncorrect(currentQuestionIndex));
   };
 
   const showAnswer = () => {
-    dispatch(setShowQuizAnswer(true));
+    dispatch(quizAnswerShown(true));
   };
 
   const hideAnswer = () => {
-    dispatch(setShowQuizAnswer(false));
+    dispatch(quizAnswerShown(false));
   };
 
   const incrementQuestion = () => {
-    dispatch(updateCurrentQuestionIndex(currentQuestionIndex + 1));
+    dispatch(quizCurrentQuestionIndexUpdated(currentQuestionIndex + 1));
   };
 
   const isAnswerCorrect = () => {

@@ -9,12 +9,14 @@ import { Provider } from "react-redux";
 
 import memoryGameReducer from "./features/memory_game/memoryGameSlice";
 import flashcardsReducer from "./features/flashcards/flashcardsSlice";
+import quizReducer from "./features/quiz/quizSlice";
 
 import { data } from "./data";
 
 const reducer = {
   flashcards: flashcardsReducer,
   memoryGame: memoryGameReducer,
+  quiz: quizReducer,
 };
 
 const preloadedState = {

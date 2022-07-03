@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
-import { updateQuizScreen, resetQuiz, setQuestions } from "../../actions";
+import {
+  quizScreenUpdated,
+  quizQuestionsUpdated,
+  quizReset,
+} from "../../features/quiz/quizSlice";
 import Emoji from "../Emoji";
 import QuizResult from "./QuizResult";
 import QuizResultEmoji from "./QuizResultEmoji";
@@ -32,20 +36,20 @@ function QuizFinished({
   score,
 }) {
   const goToSettings = () => {
-    dispatch(updateQuizScreen("settings"));
-    dispatch(resetQuiz());
+    dispatch(quizScreenUpdated("settings"));
+    dispatch(quizReset());
   };
 
   const tryAgainNewCards = () => {
-    dispatch(updateQuizScreen("game"));
-    dispatch(setQuestions(undefined));
-    dispatch(resetQuiz());
+    dispatch(quizScreenUpdated("game"));
+    dispatch(quizQuestionsUpdated(undefined));
+    dispatch(quizReset());
   };
 
   const tryAgainSameCards = () => {
-    dispatch(setQuestions(questions));
-    dispatch(updateQuizScreen("game"));
-    dispatch(resetQuiz());
+    dispatch(quizQuestionsUpdated(questions));
+    dispatch(quizScreenUpdated("game"));
+    dispatch(quizReset());
   };
 
   const sharingText = `I scored ${score} out of ${currentQuestionIndex} on the ${language} ${category} emoji quiz! How about you?`;

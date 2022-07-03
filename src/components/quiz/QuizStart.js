@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
-import { updateQuizScreen } from "../../actions";
+import { quizScreenUpdated } from "../../features/quiz/quizSlice";
 import QuizSettings from "./QuizSettings";
 import QuizStartImages from "./QuizStartImages";
 import Button from "../Button";
@@ -14,7 +14,7 @@ const styles = css`
 
 function QuizStart({ dispatch }) {
   const startQuiz = () => {
-    dispatch(updateQuizScreen("game"));
+    dispatch(quizScreenUpdated("game"));
   };
 
   return (

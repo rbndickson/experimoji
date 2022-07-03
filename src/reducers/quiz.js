@@ -20,7 +20,7 @@ const initialQuizState = {
   currentQuestionIndex: 0,
   score: 0,
   showQuizAnswer: false,
-  quizScreen: "settings",
+  quizScreenUpdated: "settings",
   questionAmount: 10,
   level: "easy",
   isClickable: true,
@@ -31,7 +31,7 @@ function quiz(state = initialQuizState, action) {
     case UPDATE_QUIZ_SCREEN:
       return {
         ...state,
-        quizScreen: action.screen,
+        quizScreenUpdated: action.screen,
       };
     case SET_QUESTIONS:
       return {
