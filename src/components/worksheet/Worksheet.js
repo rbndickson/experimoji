@@ -26,8 +26,8 @@ class Worksheet extends Component {
 function mapStateToProps(state) {
   return {
     flashcards: state.flashcards,
-    category: state.worksheet.category,
-    language: state.worksheet.language,
+    category: state.information.category,
+    language: state.information.language,
   };
 }
 

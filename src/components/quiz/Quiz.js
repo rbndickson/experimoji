@@ -38,8 +38,8 @@ class Quiz extends Component {
 
 function mapStateToProps(state) {
   return {
-    language: state.quiz.language,
-    category: state.quiz.category,
+    language: state.information.language,
+    category: state.information.category,
     quizScreenUpdated: state.quiz.quizScreenUpdated,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     questionAmount: state.quiz.questionAmount,

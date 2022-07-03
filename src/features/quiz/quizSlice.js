@@ -5,10 +5,6 @@ import { data } from "../../data";
 const quizSlice = createSlice({
   name: "quiz",
   initialState: {
-    language: data.language,
-    category: data.category,
-    languageEmojiCode: data.languageEmojiCode,
-    categoryEmojicode: data.categoryEmojicode,
     currentQuestionIndex: 0,
     score: 0,
     showQuizAnswer: false,

@@ -22,8 +22,8 @@ function QuizStartImages({ categoryEmojicode, languageEmojiCode }) {
 
 function mapStateToProps(state) {
   return {
-    languageEmojiCode: state.quiz.languageEmojiCode,
-    categoryEmojicode: state.quiz.categoryEmojicode,
+    languageEmojiCode: state.information.languageEmojiCode,
+    categoryEmojicode: state.information.categoryEmojicode,
   };
 }
 

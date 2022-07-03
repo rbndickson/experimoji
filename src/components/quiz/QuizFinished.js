@@ -98,8 +98,8 @@ function mapStateToProps(state) {
     questions: state.quiz.questions,
     score: state.quiz.score,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
-    language: state.quiz.language,
-    category: state.quiz.category,
+    language: state.information.language,
+    category: state.information.category,
   };
 }
 

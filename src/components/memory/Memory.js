@@ -66,8 +66,8 @@ function mapStateToProps(state) {
 
   return {
     // TODO: Use data
-    category: "Nature",
-    language: "German",
+    category: state.information.category,
+    language: state.information.language,
     flashcards: flashcards,
     memoryGameFlashcards: Object.values(state.memoryGame.flashcards),
   };
