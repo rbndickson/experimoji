@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createArrayOfNumbers, shuffle } from "../../utils/helpers";
-import { addFlashcard } from "../../actions";
 import Title from "../Title";
 import Button from "../Button";
 import MemoryGame from "./MemoryGame";
+
+import { memoryGameFlashcardsAdded } from "../../features/memory_game/memoryGameSlice";
 
 class Memory extends Component {
   componentDidMount() {
@@ -33,7 +34,7 @@ class Memory extends Component {
         return acc;
       }, [])
       .forEach((flashcard) => {
-        this.props.dispatch(addFlashcard(flashcard));
+        this.props.dispatch(memoryGameFlashcardsAdded(flashcard));
       });
   }
 
@@ -64,10 +65,11 @@ function mapStateToProps(state) {
   const flashcards = state.flashcards.slice(0, 4);
 
   return {
-    category: state.worksheet.category,
-    language: state.worksheet.language,
+    // TODO: Use data
+    category: "Nature",
+    language: "German",
     flashcards: flashcards,
-    memoryGameFlashcards: Object.values(state.memory.flashcards),
+    memoryGameFlashcards: Object.values(state.memoryGame.flashcards),
   };
 }
 

@@ -4,14 +4,28 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
-import { createStore } from "redux";
-import reducer from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
-const store = createStore(
+import memoryGameReducer from "./features/memory_game/memoryGameSlice";
+import flashcardsReducer from "./features/flashcards/flashcardsSlice";
+
+import { data } from "./data";
+
+const reducer = {
+  flashcards: flashcardsReducer,
+  memoryGame: memoryGameReducer,
+};
+
+const preloadedState = {
+  flashcards: data.flashcards,
+};
+
+const store = configureStore({
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+  devTools: process.env.NODE_ENV !== "production",
+  preloadedState,
+});
 
 const root = createRoot(document.getElementById("root"));
 
