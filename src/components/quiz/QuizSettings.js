@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
-import { updateQuizQuestionAmount, updateQuizLevel } from "../../actions";
+import {
+  quizQuestionAmountUpdated,
+  quizLevelUpdated,
+} from "../../features/quiz/quizSlice";
 import Button from "../Button";
 
 const settingsTextStyles = css`
@@ -18,11 +21,11 @@ const inputStyles = css`
 
 function QuizSettings({ dispatch, flashcards, level, questionAmount }) {
   const setQuestionAmount = (_questionAmount) => {
-    dispatch(updateQuizQuestionAmount(_questionAmount));
+    dispatch(quizQuestionAmountUpdated(_questionAmount));
   };
 
   const handlelevelChange = (level) => {
-    dispatch(updateQuizLevel(level));
+    dispatch(quizLevelUpdated(level));
   };
 
   const maxQuestionAmount = flashcards.length;

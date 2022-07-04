@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateQuizScreen } from "../../actions";
+import { quizScreenUpdated } from "../../features/quiz/quizSlice";
 import Title from "../Title";
 import QuizStart from "./QuizStart";
 import QuizGame from "./QuizGame";
@@ -11,16 +11,16 @@ class Quiz extends Component {
     // Resets the quiz screen to setting when entering quiz
     // otherwise the game can remain half way through if using
     // the home button
-    this.props.dispatch(updateQuizScreen("settings"));
+    this.props.dispatch(quizScreenUpdated("settings"));
   }
 
   componentDidUpdate() {
     // Go to the finished screen when finished
     if (
-      this.props.quizScreen === "game" &&
+      this.props.screen === "game" &&
       this.props.currentQuestionIndex > this.props.questionAmount - 1
     ) {
-      this.props.dispatch(updateQuizScreen("finished"));
+      this.props.dispatch(quizScreenUpdated("finished"));
     }
   }
 
@@ -28,9 +28,9 @@ class Quiz extends Component {
     return (
       <div>
         <Title text={`${this.props.language} ${this.props.category} Quiz`} />
-        {this.props.quizScreen === "finished" && <QuizFinished />}
-        {this.props.quizScreen === "settings" && <QuizStart />}
-        {this.props.quizScreen === "game" && <QuizGame />}
+        {this.props.screen === "finished" && <QuizFinished />}
+        {this.props.screen === "settings" && <QuizStart />}
+        {this.props.screen === "game" && <QuizGame />}
       </div>
     );
   }
@@ -38,9 +38,9 @@ class Quiz extends Component {
 
 function mapStateToProps(state) {
   return {
-    language: state.quiz.language,
-    category: state.quiz.category,
-    quizScreen: state.quiz.quizScreen,
+    language: state.information.language,
+    category: state.information.category,
+    screen: state.quiz.screen,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     questionAmount: state.quiz.questionAmount,
   };

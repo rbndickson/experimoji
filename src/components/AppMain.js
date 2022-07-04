@@ -5,7 +5,7 @@ import { css } from "@emotion/css";
 import { emojiSrc } from "../utils/helpers";
 import Menu from "./Menu";
 import Quiz from "./quiz/Quiz";
-import Memory from "./memory/Memory";
+import Memory from "./memory_game/Memory";
 import Worksheet from "./worksheet/Worksheet";
 import WordSearch from "./wordsearch/WordSearch";
 import Pictionary from "./pictionary/Pictionary";

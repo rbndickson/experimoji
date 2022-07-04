@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  updateScore,
-  updateCurrentQuestionIndex,
-  setQuestions,
-} from "../../actions";
+  quizCurrentQuestionIndexUpdated,
+  quizScoreUpdated,
+  quizQuestionsUpdated,
+} from "../../features/quiz/quizSlice";
 import { shuffle } from "../../utils/helpers";
 import QuizHeader from "./QuizHeader";
 import QuizQuestion from "./QuizQuestion";
@@ -13,8 +13,8 @@ import QuizFooter from "./QuizFooter";
 class QuizGame extends Component {
   componentDidMount() {
     // Reset quiz
-    this.props.dispatch(updateScore(0));
-    this.props.dispatch(updateCurrentQuestionIndex(0));
+    this.props.dispatch(quizScoreUpdated(0));
+    this.props.dispatch(quizCurrentQuestionIndexUpdated(0));
     if (this.props.questions) {
       this.setRetryQuestions();
     } else {
@@ -29,7 +29,7 @@ class QuizGame extends Component {
       return acc;
     }, {});
 
-    this.props.dispatch(setQuestions(questions));
+    this.props.dispatch(quizQuestionsUpdated(questions));
   }
 
   setRetryQuestions() {
@@ -45,7 +45,7 @@ class QuizGame extends Component {
       {}
     );
 
-    this.props.dispatch(setQuestions(questions));
+    this.props.dispatch(quizQuestionsUpdated(questions));
   }
 
   createQuestion(flashcard) {

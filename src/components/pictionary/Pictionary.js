@@ -31,8 +31,8 @@ class Pictionary extends Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.worksheet.category,
-    language: state.worksheet.language,
+    category: state.information.category,
+    language: state.information.language,
     flashcards: state.flashcards.slice(0, 16),
   };
 }

@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { css } from "@emotion/css";
 import { sleep } from "../../utils/helpers";
 import {
-  selectFlashcard,
-  deselectFlashcard,
-  setFlashcardToMatched,
-  setClickable,
-  updateMemoryGameScore,
-} from "../../actions";
+  memoryGameFlashcardsSelected,
+  memoryGameFlashcardsDeselected,
+  memoryGameFlashcardsMatched,
+  memoryGameClickable,
+  memoryGameScore,
+} from "../../features/memory_game/memoryGameSlice";
+
 import Flashcard from "./Flashcard";
 
 const styles = css`
@@ -25,7 +26,7 @@ class MemoryGame extends Component {
     const selectedFlashcards = this.selectedFlashcards();
 
     if (selectedFlashcards.length === 2) {
-      this.props.dispatch(updateMemoryGameScore(this.props.score + 1));
+      this.props.dispatch(memoryGameScore(this.props.score + 1));
       this.checkForMatch(selectedFlashcards);
     }
   }
@@ -36,7 +37,7 @@ class MemoryGame extends Component {
 
   handleFlashcardSelection(flashcard) {
     if (this.props.isClickable) {
-      this.props.dispatch(selectFlashcard({ flashcard }));
+      this.props.dispatch(memoryGameFlashcardsSelected({ flashcard }));
     }
   }
 
@@ -55,21 +56,21 @@ class MemoryGame extends Component {
   }
 
   async displayAndHide(flashcards) {
-    this.props.dispatch(setClickable(false));
+    this.props.dispatch(memoryGameClickable(false));
 
     await sleep(2000);
 
     flashcards.forEach((flashcard) => {
-      this.props.dispatch(deselectFlashcard({ flashcard }));
+      this.props.dispatch(memoryGameFlashcardsDeselected({ flashcard }));
     });
 
-    this.props.dispatch(setClickable(true));
+    this.props.dispatch(memoryGameClickable(true));
   }
 
   updateFlashcardsToMatched(flashcards) {
     flashcards.forEach((flashcard) => {
-      this.props.dispatch(deselectFlashcard({ flashcard }));
-      this.props.dispatch(setFlashcardToMatched({ flashcard }));
+      this.props.dispatch(memoryGameFlashcardsDeselected({ flashcard }));
+      this.props.dispatch(memoryGameFlashcardsMatched({ flashcard }));
     });
   }
 
@@ -90,9 +91,9 @@ class MemoryGame extends Component {
 
 function mapStateToProps(state) {
   return {
-    flashcards: state.memory.flashcards,
-    isClickable: state.memory.isClickable,
-    score: state.memory.score,
+    flashcards: state.memoryGame.flashcards,
+    isClickable: state.memoryGame.isClickable,
+    score: state.memoryGame.score,
   };
 }
 

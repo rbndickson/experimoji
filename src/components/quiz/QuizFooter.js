@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { css } from "@emotion/css";
-import { updateQuizScreen, resetQuiz } from "../../actions";
+import { quizScreenUpdated, quizReset } from "../../features/quiz/quizSlice";
 import BackButton from "../BackButton";
 
 const styles = css`
@@ -12,8 +12,8 @@ const styles = css`
 
 function QuizFooter({ dispatch }) {
   const goBack = () => {
-    dispatch(resetQuiz());
-    dispatch(updateQuizScreen("settings"));
+    dispatch(quizReset());
+    dispatch(quizScreenUpdated("settings"));
   };
 
   return (
