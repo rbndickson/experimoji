@@ -17,7 +17,7 @@ class Quiz extends Component {
   componentDidUpdate() {
     // Go to the finished screen when finished
     if (
-      this.props.quizScreenUpdated === "game" &&
+      this.props.screen === "game" &&
       this.props.currentQuestionIndex > this.props.questionAmount - 1
     ) {
       this.props.dispatch(quizScreenUpdated("finished"));
@@ -28,9 +28,9 @@ class Quiz extends Component {
     return (
       <div>
         <Title text={`${this.props.language} ${this.props.category} Quiz`} />
-        {this.props.quizScreenUpdated === "finished" && <QuizFinished />}
-        {this.props.quizScreenUpdated === "settings" && <QuizStart />}
-        {this.props.quizScreenUpdated === "game" && <QuizGame />}
+        {this.props.screen === "finished" && <QuizFinished />}
+        {this.props.screen === "settings" && <QuizStart />}
+        {this.props.screen === "game" && <QuizGame />}
       </div>
     );
   }
@@ -40,7 +40,7 @@ function mapStateToProps(state) {
   return {
     language: state.information.language,
     category: state.information.category,
-    quizScreenUpdated: state.quiz.quizScreenUpdated,
+    screen: state.quiz.screen,
     currentQuestionIndex: state.quiz.currentQuestionIndex,
     questionAmount: state.quiz.questionAmount,
   };

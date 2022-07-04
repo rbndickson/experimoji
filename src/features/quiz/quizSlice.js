@@ -8,7 +8,7 @@ const quizSlice = createSlice({
     currentQuestionIndex: 0,
     score: 0,
     showQuizAnswer: false,
-    quizScreenUpdated: "settings",
+    screen: "settings",
     questionAmount: 10,
     level: "easy",
     isClickable: true,
@@ -16,7 +16,7 @@ const quizSlice = createSlice({
   },
   reducers: {
     quizScreenUpdated(state, action) {
-      state.quizScreenUpdated = action.payload;
+      state.screen = action.payload;
     },
     quizQuestionAmountUpdated(state, action) {
       state.questionAmount = action.payload;
